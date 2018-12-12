@@ -1,13 +1,17 @@
 package com.doscan.qrcode.standard.qrcode;
 
 /**
- * 双字节日本字文本模式
+ * FNC1 模式
  */
-public class ShiftJISInputThing extends InputThing{
+public class FNC1InputThing extends InputThing{
+
 
     @Override
     public Byte[] getModeIndicator() {
-        Byte[] indicator = {1,0,0,0};
+        Byte[] indicator = {0,0,0,0};
+        // 1st 0101
+        // 2st 1001
+        // terminator 0000
         return indicator;
     }
 
@@ -23,6 +27,8 @@ public class ShiftJISInputThing extends InputThing{
 
     @Override
     public String getName() {
-        return "shift jis编码模式";
+        return "混合输入模式";
     }
+
+
 }

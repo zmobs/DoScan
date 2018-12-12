@@ -8,8 +8,14 @@ import java.util.regex.Pattern;
 public class NumberInputThing extends InputThing {
 
     @Override
+    public Byte[] getModeIndicator() {
+        Byte[] indicator =  {0,0,0,1};
+        return indicator;
+    }
+
+    @Override
     public boolean isMatch(String content) {
-        Pattern pattern = Pattern.compile("^[0-9]$");
+        Pattern pattern = Pattern.compile("^\\d+$");
         boolean result =  pattern
                 .matcher(content)
                 .matches();
@@ -17,7 +23,12 @@ public class NumberInputThing extends InputThing {
     }
 
     @Override
-    public int[] getBits() {
-        return new int[0];
+    public Byte[] getBits() {
+        return new Byte[0];
+    }
+
+    @Override
+    public String getName() {
+        return "纯数字模式";
     }
 }

@@ -17,6 +17,8 @@ public class InputResolver {
         inputThings.add(new ShiftJISInputThing());
         inputThings.add(new MixInputThing());
         inputThings.add(new ByteInputThing());
+        inputThings.add(new ChineseInputThing());
+        inputThings.add(new AlphanumericInputThing());
     }
 
 

@@ -2,7 +2,9 @@ package com.doscan.qrcode;
 
 import com.doscan.qrcode.proto.IQRCode2015;
 import com.doscan.qrcode.proto.QRCode;
+import com.doscan.qrcode.standard.qrcode.InputThing;
 import com.doscan.qrcode.standard.qrcode.Version;
+import com.doscan.qrcode.util.LogUtil;
 
 public class QREncoder {
 
@@ -19,6 +21,7 @@ public class QREncoder {
 
     public QREncoder content(String input){
         this.content = input;
+        return this;
     }
 
 
@@ -26,7 +29,12 @@ public class QREncoder {
     public QRCode code(){
 
         InputResolver inputResolver = new InputResolver();
-        inputResolver.
+        InputThing inputThing = inputResolver.detect(content);
+        if(inputThing != null){
+            LogUtil.log("inputThing ---- " + inputThing.getName());
+        }else{
+            return null;
+        }
 
         QRCode qrCode = new QRCode();
         return qrCode;

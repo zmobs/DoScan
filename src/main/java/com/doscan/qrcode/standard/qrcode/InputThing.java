@@ -6,8 +6,12 @@ package com.doscan.qrcode.standard.qrcode;
 public abstract class InputThing {
 
 
+    public abstract Byte[] getModeIndicator();
+
     public abstract boolean isMatch(String content);
 
-    public abstract int[] getBits();
+    public abstract Byte[] getBits();
+
+    public abstract String getName();
 
 }
