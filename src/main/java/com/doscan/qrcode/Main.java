@@ -10,14 +10,14 @@ public class Main {
 
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
         try {
-            qrCodeWriter.encode("996中文", BarcodeFormat.QR_CODE,300,300);
+            qrCodeWriter.encode("996abc", BarcodeFormat.QR_CODE,300,300);
         } catch (WriterException e) {
             e.printStackTrace();
         }
 
         QREncoder
                 .obain()
-                .content("996中文")
+                .content("996abc")
                 .code();
     }
 

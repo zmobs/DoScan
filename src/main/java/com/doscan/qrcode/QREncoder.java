@@ -30,11 +30,7 @@ public class QREncoder {
 
         InputResolver inputResolver = new InputResolver();
         InputThing inputThing = inputResolver.detect(content);
-        if(inputThing != null){
-            LogUtil.log("inputThing ---- " + inputThing.getName());
-        }else{
-            return null;
-        }
+        LogUtil.log("inputThing ---- " + inputThing.getName());
 
         QRCode qrCode = new QRCode();
         return qrCode;

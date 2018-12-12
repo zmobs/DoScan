@@ -16,7 +16,7 @@ public class InputResolver {
         inputThings.add(new NumberInputThing());
         inputThings.add(new ShiftJISInputThing());
         inputThings.add(new MixInputThing());
-        inputThings.add(new ByteInputThing());
+        //inputThings.add(new ByteInputThing());
         inputThings.add(new ChineseInputThing());
         inputThings.add(new AlphanumericInputThing());
     }
@@ -36,7 +36,8 @@ public class InputResolver {
         }
 
         LogUtil.log("no input match.  bomb!");
+        // 兜底的是字节模式
 
-        return null;
+        return new ByteInputThing();
     }
 }

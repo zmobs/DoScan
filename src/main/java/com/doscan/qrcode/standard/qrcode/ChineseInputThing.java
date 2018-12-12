@@ -6,7 +6,12 @@ import com.doscan.qrcode.util.LogUtil;
  * 双字节中文文本模式(也是对比zxing 优化的重点)
  */
 public class ChineseInputThing extends InputThing{
-    
+
+    @Override
+    public Byte[] getModeIndicator() {
+        return new Byte[0];
+    }
+
     @Override
     public boolean isMatch(String content) {
         LogUtil.log("content getBytes---- " + content.getBytes().length);
@@ -15,8 +20,8 @@ public class ChineseInputThing extends InputThing{
     }
 
     @Override
-    public int[] getBits() {
-        return new int[0];
+    public Byte[] getBits() {
+        return new Byte[0];
     }
 
     @Override

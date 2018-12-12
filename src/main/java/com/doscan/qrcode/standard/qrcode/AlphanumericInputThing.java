@@ -1,5 +1,7 @@
 package com.doscan.qrcode.standard.qrcode;
 
+import java.util.regex.Pattern;
+
 /**
  * 英文数字混合模式
  */
@@ -13,8 +15,11 @@ public class AlphanumericInputThing extends InputThing{
 
     @Override
     public boolean isMatch(String content) {
-
-        return false;
+        Pattern pattern = Pattern.compile("^([0-9a-zA-Z]$%*+.)*$");
+        boolean result =  pattern
+                .matcher(content)
+                .matches();
+        return result;
     }
 
     @Override
