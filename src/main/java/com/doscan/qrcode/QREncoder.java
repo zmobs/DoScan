@@ -25,6 +25,9 @@ public class QREncoder {
 
     public QRCode code(){
 
+        InputResolver inputResolver = new InputResolver();
+        inputResolver.
+
         QRCode qrCode = new QRCode();
         return qrCode;
     }

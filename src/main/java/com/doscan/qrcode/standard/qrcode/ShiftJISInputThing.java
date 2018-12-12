@@ -1,11 +1,9 @@
 package com.doscan.qrcode.standard.qrcode;
 
 /**
- * 字节模式
+ * 双字节日本字文本模式
  */
-public class MixInputThing extends InputThing{
-
-
+public class ShiftJISInputThing extends InputThing{
     @Override
     public boolean isMatch(String content) {
         return false;
@@ -15,6 +13,4 @@ public class MixInputThing extends InputThing{
     public int[] getBits() {
         return new int[0];
     }
-
-
 }

@@ -1,13 +1,17 @@
 package com.doscan.qrcode.standard.qrcode;
 
+/**
+ * 英文数字混合模式
+ */
 public class AlphanumericInputThing extends InputThing{
+
     @Override
-    protected boolean isMatch() {
+    public boolean isMatch(String content) {
         return false;
     }
 
     @Override
-    protected int[] getBits() {
+    public int[] getBits() {
         return new int[0];
     }
 }

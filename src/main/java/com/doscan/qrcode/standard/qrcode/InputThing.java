@@ -6,8 +6,8 @@ package com.doscan.qrcode.standard.qrcode;
 public abstract class InputThing {
 
 
-    protected abstract boolean isMatch();
+    public abstract boolean isMatch(String content);
 
-    protected abstract int[] getBits();
+    public abstract int[] getBits();
 
 }
