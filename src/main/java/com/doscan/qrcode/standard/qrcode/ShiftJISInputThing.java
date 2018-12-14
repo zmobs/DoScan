@@ -17,7 +17,7 @@ public class ShiftJISInputThing extends InputThing{
     }
 
     @Override
-    public Byte[] getBits() {
+    public Byte[] getBits(String content) {
         return new Byte[0];
     }
 

@@ -10,7 +10,7 @@ public abstract class InputThing {
 
     public abstract boolean isMatch(String content);
 
-    public abstract Byte[] getBits();
+    public abstract Byte[] getBits(String content);
 
     public abstract String getName();
 

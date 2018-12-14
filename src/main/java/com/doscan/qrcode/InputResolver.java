@@ -14,11 +14,12 @@ public class InputResolver {
 
     public InputResolver(){
         inputThings.add(new NumberInputThing());
+        inputThings.add(new AlphanumericInputThing());
         inputThings.add(new ShiftJISInputThing());
         inputThings.add(new MixInputThing());
         //inputThings.add(new ByteInputThing());
         inputThings.add(new ChineseInputThing());
-        inputThings.add(new AlphanumericInputThing());
+
     }
 
 

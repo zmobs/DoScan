@@ -17,9 +17,10 @@ public class MixInputThing extends InputThing{
     }
 
     @Override
-    public Byte[] getBits() {
+    public Byte[] getBits(String content) {
         return new Byte[0];
     }
+
 
     @Override
     public String getName() {

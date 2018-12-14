@@ -15,7 +15,7 @@ public class AlphanumericInputThing extends InputThing{
 
     @Override
     public boolean isMatch(String content) {
-        Pattern pattern = Pattern.compile("^([0-9a-zA-Z]$%*+.)*$");
+        Pattern pattern = Pattern.compile("^([0-9a-zA-Z\\+\\-\\*\\$\\%\\.\\/\\:])*$");
         boolean result =  pattern
                 .matcher(content)
                 .matches();
@@ -23,9 +23,11 @@ public class AlphanumericInputThing extends InputThing{
     }
 
     @Override
-    public Byte[] getBits() {
+    public Byte[] getBits(String content) {
         return new Byte[0];
     }
+
+
 
     @Override
     public String getName() {
