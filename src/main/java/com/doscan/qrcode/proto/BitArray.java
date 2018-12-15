@@ -17,17 +17,16 @@ public class BitArray {
      */
     private int[] bits;
 
-    /**
-     * 有效长度，有效比特长度
-     */
-    private int validLen = 0;
-
-
-
-
     BitArray(){
         // 32bit default
         bits = new int[1];
+    }
+
+
+    BitArray(int defaultSize){
+        // 32bit default
+        bits = new int[1];
+        this.size = defaultSize;
     }
 
 
@@ -94,15 +93,6 @@ public class BitArray {
 
     }
 
-
-
-    public int getValidLen() {
-        return validLen;
-    }
-
-    public void setValidLen(int validLen) {
-        this.validLen = validLen;
-    }
 
     /**
      * 对指定比特位置进行反转
@@ -205,7 +195,7 @@ public class BitArray {
             if ((i & 0x07) == 0) {
                 result.append(' ');
             }
-            result.append(get(i) ? 'X' : '.');
+            result.append(get(i) ? 'X' : 'o');
         }
         return result.toString();
     }

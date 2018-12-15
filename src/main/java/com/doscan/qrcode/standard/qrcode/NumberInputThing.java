@@ -1,6 +1,7 @@
 package com.doscan.qrcode.standard.qrcode;
 
 import com.doscan.qrcode.proto.NumBitUnit;
+import com.doscan.qrcode.util.LogUtil;
 
 import java.util.regex.Pattern;
 
@@ -37,6 +38,10 @@ public class NumberInputThing extends InputThing {
             }
             String subNum = content.substring(i,i + subLength);
             NumBitUnit numBitUnit = new NumBitUnit(subNum);
+            String numValue = numBitUnit.getBitArray().toString();
+            LogUtil.log("numValue   ----   " + numValue);
+            String numStrValue = numBitUnit.getCodeNumBin();
+            LogUtil.log("numStrValue   ----   " + numStrValue);
         }
 
 

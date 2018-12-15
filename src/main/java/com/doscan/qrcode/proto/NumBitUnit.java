@@ -1,16 +1,32 @@
 package com.doscan.qrcode.proto;
 
 import com.doscan.qrcode.exception.BombException;
-import com.doscan.qrcode.util.HexUtil;
-import com.doscan.qrcode.util.LogUtil;
 import com.doscan.qrcode.util.StringUtil;
 
 public class NumBitUnit {
 
+    /**
+     * 原始数字字符串
+     */
     private String content;
-    private Byte[] bits = new Byte[0];
+    /**
+     * 比特流的比特组件容器
+     */
+    BitArray bitArray = new BitArray();
+    /**
+     * 比特流的字符串体现
+     */
+    String codeNumBin;
 
 
+
+    public BitArray getBitArray() {
+        return bitArray;
+    }
+
+    public String getCodeNumBin() {
+        return codeNumBin;
+    }
 
     public NumBitUnit(String content){
         if(StringUtil.isEmpty(content)){
@@ -25,18 +41,19 @@ public class NumBitUnit {
 
 
     private void initBitInfo(){
-        String codeNumBin = intToBinaryStr(content);
+
+        bitArray.clear();
+        codeNumBin = intToBinaryStr(content);
         int bitLength = codeNumBin.length();
-        bits = new Byte[bitLength];
+
         for(int i = 0; i < bitLength;i++){
             if(codeNumBin.charAt(i) == '1'){
-                bits[i] = 1;
+                bitArray.appendBit(true);
             }else{
-                bits[i] = 0;
+                bitArray.appendBit(false);
             }
         }
     }
-
 
 
     private String intToBinaryStr(String num){
