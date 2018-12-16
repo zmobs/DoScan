@@ -69,8 +69,7 @@ public class NumBitUnit {
             strCount = 4;
         }
 
-        String codeNumBin = Integer.toBinaryString(Integer.parseInt(num)
-        );
+        String codeNumBin = Integer.toBinaryString(Integer.parseInt(num));
         int binCount = codeNumBin.length();
         StringBuilder stringBuilder = new StringBuilder(codeNumBin);
         for(int i = 0; i < (strCount - binCount); i++){

@@ -1,5 +1,7 @@
 package com.doscan.qrcode.standard.qrcode;
 
+import com.doscan.qrcode.proto.BitArray;
+
 import java.util.regex.Pattern;
 
 /**
@@ -8,8 +10,12 @@ import java.util.regex.Pattern;
 public class AlphanumericInputThing extends InputThing{
 
     @Override
-    public Byte[] getModeIndicator() {
-        Byte[] indicator =  {0,0,1,0};
+    public BitArray getModeIndicator() {
+        BitArray indicator = new BitArray();
+        indicator.appendBit(false);
+        indicator.appendBit(false);
+        indicator.appendBit(true);
+        indicator.appendBit(false);
         return indicator;
     }
 
@@ -23,10 +29,9 @@ public class AlphanumericInputThing extends InputThing{
     }
 
     @Override
-    public Byte[] getBits(String content) {
-        return new Byte[0];
+    public BitArray getBits(String content) {
+        return new BitArray();
     }
-
 
 
     @Override

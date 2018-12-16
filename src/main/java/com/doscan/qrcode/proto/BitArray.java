@@ -17,13 +17,13 @@ public class BitArray {
      */
     private int[] bits;
 
-    BitArray(){
+    public BitArray(){
         // 32bit default
         bits = new int[1];
     }
 
 
-    BitArray(int defaultSize){
+    public BitArray(int defaultSize){
         // 32bit default
         bits = new int[1];
         this.size = defaultSize;
@@ -192,10 +192,7 @@ public class BitArray {
 
         StringBuilder result = new StringBuilder(size);
         for (int i = 0; i < size; i++) {
-            if ((i & 0x07) == 0) {
-                result.append(' ');
-            }
-            result.append(get(i) ? 'X' : 'o');
+            result.append(get(i) ? 'x' : 'o');
         }
         return result.toString();
     }
