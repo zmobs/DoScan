@@ -1,28 +1,31 @@
-//package com.doscan.qrcode.standard.qrcode;
-//
-///**
-// * 双字节日本字文本模式
-// */
-//public class ShiftJISInputThing extends InputThing{
-//
-//    @Override
-//    public Byte[] getModeIndicator() {
-//        Byte[] indicator = {1,0,0,0};
-//        return indicator;
-//    }
-//
-//    @Override
-//    public boolean isMatch(String content) {
-//        return false;
-//    }
-//
-//    @Override
-//    public Byte[] getBits(String content) {
-//        return new Byte[0];
-//    }
-//
-//    @Override
-//    public String getName() {
-//        return "shift jis编码模式";
-//    }
-//}
+package com.doscan.qrcode.standard.qrcode;
+
+import com.doscan.qrcode.proto.BitArray;
+import com.doscan.qrcode.util.HexUtil;
+
+/**
+ * 双字节日本字文本模式
+ */
+public class ShiftJISInputThing extends InputThing{
+
+    @Override
+    public BitArray getModeIndicator() {
+        String indicator = "1000";
+        return HexUtil.strToBitArray(indicator);
+    }
+
+    @Override
+    public boolean isMatch(String content) {
+        return false;
+    }
+
+    @Override
+    public BitArray getBits(String content) {
+        return new BitArray();
+    }
+
+    @Override
+    public String getName() {
+        return "shift jis编码模式";
+    }
+}

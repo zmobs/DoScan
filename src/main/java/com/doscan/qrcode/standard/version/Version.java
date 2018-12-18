@@ -1,6 +1,7 @@
 package com.doscan.qrcode.standard.version;
 
 import com.doscan.qrcode.exception.BombException;
+import com.doscan.qrcode.standard.qrcode.*;
 import com.doscan.qrcode.util.LogUtil;
 
 /**
@@ -21,6 +22,46 @@ public class Version {
 
     public int getSideModuleNum(){
         return 21 + (versionNumber - 1) * 4;
+    }
+
+
+    public int getCharIndicatorCount(InputThing inputThing){
+
+        if(inputThing instanceof NumberInputThing){
+            if(versionNumber < 10){
+                return 10;
+            }else if(versionNumber < 27){
+                return 12;
+            }else{
+                return 14;
+            }
+        }else if(inputThing instanceof AlphanumericInputThing){
+            if(versionNumber < 10){
+                return 9;
+            }else if(versionNumber < 27){
+                return 11;
+            }else{
+                return 13;
+            }
+        }else if(inputThing instanceof ByteInputThing){
+            if(versionNumber < 10){
+                return 8;
+            }else if(versionNumber < 27){
+                return 16;
+            }else{
+                return 16;
+            }
+        }else if(inputThing instanceof ShiftJISInputThing){
+            // kanji mode
+            if(versionNumber < 10){
+                return 8;
+            }else if(versionNumber < 27){
+                return 10;
+            }else{
+                return 12;
+            }
+        }
+        throw new BombException("no thus mode .. bomb~~~");
     }
 
     public int getFunctionPatternNum(){
