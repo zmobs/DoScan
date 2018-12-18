@@ -1,10 +1,9 @@
 package com.doscan.qrcode;
 
-import com.doscan.qrcode.util.LogUtil;
+import com.doscan.qrcode.standard.version.VersionDetector;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.qrcode.QRCodeWriter;
-
 
 
 public class Main {
@@ -24,6 +23,9 @@ public class Main {
                 .obain()
                 .content("9966880014")
                 .code();
+
+
+        new VersionDetector().test();
 
 
 

@@ -35,7 +35,7 @@ public class NumberInputThing extends InputThing {
     public BitArray getBits(String content) {
 
         int numCount = content.length();
-        // 动态确定长度
+        // 动态确定长度 todo
         HexUtil.intToBinaryStr(numCount,10);
 
 
