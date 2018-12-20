@@ -20,7 +20,7 @@ public class AlphanumericInputThing extends InputThing{
     }
 
     @Override
-    public boolean isMatch(String content) {
+    public boolean isMatch() {
         Pattern pattern = Pattern.compile("^([0-9a-zA-Z\\+\\-\\*\\$\\%\\.\\/\\:])*$");
         boolean result =  pattern
                 .matcher(content)
@@ -29,7 +29,7 @@ public class AlphanumericInputThing extends InputThing{
     }
 
     @Override
-    public BitArray getBits(String content) {
+    public BitArray getBits() {
         return new BitArray();
     }
 

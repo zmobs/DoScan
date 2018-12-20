@@ -7,12 +7,30 @@ import com.doscan.qrcode.proto.BitArray;
  */
 public abstract class InputThing {
 
+    protected String content;
+
+    InputThing(String input){
+        this.content = input;
+    }
+
+    InputThing(){
+
+    }
+
+    public void content(String input){
+        this.content = input;
+    }
+
+
+    public String getStrContent(){
+        return this.content;
+    }
 
     public abstract BitArray getModeIndicator();
 
-    public abstract boolean isMatch(String content);
+    public abstract boolean isMatch();
 
-    public abstract BitArray getBits(String content);
+    public abstract BitArray getBits();
 
     public abstract String getName();
 

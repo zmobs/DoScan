@@ -1,6 +1,6 @@
 //package com.doscan.qrcode.standard.qrcode;
 //
-//import com.doscan.qrcode.util.LogUtil;
+//import com.doscan.qrcode.util.Log;
 //
 ///**
 // * 双字节中文文本模式(也是对比zxing 优化的重点)
@@ -14,8 +14,8 @@
 //
 //    @Override
 //    public boolean isMatch(String content) {
-//        LogUtil.log("content getBytes---- " + content.getBytes().length);
-//        LogUtil.log("content length---- " + content.length());
+//        Log.d("content getBytes---- " + content.getBytes().length);
+//        Log.d("content length---- " + content.length());
 //        return false;
 //    }
 //

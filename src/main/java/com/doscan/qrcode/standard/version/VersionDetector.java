@@ -1,17 +1,39 @@
 package com.doscan.qrcode.standard.version;
 
-import com.doscan.qrcode.util.LogUtil;
+import com.doscan.qrcode.proto.EncodeStrategy;
+import com.doscan.qrcode.standard.qrcode.InputThing;
+import com.doscan.qrcode.util.Log;
 
 public class VersionDetector {
 
-public VersionDetector(){
+    EncodeStrategy encodeStrategy;
 
-}
-        public void test(){
-            for(int i = 1; i < 41; i++){
-                Version version = new Version(i);
-                LogUtil.log("version ---- " + i + "   " + version.getRemainder());
-            }
+    public VersionDetector(EncodeStrategy strategy) {
+        this.encodeStrategy = strategy;
+    }
+
+
+    public Version detectVersion(InputThing inputThing){
+
+        if(encodeStrategy == EncodeStrategy.HIGN_QUALITY){
+
+        }else if(encodeStrategy == EncodeStrategy.MIN_SIZE){
+
         }
+        return new Version(1);
+    }
+
+
+    public static boolean checkSpecVersion(Version version, InputThing inputThing){
+        if(version == null || inputThing == null){
+            Log.bomb("参数不能为空");
+        }
+        int headBitLen = inputThing.getModeIndicator().getSize();
+        int charCount = version.getCharIndicatorCount(inputThing);
+
+        return false;
+//        inputThing.
+    }
+
 
 }

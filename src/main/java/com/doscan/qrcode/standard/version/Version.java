@@ -2,7 +2,6 @@ package com.doscan.qrcode.standard.version;
 
 import com.doscan.qrcode.exception.BombException;
 import com.doscan.qrcode.standard.qrcode.*;
-import com.doscan.qrcode.util.LogUtil;
 
 /**
  * qrcode的版本对象
@@ -116,11 +115,6 @@ public class Version {
         int a = getSideModuleNum();
         int b = getFunctionPatternNum();
         int c = getFormatVersionNumber();
-
-//        LogUtil.log("getSideModuleNum  ---- " + a);
-//        LogUtil.log("getFunctionPatternNum  ---- " + b);
-//        LogUtil.log("getFormatVersionNumber  ---- " + c);
-
         int d = a * a - b  - c;
         return d;
     }

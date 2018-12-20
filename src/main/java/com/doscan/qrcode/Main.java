@@ -24,12 +24,6 @@ public class Main {
                 .content("9966880014")
                 .code();
 
-
-        new VersionDetector().test();
-
-
-
-
     }
 
 }

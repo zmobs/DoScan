@@ -18,12 +18,12 @@ public class ByteInputThing extends InputThing{
     }
 
     @Override
-    public boolean isMatch(String content) {
+    public boolean isMatch() {
         return false;
     }
 
     @Override
-    public BitArray getBits(String content) {
+    public BitArray getBits() {
         return new BitArray();
     }
 

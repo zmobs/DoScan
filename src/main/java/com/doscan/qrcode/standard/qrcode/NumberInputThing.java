@@ -3,7 +3,6 @@ package com.doscan.qrcode.standard.qrcode;
 import com.doscan.qrcode.proto.BitArray;
 import com.doscan.qrcode.proto.NumBitUnit;
 import com.doscan.qrcode.util.HexUtil;
-import com.doscan.qrcode.util.LogUtil;
 
 import java.util.regex.Pattern;
 
@@ -11,6 +10,13 @@ import java.util.regex.Pattern;
  * 纯数字模式
  */
 public class NumberInputThing extends InputThing {
+
+//    NumberInputThing(String input) {
+//        super(input);
+//    }
+//    NumberInputThing(){
+//
+//    }
 
     @Override
     public BitArray getModeIndicator() {
@@ -23,7 +29,7 @@ public class NumberInputThing extends InputThing {
     }
 
     @Override
-    public boolean isMatch(String content) {
+    public boolean isMatch() {
         Pattern pattern = Pattern.compile("^\\d+$");
         boolean result =  pattern
                 .matcher(content)
@@ -32,7 +38,7 @@ public class NumberInputThing extends InputThing {
     }
 
     @Override
-    public BitArray getBits(String content) {
+    public BitArray getBits() {
 
         int numCount = content.length();
         // 动态确定长度 todo
@@ -50,11 +56,7 @@ public class NumberInputThing extends InputThing {
             String subNum = content.substring(i,i + subLength);
             NumBitUnit numBitUnit = new NumBitUnit(subNum);
             inputBits.appendBitArray(numBitUnit.getBitArray());
-            String numStrValue = numBitUnit.getCodeNumBin();
-            LogUtil.log("numStrValue   ----   " + numStrValue);
-
         }
-        LogUtil.log("inputBits   ----   " + inputBits.toString());
 
         return inputBits;
     }

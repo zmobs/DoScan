@@ -2,7 +2,7 @@ package com.doscan.qrcode;
 
 import com.doscan.qrcode.exception.BombException;
 import com.doscan.qrcode.standard.qrcode.*;
-import com.doscan.qrcode.util.LogUtil;
+import com.doscan.qrcode.util.Log;
 import com.doscan.qrcode.util.StringUtil;
 
 import java.util.ArrayList;
@@ -31,12 +31,13 @@ public class InputResolver {
         }
 
         for(InputThing inputThing : inputThings){
-            if(inputThing.isMatch(content)){
+            inputThing.content(content);
+            if(inputThing.isMatch()){
                 return inputThing;
             }
         }
 
-        LogUtil.log("no input match.  bomb!");
+        Log.d("no input match.  bomb!");
         // 兜底的是字节模式
 
         return new ByteInputThing();
