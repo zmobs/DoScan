@@ -1,6 +1,5 @@
 package com.doscan.qrcode;
 
-import com.doscan.qrcode.standard.version.VersionDetector;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.qrcode.QRCodeWriter;

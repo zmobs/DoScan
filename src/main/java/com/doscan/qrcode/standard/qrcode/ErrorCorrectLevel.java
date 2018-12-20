@@ -1,4 +1,4 @@
-package com.doscan.qrcode.standard;
+package com.doscan.qrcode.standard.qrcode;
 
 /**
  * @document IOS-18004 2016 6.1
