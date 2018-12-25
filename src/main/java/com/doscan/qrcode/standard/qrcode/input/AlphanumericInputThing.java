@@ -1,26 +1,32 @@
-package com.doscan.qrcode.standard.qrcode;
+package com.doscan.qrcode.standard.qrcode.input;
 
 import com.doscan.qrcode.proto.BitArray;
 import com.doscan.qrcode.standard.version.Version;
 
+import java.util.regex.Pattern;
+
 /**
- * 字节模式
+ * 英文数字混合模式
  */
-public class ByteInputThing extends InputThing{
+public class AlphanumericInputThing extends InputThing {
 
     @Override
     public BitArray getModeIndicator() {
         BitArray indicator = new BitArray();
         indicator.appendBit(false);
-        indicator.appendBit(true);
         indicator.appendBit(false);
+        indicator.appendBit(true);
         indicator.appendBit(false);
         return indicator;
     }
 
     @Override
     public boolean isMatch() {
-        return false;
+        Pattern pattern = Pattern.compile("^([0-9a-zA-Z\\+\\-\\*\\$\\%\\.\\/\\:])*$");
+        boolean result =  pattern
+                .matcher(content)
+                .matches();
+        return result;
     }
 
     @Override
@@ -31,7 +37,7 @@ public class ByteInputThing extends InputThing{
 
     @Override
     public String getName() {
-        return "字节模式";
+        return "英文数字混合模式";
     }
 
     @Override

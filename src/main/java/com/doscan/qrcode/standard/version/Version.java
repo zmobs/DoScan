@@ -1,7 +1,8 @@
 package com.doscan.qrcode.standard.version;
 
 import com.doscan.qrcode.exception.BombException;
-import com.doscan.qrcode.standard.qrcode.*;
+import com.doscan.qrcode.standard.qrcode.errorcorrect.ECBlock;
+import com.doscan.qrcode.standard.qrcode.input.*;
 
 /**
  * qrcode的版本对象
@@ -14,16 +15,30 @@ public class Version {
      */
     private int versionNumber;
 
+    private ECBlock[] ecBlocks;
+
+    /**
+     * 构造器
+     * @param num
+     */
     public Version(int num){
         this.versionNumber = num;
+        // todo 根据版本号去初始化 ec块结构
     }
 
-
+    /**
+     * 单边模点数量
+     * @return
+     */
     public int getSideModuleNum(){
         return 21 + (versionNumber - 1) * 4;
     }
 
-
+    /**
+     * 字符长度指示器比特长度
+     * @param inputThing
+     * @return
+     */
     public int getCharIndicatorCount(InputThing inputThing){
 
         if(inputThing instanceof NumberInputThing){
@@ -63,6 +78,10 @@ public class Version {
         throw new BombException("no thus mode .. bomb~~~");
     }
 
+    /**
+     * 获取功能模点数量
+     * @return
+     */
     public int getFunctionPatternNum(){
 
         if(versionNumber == 1){
@@ -96,11 +115,18 @@ public class Version {
         throw new BombException("version num 0-40");
     }
 
-
+    /**
+     * 获取版本号
+     * @return
+     */
     public int getVersionNumber(){
         return this.versionNumber;
     }
 
+    /**
+     * 获取格式信息的模点数量
+     * @return
+     */
     public int getFormatVersionNumber(){
 
         if(versionNumber < 7){
@@ -111,6 +137,10 @@ public class Version {
     }
 
 
+    /**
+     * 获取期望的数据段模点数量
+     * @return
+     */
     public int getDataModuleExceptNum(){
         int a = getSideModuleNum();
         int b = getFunctionPatternNum();
@@ -121,24 +151,25 @@ public class Version {
 
 
     /**
-     * codeword
+     * codeword 获取数据容量的码字
      * @return
      */
-    public int getDataCapacity(){
+    public int getDataCapacityCodeword(){
         int a = getDataModuleExceptNum();
-        int b = getSideModuleNum();
+        int b = 8;
         int c = a / b;
         return c;
     }
 
     /**
-     * 获取剩余的留白点数
+     * 获取剩余的留白比特数量
      * @return
      */
     public int getRemainder(){
-
         int a = getDataModuleExceptNum();
         int c = a % 8;
         return c;
     }
+
+
 }

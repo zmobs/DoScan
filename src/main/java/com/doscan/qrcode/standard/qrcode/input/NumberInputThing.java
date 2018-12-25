@@ -1,4 +1,4 @@
-package com.doscan.qrcode.standard.qrcode;
+package com.doscan.qrcode.standard.qrcode.input;
 
 import com.doscan.qrcode.proto.BitArray;
 import com.doscan.qrcode.proto.NumBitUnit;

@@ -1,7 +1,10 @@
 package com.doscan.qrcode;
 
 import com.doscan.qrcode.exception.BombException;
-import com.doscan.qrcode.standard.qrcode.*;
+import com.doscan.qrcode.standard.qrcode.input.AlphanumericInputThing;
+import com.doscan.qrcode.standard.qrcode.input.ByteInputThing;
+import com.doscan.qrcode.standard.qrcode.input.InputThing;
+import com.doscan.qrcode.standard.qrcode.input.NumberInputThing;
 import com.doscan.qrcode.util.Log;
 import com.doscan.qrcode.util.StringUtil;
 
@@ -12,27 +15,25 @@ public class InputResolver {
 
     private List<InputThing> inputThings = new ArrayList<>(8);
 
-    public InputResolver(){
+    public InputResolver() {
         inputThings.add(new NumberInputThing());
         inputThings.add(new AlphanumericInputThing());
-//        inputThings.add(new ShiftJISInputThing());
-//        inputThings.add(new MixInputThing());
+        //inputThings.add(new ShiftJISInputThing());
+        //inputThings.add(new MixInputThing());
         //inputThings.add(new ByteInputThing());
-//        inputThings.add(new ChineseInputThing());
-
+        //inputThings.add(new ChineseInputThing());
     }
 
 
+    public InputThing detect(String content) {
 
-    public InputThing detect(String content){
-
-        if(StringUtil.isEmpty(content)){
+        if (StringUtil.isEmpty(content)) {
             throw new BombException("输入内容为空");
         }
 
-        for(InputThing inputThing : inputThings){
+        for (InputThing inputThing : inputThings) {
             inputThing.content(content);
-            if(inputThing.isMatch()){
+            if (inputThing.isMatch()) {
                 return inputThing;
             }
         }

@@ -6,9 +6,10 @@ import com.doscan.qrcode.proto.IQRCode2015;
 import com.doscan.qrcode.proto.QRCodeSymbol;
 import com.doscan.qrcode.standard.charset.Charset;
 import com.doscan.qrcode.standard.qrcode.ErrorCorrectLevel;
-import com.doscan.qrcode.standard.qrcode.InputThing;
+import com.doscan.qrcode.standard.qrcode.input.InputThing;
 import com.doscan.qrcode.standard.version.Version;
 import com.doscan.qrcode.standard.version.VersionDetector;
+import com.doscan.qrcode.util.Log;
 
 /**
  * QRCode 编码器
@@ -69,11 +70,15 @@ public class QREncoder {
      * @return 编码完成的二维码定义
      */
     public QRCodeSymbol code(){
+
+        int testNum = new Version(1).getDataCapacityCodeword();
+        Log.d("testNum --- " + testNum);
         // 如果没有手动指定version，则需要选择器智能选择
         InputResolver inputResolver = new InputResolver();
         InputThing inputThing = inputResolver.detect(content);
 
         if(version == null || correctLevel == null){
+            // todo
             // 未指定版本信息以及纠错码级别，则自动需要自动选择
             version = new VersionDetector(encodeStrategy)
                                     .detectVersion(inputThing);
