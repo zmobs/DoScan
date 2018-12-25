@@ -2,24 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c6bcf1ac-286b-4e75-9dfe-136f4f1008a4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/table/ITable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/table/VersionCapacityTable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/doscan/qrcode/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/doscan/qrcode/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/InputResolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/InputResolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/QREncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/QREncoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/AlphanumericInputThing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/input/AlphanumericInputThing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/ByteInputThing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/input/ByteInputThing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/ChineseInputThing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/input/ChineseInputThing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/FNC1InputThing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/input/FNC1InputThing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/InputThing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/input/InputThing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/MixInputThing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/input/MixInputThing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/NumberInputThing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/input/NumberInputThing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/ShiftJISInputThing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/input/ShiftJISInputThing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/StructuredAppendInputThing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/input/StructuredAppendInputThing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/errorcorrect/ECBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/errorcorrect/ECBlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/version/Version.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/version/Version.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/version/VersionDetector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/version/VersionDetector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/table/VersionCapacityTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/table/VersionECTable.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -37,11 +21,46 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/table/VersionCapacityTable.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/table/VersionECTable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="207">
+              <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#869#870#0" expanded="true" />
+                <element signature="e#910#911#0" expanded="true" />
+                <element signature="e#963#964#0" expanded="true" />
+                <element signature="e#1015#1016#0" expanded="true" />
+                <element signature="e#1044#1045#0" expanded="true" />
+                <element signature="e#1076#1077#0" expanded="true" />
+                <element signature="e#1111#1112#0" expanded="true" />
+                <element signature="e#1140#1141#0" expanded="true" />
+                <element signature="e#1169#1170#0" expanded="true" />
+                <element signature="e#1201#1202#0" expanded="true" />
+                <element signature="e#1236#1237#0" expanded="true" />
+                <element signature="e#1265#1266#0" expanded="true" />
+                <element signature="e#1294#1295#0" expanded="true" />
+                <element signature="e#1326#1327#0" expanded="true" />
+                <element signature="e#1361#1362#0" expanded="true" />
+                <element signature="e#1390#1391#0" expanded="true" />
+                <element signature="e#1419#1420#0" expanded="true" />
+                <element signature="e#1451#1452#0" expanded="true" />
+                <element signature="e#1486#1487#0" expanded="true" />
+                <element signature="e#1515#1516#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/doscan/qrcode/QREncoder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="78" lean-forward="true" selection-start-line="78" selection-end-line="78" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -105,14 +124,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/input/NumberInputThing.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+            <state relative-caret-position="495">
+              <caret line="36" column="31" selection-start-line="36" selection-start-column="31" selection-end-line="36" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/input/MixInputThing.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="322">
+              <caret line="14" column="12" selection-end-line="31" />
             </state>
           </provider>
         </entry>
@@ -168,7 +196,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/type/MicroQRCode.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/Version.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/type/QRCode.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/type/IQRCode2015.java" />
@@ -219,6 +246,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/table/VersionCapacityTable.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/version/Version.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/errorcorrect/ECBlock.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/table/VersionECTable.java" />
       </list>
     </option>
   </component>
@@ -285,17 +313,6 @@
               <item name="qrcode" type="462c0819:PsiDirectoryNode" />
               <item name="standard" type="462c0819:PsiDirectoryNode" />
               <item name="qrcode" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DoScan" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DoScan" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="qrcode" type="462c0819:PsiDirectoryNode" />
-              <item name="standard" type="462c0819:PsiDirectoryNode" />
-              <item name="qrcode" type="462c0819:PsiDirectoryNode" />
-              <item name="errorcorrect" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="DoScan" type="b2602c69:ProjectViewProjectNode" />
@@ -548,11 +565,19 @@
       <option name="project" value="LOCAL" />
       <updated>1545716884733</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="看懂了 容量和纠错码字的计算关系。 接下来需要实现版本和纠错块之间的换算即可">
+      <created>1545748392740</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1545748392740</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22050938" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -563,7 +588,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.9575071" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932975" weight="0.37818697" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932975" visible="true" weight="0.37818697" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3974152" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -629,7 +654,8 @@
     <MESSAGE value="版本预测算法开发中，不知道196是什么算出的130... 先储备点理论知识哇" />
     <MESSAGE value="发现了一块新大陆，编码前需要进行ecb分块，调研中" />
     <MESSAGE value="二维码编码主流程进行中" />
-    <option name="LAST_COMMIT_MESSAGE" value="二维码编码主流程进行中" />
+    <MESSAGE value="看懂了 容量和纠错码字的计算关系。 接下来需要实现版本和纠错块之间的换算即可" />
+    <option name="LAST_COMMIT_MESSAGE" value="看懂了 容量和纠错码字的计算关系。 接下来需要实现版本和纠错块之间的换算即可" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -893,13 +919,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/input/MixInputThing.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="14" column="12" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/input/StructuredAppendInputThing.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="460">
@@ -972,16 +991,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/doscan/qrcode/QREncoder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="73" column="51" selection-start-line="73" selection-start-column="51" selection-end-line="73" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/charset/Charset.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -1020,13 +1029,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/table/VersionCapacityTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>
@@ -1086,12 +1088,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/input/MixInputThing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="14" column="12" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/input/NumberInputThing.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        <state relative-caret-position="495">
+          <caret line="36" column="31" selection-start-line="36" selection-start-column="31" selection-end-line="36" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/doscan/qrcode/QREncoder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="78" lean-forward="true" selection-start-line="78" selection-end-line="78" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/table/VersionECTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#869#870#0" expanded="true" />
+            <element signature="e#910#911#0" expanded="true" />
+            <element signature="e#963#964#0" expanded="true" />
+            <element signature="e#1015#1016#0" expanded="true" />
+            <element signature="e#1044#1045#0" expanded="true" />
+            <element signature="e#1076#1077#0" expanded="true" />
+            <element signature="e#1111#1112#0" expanded="true" />
+            <element signature="e#1140#1141#0" expanded="true" />
+            <element signature="e#1169#1170#0" expanded="true" />
+            <element signature="e#1201#1202#0" expanded="true" />
+            <element signature="e#1236#1237#0" expanded="true" />
+            <element signature="e#1265#1266#0" expanded="true" />
+            <element signature="e#1294#1295#0" expanded="true" />
+            <element signature="e#1326#1327#0" expanded="true" />
+            <element signature="e#1361#1362#0" expanded="true" />
+            <element signature="e#1390#1391#0" expanded="true" />
+            <element signature="e#1419#1420#0" expanded="true" />
+            <element signature="e#1451#1452#0" expanded="true" />
+            <element signature="e#1486#1487#0" expanded="true" />
+            <element signature="e#1515#1516#0" expanded="true" />
           </folding>
         </state>
       </provider>
