@@ -1,6 +1,7 @@
 package com.doscan.qrcode.standard.qrcode;
 
 import com.doscan.qrcode.proto.BitArray;
+import com.doscan.qrcode.standard.version.Version;
 import com.doscan.qrcode.util.HexUtil;
 
 /**
@@ -27,5 +28,10 @@ public class ShiftJISInputThing extends InputThing{
     @Override
     public String getName() {
         return "shift jis编码模式";
+    }
+
+    @Override
+    public BitArray getCountLength(Version version) {
+        return null;
     }
 }

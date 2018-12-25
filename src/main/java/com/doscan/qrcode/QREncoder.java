@@ -5,6 +5,7 @@ import com.doscan.qrcode.proto.EncodeStrategy;
 import com.doscan.qrcode.proto.IQRCode2015;
 import com.doscan.qrcode.proto.QRCodeSymbol;
 import com.doscan.qrcode.standard.charset.Charset;
+import com.doscan.qrcode.standard.qrcode.ErrorCorrectLevel;
 import com.doscan.qrcode.standard.qrcode.InputThing;
 import com.doscan.qrcode.standard.version.Version;
 import com.doscan.qrcode.standard.version.VersionDetector;
@@ -18,7 +19,7 @@ public class QREncoder {
     private Version version;
     private Charset charset = Charset.ISO_8859_1;
     private String content;
-    private CorrectLevel correctLevel;
+    private ErrorCorrectLevel correctLevel;
     /**
      * 默认高质量策略
      */
@@ -63,11 +64,12 @@ public class QREncoder {
     }
 
 
-
-
+    /**
+     * 进行组装编码的主流程
+     * @return 编码完成的二维码定义
+     */
     public QRCodeSymbol code(){
         // 如果没有手动指定version，则需要选择器智能选择
-
         InputResolver inputResolver = new InputResolver();
         InputThing inputThing = inputResolver.detect(content);
 

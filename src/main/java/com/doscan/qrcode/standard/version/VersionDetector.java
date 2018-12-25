@@ -25,6 +25,13 @@ public class VersionDetector {
     }
 
 
+    /**
+     * 检测指定版本是否可以使用
+     * @param version
+     * @param correctLevel
+     * @param inputThing
+     * @return
+     */
     public static boolean checkSpecVersion(Version version,
                                            ErrorCorrectLevel correctLevel,
                                            InputThing inputThing){
@@ -40,7 +47,7 @@ public class VersionDetector {
         int allDataBit = version.getDataCapacity();
         // 带入纠错码级别
         int dataBitWithEC = allDataBit * correctLevel.getValue() / 100;
-
+        //  TODO 需要实现检测指定版本，且纠错级别的情况下容量校验
         return false;
 //        inputThing.
     }

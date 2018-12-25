@@ -1,6 +1,7 @@
 package com.doscan.qrcode.standard.qrcode;
 
 import com.doscan.qrcode.proto.BitArray;
+import com.doscan.qrcode.standard.version.Version;
 
 import java.util.regex.Pattern;
 
@@ -37,5 +38,10 @@ public class AlphanumericInputThing extends InputThing{
     @Override
     public String getName() {
         return "英文数字混合模式";
+    }
+
+    @Override
+    public BitArray getCountLength(Version version) {
+        return null;
     }
 }

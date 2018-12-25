@@ -1,6 +1,7 @@
 package com.doscan.qrcode.standard.qrcode;
 
 import com.doscan.qrcode.proto.BitArray;
+import com.doscan.qrcode.standard.version.Version;
 
 /**
  * 字节模式
@@ -31,5 +32,10 @@ public class ByteInputThing extends InputThing{
     @Override
     public String getName() {
         return "字节模式";
+    }
+
+    @Override
+    public BitArray getCountLength(Version version) {
+        return null;
     }
 }

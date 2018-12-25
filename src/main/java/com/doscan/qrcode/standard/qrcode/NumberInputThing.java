@@ -2,6 +2,7 @@ package com.doscan.qrcode.standard.qrcode;
 
 import com.doscan.qrcode.proto.BitArray;
 import com.doscan.qrcode.proto.NumBitUnit;
+import com.doscan.qrcode.standard.version.Version;
 import com.doscan.qrcode.util.HexUtil;
 
 import java.util.regex.Pattern;
@@ -20,12 +21,7 @@ public class NumberInputThing extends InputThing {
 
     @Override
     public BitArray getModeIndicator() {
-        BitArray indicator = new BitArray();
-        indicator.appendBit(false);
-        indicator.appendBit(false);
-        indicator.appendBit(false);
-        indicator.appendBit(true);
-        return indicator;
+        return HexUtil.strToBitArray("0001");
     }
 
     @Override
@@ -39,12 +35,6 @@ public class NumberInputThing extends InputThing {
 
     @Override
     public BitArray getBits() {
-
-        int numCount = content.length();
-        // 动态确定长度 todo
-        HexUtil.intToBinaryStr(numCount,10);
-
-
         int numLength = content.length();
         int lastSubStart = numLength - (numLength % 3);
         BitArray inputBits = new BitArray();
@@ -64,5 +54,13 @@ public class NumberInputThing extends InputThing {
     @Override
     public String getName() {
         return "纯数字模式";
+    }
+
+    @Override
+    public BitArray getCountLength(Version version) {
+        int numCount = content.length();
+        String hexStr = HexUtil.intToBinaryStr(numCount,version.getCharIndicatorCount(this));
+        BitArray bits = HexUtil.strToBitArray(hexStr);
+        return bits;
     }
 }

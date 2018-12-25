@@ -1,6 +1,7 @@
 package com.doscan.qrcode.standard.qrcode;
 
 import com.doscan.qrcode.proto.BitArray;
+import com.doscan.qrcode.standard.version.Version;
 
 /**
  * 输入的事物
@@ -33,5 +34,7 @@ public abstract class InputThing {
     public abstract BitArray getBits();
 
     public abstract String getName();
+
+    public abstract BitArray getCountLength(Version version);
 
 }
