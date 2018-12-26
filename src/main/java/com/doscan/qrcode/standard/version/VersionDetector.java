@@ -3,6 +3,7 @@ package com.doscan.qrcode.standard.version;
 import com.doscan.qrcode.proto.EncodeStrategy;
 import com.doscan.qrcode.standard.qrcode.ErrorCorrectLevel;
 import com.doscan.qrcode.standard.qrcode.input.InputThing;
+import com.doscan.qrcode.standard.table.VersionECTable;
 import com.doscan.qrcode.util.Log;
 
 public class VersionDetector {
@@ -43,11 +44,9 @@ public class VersionDetector {
         int dataLen = inputThing.getBits().getSize();
         // 需要的bit数量
         int needBit = headBitLen + charCountBitLen + dataLen;
-        // 下面获取对应版本可以容纳的bit数量
-//        int allDataBit = version.getDataCapacityCodeword();
-        // 带入纠错码级别
-//        int dataBitWithEC = allDataBit * correctLevel.getValue() / 100;
+        Log.d("needBit  --  " + needBit);
         //  TODO 需要实现检测指定版本，且纠错级别的情况下容量校验
+        VersionECTable.instance.
         return false;
     }
 

@@ -36,8 +36,8 @@ public class QREncoder {
         return this;
     }
 
-    public QREncoder correctLevel(EncodeStrategy strategy){
-        this.encodeStrategy = strategy;
+    public QREncoder correctLevel(ErrorCorrectLevel strategy){
+        this.correctLevel = strategy;
         return this;
     }
 
@@ -46,8 +46,8 @@ public class QREncoder {
         return this;
     }
 
-    public QREncoder version(Version version){
-        this.version = version;
+    public QREncoder version(int version){
+        this.version = new Version(version);
         return this;
     }
 
@@ -71,8 +71,6 @@ public class QREncoder {
      */
     public QRCodeSymbol code(){
 
-        int testNum = new Version(1).getDataCapacityCodeword();
-        Log.d("testNum --- " + testNum);
         // 如果没有手动指定version，则需要选择器智能选择
         InputResolver inputResolver = new InputResolver();
         InputThing inputThing = inputResolver.detect(content);

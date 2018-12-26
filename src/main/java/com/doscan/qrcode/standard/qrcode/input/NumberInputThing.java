@@ -4,6 +4,7 @@ import com.doscan.qrcode.proto.BitArray;
 import com.doscan.qrcode.proto.NumBitUnit;
 import com.doscan.qrcode.standard.version.Version;
 import com.doscan.qrcode.util.HexUtil;
+import com.doscan.qrcode.util.Log;
 
 import java.util.regex.Pattern;
 
@@ -40,6 +41,9 @@ public class NumberInputThing extends InputThing {
         BitArray inputBits = new BitArray();
         for(int i = 0; i <= lastSubStart; i = i + 3){
             int subLength = numLength - i;
+            if(subLength < 1){
+                break;
+            }
             if(subLength > 3){
                 subLength = 3;
             }
