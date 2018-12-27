@@ -29,6 +29,8 @@ public abstract class InputThing {
 
     public abstract BitArray getModeIndicator();
 
+    public abstract int getCapNum(int bitNum);
+
     public abstract boolean isMatch();
 
     public abstract BitArray getBits();

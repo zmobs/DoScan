@@ -19,6 +19,11 @@ public class ByteInputThing extends InputThing {
     }
 
     @Override
+    public int getCapNum(int codewordNum) {
+        return 0;
+    }
+
+    @Override
     public boolean isMatch() {
         return false;
     }

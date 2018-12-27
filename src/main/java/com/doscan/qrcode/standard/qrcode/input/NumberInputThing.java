@@ -13,12 +13,6 @@ import java.util.regex.Pattern;
  */
 public class NumberInputThing extends InputThing {
 
-//    NumberInputThing(String input) {
-//        super(input);
-//    }
-//    NumberInputThing(){
-//
-//    }
 
     @Override
     public BitArray getModeIndicator() {
@@ -32,6 +26,16 @@ public class NumberInputThing extends InputThing {
                 .matcher(content)
                 .matches();
         return result;
+    }
+
+    /**
+     * 获取容量对应的数量
+     * @param bitNum
+     * @return
+     */
+    @Override
+    public int getCapNum(int bitNum){
+        return (int)(bitNum * 0.3);
     }
 
     @Override

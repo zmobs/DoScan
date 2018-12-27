@@ -21,6 +21,11 @@ public class AlphanumericInputThing extends InputThing {
     }
 
     @Override
+    public int getCapNum(int codewordNum) {
+        return 0;
+    }
+
+    @Override
     public boolean isMatch() {
         Pattern pattern = Pattern.compile("^([0-9a-zA-Z\\+\\-\\*\\$\\%\\.\\/\\:])*$");
         boolean result =  pattern

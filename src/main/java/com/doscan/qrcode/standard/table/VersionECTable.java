@@ -100,13 +100,25 @@ public class VersionECTable{
             Log.bomb("检索版本过大，不支持");
         }
         VersionCapacityItem versionCapacityItem = data.get(versionIndex);
-
+        switch (errorCorrectLevel){
+            case H:
+                return versionCapacityItem.H;
+            case L:
+                return versionCapacityItem.L;
+            case Q:
+                return versionCapacityItem.Q;
+            case M:
+                return versionCapacityItem.M;
+            default:
+                Log.bomb("error ec level");
+        }
+        return null;
     }
 
     /**
      * ecb块的信息描述
      */
-    final class ECBlockInfo{
+    public final static class ECBlockInfo{
         /**
          * 数据块的数量
          */

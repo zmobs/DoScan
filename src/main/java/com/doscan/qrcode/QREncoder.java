@@ -76,13 +76,15 @@ public class QREncoder {
         InputThing inputThing = inputResolver.detect(content);
 
         if(version == null || correctLevel == null){
-            // todo
             // 未指定版本信息以及纠错码级别，则自动需要自动选择
             version = new VersionDetector(encodeStrategy)
                                     .detectVersion(inputThing);
         }else{
             // 检查手动指定的参数，是否可以正确容纳
-            VersionDetector.checkSpecVersion(version,correctLevel,inputThing);
+            boolean isCapAble = VersionDetector.checkSpecVersion(version,correctLevel,inputThing);
+            if(!isCapAble){
+                Log.bomb("指定版本不足以承载如此伟大的灵魂");
+            }
         }
 
         QRCodeSymbol qrCodeSymbol = new QRCodeSymbol();

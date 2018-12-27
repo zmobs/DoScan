@@ -1,6 +1,7 @@
 package com.doscan.qrcode;
 
 import com.doscan.qrcode.proto.EncodeStrategy;
+import com.doscan.qrcode.standard.charset.Charset;
 import com.doscan.qrcode.standard.qrcode.ErrorCorrectLevel;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
@@ -22,9 +23,11 @@ public class Main {
 
         QREncoder
                 .obain()
-                .version(2)
-                .correctLevel(ErrorCorrectLevel.H)
-                .content("110120119")
+                // 手动指定容量版本和纠错级别
+//                .version(2)
+//                .correctLevel(ErrorCorrectLevel.M)
+                .charset(Charset.ISO_8859_1)
+                .content("110120")
                 .code();
 
     }
