@@ -74,19 +74,27 @@ public class QREncoder {
         // 如果没有手动指定version，则需要选择器智能选择
         InputResolver inputResolver = new InputResolver();
         InputThing inputThing = inputResolver.detect(content);
-
+        VersionDetector.VersionCap versionCap;
         if(version == null || correctLevel == null){
             // 未指定版本信息以及纠错码级别，则自动需要自动选择
-            version = new VersionDetector(encodeStrategy)
-                                    .detectVersion(inputThing);
+            versionCap = new VersionDetector(encodeStrategy)
+                    .detectVersion(inputThing);
+            if(versionCap != null){
+                version = versionCap.getVersion();
+            }
         }else{
             // 检查手动指定的参数，是否可以正确容纳
             boolean isCapAble = VersionDetector.checkSpecVersion(version,correctLevel,inputThing);
             if(!isCapAble){
                 Log.bomb("指定版本不足以承载如此伟大的灵魂");
             }
+            versionCap = new VersionDetector.VersionCap(version,correctLevel);
         }
-
+        if(version == null){
+            Log.bomb("版本错误");
+        }
+        Log.d("1111   " + versionCap.getVersion().getVersionNumber());
+        Log.d("2222   " + versionCap.getCorrectLevel());
         QRCodeSymbol qrCodeSymbol = new QRCodeSymbol();
         return qrCodeSymbol;
 
