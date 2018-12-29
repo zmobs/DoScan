@@ -163,7 +163,7 @@ public class BitArray {
      * @param other
      */
     public void appendBitArray(BitArray other) {
-        int otherSize = other.size;
+        int otherSize = other.getSize();
         ensureCapacity(size + otherSize);
         for (int i = 0; i < otherSize; i++) {
             appendBit(other.get(i));

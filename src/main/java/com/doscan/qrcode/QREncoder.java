@@ -1,11 +1,13 @@
 package com.doscan.qrcode;
 
 import com.doscan.qrcode.exception.BombException;
+import com.doscan.qrcode.proto.BitArray;
 import com.doscan.qrcode.proto.EncodeStrategy;
 import com.doscan.qrcode.proto.IQRCode2015;
 import com.doscan.qrcode.proto.QRCodeSymbol;
 import com.doscan.qrcode.standard.charset.Charset;
 import com.doscan.qrcode.standard.qrcode.ErrorCorrectLevel;
+import com.doscan.qrcode.standard.qrcode.InputBitCaper;
 import com.doscan.qrcode.standard.qrcode.input.InputThing;
 import com.doscan.qrcode.standard.version.Version;
 import com.doscan.qrcode.standard.version.VersionDetector;
@@ -71,9 +73,10 @@ public class QREncoder {
      */
     public QRCodeSymbol code(){
 
-        // 如果没有手动指定version，则需要选择器智能选择
         InputResolver inputResolver = new InputResolver();
         InputThing inputThing = inputResolver.detect(content);
+
+        // 如果没有手动指定version，则需要选择器智能选择
         VersionDetector.VersionCap versionCap;
         if(version == null || correctLevel == null){
             // 未指定版本信息以及纠错码级别，则自动需要自动选择
@@ -81,6 +84,7 @@ public class QREncoder {
                     .detectVersion(inputThing);
             if(versionCap != null){
                 version = versionCap.getVersion();
+                correctLevel = versionCap.getCorrectLevel();
             }
         }else{
             // 检查手动指定的参数，是否可以正确容纳
@@ -93,8 +97,12 @@ public class QREncoder {
         if(version == null){
             Log.bomb("版本错误");
         }
-        Log.d("1111   " + versionCap.getVersion().getVersionNumber());
-        Log.d("2222   " + versionCap.getCorrectLevel());
+        // 获取到完整的数据区域bit序列
+        BitArray finalBits = new InputBitCaper().getInputBits(versionCap,inputThing);
+
+        /********************************  前方高能，，纠错码算法实现部分************************************/
+
+        // 根据指定的版本，进行填充拆分
         QRCodeSymbol qrCodeSymbol = new QRCodeSymbol();
         return qrCodeSymbol;
 

@@ -28,7 +28,7 @@ public class Main {
 //                .correctLevel(ErrorCorrectLevel.M)
                 .strategy(EncodeStrategy.HIGN_QUALITY)
                 .charset(Charset.ISO_8859_1)
-                .content("1101201110000000222229999999999999292929292929299")
+                .content("11012011100")
                 .code();
 
     }
