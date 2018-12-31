@@ -29,6 +29,25 @@ public class BitArray {
         this.size = defaultSize;
     }
 
+    /**
+     * 转换为8比特
+     * @param bitOffset
+     * @param array
+     * @param numBytes
+     */
+    public void toBytes(int bitOffset, byte[] array, int numBytes) {
+        for (int i = 0; i < numBytes; i++) {
+            int theByte = 0;
+            for (int j = 0; j < 8; j++) {
+                // todo 需要重写这部分
+                if (get(bitOffset)) {
+                    theByte |= 1 << (7 - j);
+                }
+                bitOffset++;
+            }
+            array[i] = (byte) theByte;
+        }
+    }
 
     public int getSize() {
         return size;

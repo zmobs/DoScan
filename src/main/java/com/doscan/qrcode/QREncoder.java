@@ -99,8 +99,9 @@ public class QREncoder {
         }
         // 获取到完整的数据区域bit序列
         BitArray finalBits = new InputBitCaper().getInputBits(versionCap,inputThing);
-
         /********************************  前方高能，，纠错码算法实现部分************************************/
+
+
 
         // 根据指定的版本，进行填充拆分
         QRCodeSymbol qrCodeSymbol = new QRCodeSymbol();

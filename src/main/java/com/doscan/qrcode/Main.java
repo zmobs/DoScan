@@ -4,8 +4,13 @@ import com.doscan.qrcode.proto.EncodeStrategy;
 import com.doscan.qrcode.standard.charset.Charset;
 import com.doscan.qrcode.standard.qrcode.ErrorCorrectLevel;
 import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
 import com.google.zxing.WriterException;
 import com.google.zxing.qrcode.QRCodeWriter;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Main {
@@ -14,12 +19,15 @@ public class Main {
     public static void main(String args[]){
 
 
-//        QRCodeWriter qrCodeWriter = new QRCodeWriter();
-//        try {
-//            qrCodeWriter.encode("996688", BarcodeFormat.QR_CODE,300,300);
-//        } catch (WriterException e) {
-//            e.printStackTrace();
-//        }
+        QRCodeWriter qrCodeWriter = new QRCodeWriter();
+        try {
+            Map<EncodeHintType,Object> hints = new HashMap<>();
+            hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
+            hints.put(EncodeHintType.QR_VERSION, 1);
+            qrCodeWriter.encode("11012011100", BarcodeFormat.QR_CODE,300,300,hints);
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
 
         QREncoder
                 .obain()

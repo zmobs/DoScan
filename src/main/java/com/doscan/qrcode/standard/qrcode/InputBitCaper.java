@@ -19,6 +19,7 @@ public class InputBitCaper {
         bitArray.appendBitArray(inputThing.getCountLength(versionCap.getVersion()));
         bitArray.appendBitArray(inputThing.getBits());
 
+
         VersionECTable.ECBlockInfo ecBlockInfo = VersionECTable.instance
                 .findBlockInfo(versionCap.getVersion().getVersionNumber(),versionCap.getCorrectLevel());
         int maxBitNum = ecBlockInfo.getCapacityCodeword() * 8;
@@ -36,7 +37,7 @@ public class InputBitCaper {
             appendNum = 8 - leftNum;
         }
         bitArray.appendBits(0,appendNum);
-
+        Log.d("maxBitNum  ---   " + maxBitNum);
         int paddingBitNum = maxBitNum - bitArray.getSize();
         int paddingByteNum = paddingBitNum / 8;
         for(int i = 0; i < paddingByteNum;i++){
