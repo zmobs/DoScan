@@ -37,11 +37,14 @@ public class BitArray {
      */
     public void toBytes(int bitOffset, byte[] array, int numBytes) {
         for (int i = 0; i < numBytes; i++) {
+            // 默认 00000000
             int theByte = 0;
+            // 连续读取八个比特，封装进入一个字节
             for (int j = 0; j < 8; j++) {
                 // todo 需要重写这部分
                 if (get(bitOffset)) {
-                    theByte |= 1 << (7 - j);
+                    int mask = 1 << (7 -j);
+                    theByte |= mask;
                 }
                 bitOffset++;
             }

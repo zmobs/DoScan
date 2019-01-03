@@ -145,6 +145,16 @@ public class VersionECTable{
             return codeLength;
         }
 
+
+        public int getECCodewordNum(){
+            int codeLength = 0;
+            for(ECBModel ecbModel : ecb){
+                int ecNum = ecbModel.totalCodewordNum - ecbModel.dataCodewordNum;
+                codeLength += ecNum;
+            }
+            return codeLength;
+        }
+
     }
 
     /**

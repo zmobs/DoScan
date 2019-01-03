@@ -13,6 +13,7 @@ public class InputBitCaper {
     final String paddingCodeTwo = "00010001";
 
 
+
     public BitArray getInputBits(VersionDetector.VersionCap versionCap, InputThing inputThing){
         BitArray bitArray = new BitArray();
         bitArray.appendBitArray(inputThing.getModeIndicator());

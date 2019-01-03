@@ -5,13 +5,17 @@ import com.doscan.qrcode.proto.BitArray;
 import com.doscan.qrcode.proto.EncodeStrategy;
 import com.doscan.qrcode.proto.IQRCode2015;
 import com.doscan.qrcode.proto.QRCodeSymbol;
+import com.doscan.qrcode.reedsolomon.RSEncoder;
 import com.doscan.qrcode.standard.charset.Charset;
 import com.doscan.qrcode.standard.qrcode.ErrorCorrectLevel;
 import com.doscan.qrcode.standard.qrcode.InputBitCaper;
 import com.doscan.qrcode.standard.qrcode.input.InputThing;
+import com.doscan.qrcode.standard.table.VersionECTable;
 import com.doscan.qrcode.standard.version.Version;
 import com.doscan.qrcode.standard.version.VersionDetector;
 import com.doscan.qrcode.util.Log;
+
+import java.util.Arrays;
 
 /**
  * QRCode 编码器
@@ -100,9 +104,22 @@ public class QREncoder {
         // 获取到完整的数据区域bit序列
         BitArray finalBits = new InputBitCaper().getInputBits(versionCap,inputThing);
         /********************************  前方高能，，纠错码算法实现部分************************************/
+        VersionECTable.ECBlockInfo ecBlockInfo = VersionECTable.instance
+                .findBlockInfo(versionCap.getVersion().getVersionNumber(),versionCap.getCorrectLevel());
+        int dateBlockByteNum = ecBlockInfo.getCapacityCodeword();
+        Log.d("dateByteNum  ---   " + dateBlockByteNum);
+        byte[] dataBytes = new byte[dateBlockByteNum];
+        int byteOffset = 0;
+        finalBits.toBytes(8 * byteOffset, dataBytes, dateBlockByteNum);
+        Log.d("finalBits  ---   " + Arrays.toString(dataBytes));
 
+        // 计算ec码字
+        int ecBlockByteNum = ecBlockInfo.getECCodewordNum();
+        Log.d("ecBlockByteNum  ---   " + ecBlockByteNum);
 
-
+        //  进行编码
+        byte[] ecBytes = RSEncoder.getInstance().getRSCode(dataBytes,ecBlockByteNum);
+        /******************************************************************/
         // 根据指定的版本，进行填充拆分
         QRCodeSymbol qrCodeSymbol = new QRCodeSymbol();
         return qrCodeSymbol;

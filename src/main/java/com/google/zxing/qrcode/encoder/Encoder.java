@@ -418,6 +418,7 @@ public final class Encoder {
       int size = numDataBytesInBlock[0];
       byte[] dataBytes = new byte[size];
       bits.toBytes(8 * dataBytesOffset, dataBytes, 0, size);
+      Log.d("bits  ---   " + Arrays.toString(dataBytes));
       byte[] ecBytes = generateECBytes(dataBytes, numEcBytesInBlock[0]);
       blocks.add(new BlockPair(dataBytes, ecBytes));
 
@@ -460,9 +461,11 @@ public final class Encoder {
   static byte[] generateECBytes(byte[] dataBytes, int numEcBytesInBlock) {
     int numDataBytes = dataBytes.length;
     int[] toEncode = new int[numDataBytes + numEcBytesInBlock];
+
     for (int i = 0; i < numDataBytes; i++) {
       toEncode[i] = dataBytes[i] & 0xFF;
     }
+    Log.d("numEcBytesInBlock  ----  " + numEcBytesInBlock);
     new ReedSolomonEncoder(GenericGF.QR_CODE_FIELD_256).encode(toEncode, numEcBytesInBlock);
 
     byte[] ecBytes = new byte[numEcBytesInBlock];

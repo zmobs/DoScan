@@ -170,7 +170,7 @@ public final class ReedSolomonDecoder {
       for (int j = 0; j < s; j++) {
         if (i != j) {
           //denominator = field.multiply(denominator,
-          //    GenericGF.addOrSubtract(1, field.multiply(errorLocations[j], xiInverse)));
+          //    QRCodeGField.addOrSubtract(1, field.multiply(errorLocations[j], xiInverse)));
           // Above should work but fails on some Apple and Linux JDKs due to a Hotspot bug.
           // Below is a funny-looking workaround from Steven Parkes
           int term = field.multiply(errorLocations[j], xiInverse);

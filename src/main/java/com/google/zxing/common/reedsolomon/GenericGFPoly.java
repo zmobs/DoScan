@@ -117,7 +117,7 @@ final class GenericGFPoly {
 
   GenericGFPoly addOrSubtract(GenericGFPoly other) {
     if (!field.equals(other.field)) {
-      throw new IllegalArgumentException("GenericGFPolys do not have same GenericGF field");
+      throw new IllegalArgumentException("GenericGFPolys do not have same QRCodeGField field");
     }
     if (isZero()) {
       return other;
@@ -147,7 +147,7 @@ final class GenericGFPoly {
 
   GenericGFPoly multiply(GenericGFPoly other) {
     if (!field.equals(other.field)) {
-      throw new IllegalArgumentException("GenericGFPolys do not have same GenericGF field");
+      throw new IllegalArgumentException("GenericGFPolys do not have same QRCodeGField field");
     }
     if (isZero() || other.isZero()) {
       return field.getZero();
@@ -199,7 +199,7 @@ final class GenericGFPoly {
 
   GenericGFPoly[] divide(GenericGFPoly other) {
     if (!field.equals(other.field)) {
-      throw new IllegalArgumentException("GenericGFPolys do not have same GenericGF field");
+      throw new IllegalArgumentException("GenericGFPolys do not have same QRCodeGField field");
     }
     if (other.isZero()) {
       throw new IllegalArgumentException("Divide by 0");

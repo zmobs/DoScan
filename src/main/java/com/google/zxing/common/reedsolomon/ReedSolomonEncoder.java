@@ -16,6 +16,8 @@
 
 package com.google.zxing.common.reedsolomon;
 
+import com.doscan.qrcode.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,6 +60,7 @@ public final class ReedSolomonEncoder {
       throw new IllegalArgumentException("No data bytes provided");
     }
     GenericGFPoly generator = buildGenerator(ecBytes);
+    Log.d("generator.toString()  ----  " + generator.toString());
     int[] infoCoefficients = new int[dataBytes];
     System.arraycopy(toEncode, 0, infoCoefficients, 0, dataBytes);
     GenericGFPoly info = new GenericGFPoly(field, infoCoefficients);
