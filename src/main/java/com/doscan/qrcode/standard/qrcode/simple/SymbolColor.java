@@ -1,4 +1,4 @@
-package com.doscan.qrcode.standard.qrcode.drawable;
+package com.doscan.qrcode.standard.qrcode.simple;
 
 import java.awt.*;
 

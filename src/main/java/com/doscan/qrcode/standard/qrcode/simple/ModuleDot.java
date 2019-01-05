@@ -1,4 +1,4 @@
-package com.doscan.qrcode.standard.qrcode.drawable;
+package com.doscan.qrcode.standard.qrcode.simple;
 
 /**
  * 模点类定义，二维码图形中最基础的组成部分，

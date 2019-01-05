@@ -1,6 +1,6 @@
 package com.doscan.qrcode.standard.table;
 
-import com.doscan.qrcode.standard.qrcode.drawable.ModuleDot;
+import com.doscan.qrcode.standard.qrcode.simple.ModuleDot;
 
 /**
  * 模点表数据结构(不可以被扩容)

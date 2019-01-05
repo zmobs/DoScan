@@ -4,7 +4,7 @@ import com.doscan.qrcode.exception.BombException;
 import com.doscan.qrcode.proto.BitArray;
 import com.doscan.qrcode.proto.EncodeStrategy;
 import com.doscan.qrcode.proto.IQRCode2015;
-import com.doscan.qrcode.standard.qrcode.drawable.QRCodeSymbol;
+import com.doscan.qrcode.standard.qrcode.simple.QRCodeSymbol;
 import com.doscan.qrcode.reedsolomon.QRBlockPair;
 import com.doscan.qrcode.reedsolomon.RSEncoder;
 import com.doscan.qrcode.standard.charset.Charset;
