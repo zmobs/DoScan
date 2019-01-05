@@ -18,8 +18,6 @@ import com.doscan.qrcode.util.HexUtil;
 import com.doscan.qrcode.util.Log;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 
 /**
  * QRCode 编码器
@@ -159,12 +157,30 @@ public class QREncoder {
         // 分别织入数据块和纠错块
         // 文档地址参看 7.6 的 说明15
         for(int i = 0; i < maxNumDataBytes;i++){
-
+            // 拿当前一帧，不足则填充0
+            //  todo 需要测试
+            for (QRBlockPair block : blocks) {
+                byte[] dataBytes = block.getDataByteQuene();
+                if (i < dataBytes.length) {
+                    result.appendBits(dataBytes[i], 8);
+                }else{
+                    // 填充0
+                    result.appendBits(0, 8);
+                }
+            }
         }
 
+        for (int i = 0; i < maxNumEcBytes; ++i) {
+            for (QRBlockPair block : blocks) {
+                byte[] ecBytes = block.getEcByteQuene();
+                // 纠错码一定是8的倍数，不会有填充case
+                if (i < ecBytes.length) {
+                    result.appendBits(ecBytes[i], 8);
+                }
+            }
+        }
 
-
-
+        Log.d("2222   织入后的比特序列  ----  " + result);
         /******************************************************************/
         // 根据指定的版本，进行填充拆分
         QRCodeSymbol qrCodeSymbol = new QRCodeSymbol();

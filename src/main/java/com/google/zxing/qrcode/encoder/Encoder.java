@@ -419,7 +419,6 @@ public final class Encoder {
       bits.toBytes(8 * dataBytesOffset, dataBytes, 0, size);
 
       byte[] ecBytes = generateECBytes(dataBytes, numEcBytesInBlock[0]);
-      Log.d("ecBytes  ---   " + Arrays.toString(ecBytes));
       blocks.add(new BlockPair(dataBytes, ecBytes));
 
       maxNumDataBytes = Math.max(maxNumDataBytes, size);
