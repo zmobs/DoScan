@@ -5,6 +5,7 @@ import com.doscan.qrcode.proto.BitArray;
 import com.doscan.qrcode.proto.EncodeStrategy;
 import com.doscan.qrcode.proto.IQRCode2015;
 import com.doscan.qrcode.proto.QRCodeSymbol;
+import com.doscan.qrcode.reedsolomon.QRBlockPair;
 import com.doscan.qrcode.reedsolomon.RSEncoder;
 import com.doscan.qrcode.standard.charset.Charset;
 import com.doscan.qrcode.standard.qrcode.ErrorCorrectLevel;
@@ -13,9 +14,12 @@ import com.doscan.qrcode.standard.qrcode.input.InputThing;
 import com.doscan.qrcode.standard.table.VersionECTable;
 import com.doscan.qrcode.standard.version.Version;
 import com.doscan.qrcode.standard.version.VersionDetector;
+import com.doscan.qrcode.util.HexUtil;
 import com.doscan.qrcode.util.Log;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 
 /**
  * QRCode 编码器
@@ -103,22 +107,64 @@ public class QREncoder {
         }
         // 获取到完整的数据区域bit序列
         BitArray finalBits = new InputBitCaper().getInputBits(versionCap,inputThing);
+        // todo 数据比特需要，有可能需要分块，这里需要进行穿插处理
+
         /********************************  前方高能，，纠错码算法实现部分************************************/
         VersionECTable.ECBlockInfo ecBlockInfo = VersionECTable.instance
                 .findBlockInfo(versionCap.getVersion().getVersionNumber(),versionCap.getCorrectLevel());
-        int dateBlockByteNum = ecBlockInfo.getCapacityCodeword();
-        Log.d("dateByteNum  ---   " + dateBlockByteNum);
-        byte[] dataBytes = new byte[dateBlockByteNum];
+        VersionECTable.ECBModel[] ecbModels = ecBlockInfo.getEcbs();
+        int ecbNum = ecbModels.length;
+
+        ArrayList<QRBlockPair> blocks = new ArrayList<>(ecbNum);
+
+        // 记录以下最大的数据字节序列
+        int maxNumDataBytes = 0;
+        // 记录最大的纠错码字节序列
+        int maxNumEcBytes = 0;
+        // 记录数据序列中，每一个模块的Bit起始下标
         int byteOffset = 0;
-        finalBits.toBytes(8 * byteOffset, dataBytes, dateBlockByteNum);
-        Log.d("finalBits  ---   " + Arrays.toString(dataBytes));
 
-        // 计算ec码字
-        int ecBlockByteNum = ecBlockInfo.getECCodewordNum();
-        Log.d("ecBlockByteNum  ---   " + ecBlockByteNum);
+        // 循环计算各个模块
+        for(int i = 0; i < ecbNum;i++){
 
-        //  进行编码
-        byte[] ecBytes = RSEncoder.getInstance().getRSCode(dataBytes,ecBlockByteNum);
+
+            // 获取当前正在计算的model块
+            VersionECTable.ECBModel ecbModel = ecbModels[i];
+            int dataBlockByteNum = ecbModel.getDataCodewordNum();
+
+            // 承载数据的byte数组
+            byte[] dataBytes = new byte[dataBlockByteNum];
+
+            finalBits.toBytes(8 * byteOffset, dataBytes, dataBlockByteNum);
+
+            /**
+             * 生成多项式  /  消息多项式  =  纠错结果多项式
+             */
+            // 计算ec码字
+            int ecBlockByteNum = ecBlockInfo.getECCodewordNum();
+            //  得到纠错码编码
+            int[] ecInts = RSEncoder.getInstance().getRSCode(dataBytes,ecBlockByteNum);
+            byte[] ecBytes = HexUtil.intArrToByteArr(ecInts);
+
+            QRBlockPair qrBlockPair = new QRBlockPair(dataBytes,ecBytes);
+            blocks.add(qrBlockPair);
+
+            maxNumDataBytes = Math.max(maxNumDataBytes, dataBlockByteNum);
+            maxNumEcBytes = Math.max(maxNumEcBytes, ecBytes.length);
+            byteOffset += dataBlockByteNum;
+
+        }
+
+        BitArray result = new BitArray();
+        // 分别织入数据块和纠错块
+        // 文档地址参看 7.6 的 说明15
+        for(int i = 0; i < maxNumDataBytes;i++){
+
+        }
+
+
+
+
         /******************************************************************/
         // 根据指定的版本，进行填充拆分
         QRCodeSymbol qrCodeSymbol = new QRCodeSymbol();

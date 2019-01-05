@@ -19,6 +19,29 @@ public class HexUtil {
         return result;
     }
 
+    /**
+     * 字节数组转换为int数组
+     * @param bytes
+     * @return
+     */
+    public static int[] byteArrToIntArr(byte[] bytes){
+        int[] intArr = new int[bytes.length];
+        for(int i = 0 ; i < bytes.length;i++){
+            int perInt = bytes[i];
+            intArr[i] = perInt;
+        }
+        return intArr;
+    }
+
+
+    public static byte[] intArrToByteArr(int[] ints){
+        byte[] byteArr = new byte[ints.length];
+        for(int i = 0 ; i < ints.length;i++){
+            byte perInt = (byte) ints[i];
+            byteArr[i] = perInt;
+        }
+        return byteArr;
+    }
 
     public static BitArray strToBitArray(String bitStr){
 

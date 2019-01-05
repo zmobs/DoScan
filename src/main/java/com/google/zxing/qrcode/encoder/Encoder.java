@@ -413,13 +413,13 @@ public final class Encoder {
           numTotalBytes, numDataBytes, numRSBlocks, i,
           numDataBytesInBlock, numEcBytesInBlock);
 
-      Log.d("numDataBytesInBlock  ----  " + Arrays.toString(numDataBytesInBlock));
-      Log.d("numEcBytesInBlock  ----  " + Arrays.toString(numEcBytesInBlock));
+
       int size = numDataBytesInBlock[0];
       byte[] dataBytes = new byte[size];
       bits.toBytes(8 * dataBytesOffset, dataBytes, 0, size);
-      Log.d("bits  ---   " + Arrays.toString(dataBytes));
+
       byte[] ecBytes = generateECBytes(dataBytes, numEcBytesInBlock[0]);
+      Log.d("ecBytes  ---   " + Arrays.toString(ecBytes));
       blocks.add(new BlockPair(dataBytes, ecBytes));
 
       maxNumDataBytes = Math.max(maxNumDataBytes, size);
@@ -454,7 +454,7 @@ public final class Encoder {
       throw new WriterException("Interleaving error: " + numTotalBytes + " and " +
           result.getSizeInBytes() + " differ.");
     }
-
+    Log.d("织入后的比特序列  ----  " + result);
     return result;
   }
 
@@ -465,9 +465,7 @@ public final class Encoder {
     for (int i = 0; i < numDataBytes; i++) {
       toEncode[i] = dataBytes[i] & 0xFF;
     }
-    Log.d("numEcBytesInBlock  ----  " + numEcBytesInBlock);
     new ReedSolomonEncoder(GenericGF.QR_CODE_FIELD_256).encode(toEncode, numEcBytesInBlock);
-
     byte[] ecBytes = new byte[numEcBytesInBlock];
     for (int i = 0; i < numEcBytesInBlock; i++) {
       ecBytes[i] = (byte) toEncode[numDataBytes + i];

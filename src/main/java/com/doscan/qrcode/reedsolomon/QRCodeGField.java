@@ -19,15 +19,7 @@ package com.doscan.qrcode.reedsolomon;
 import com.doscan.qrcode.util.Log;
 
 /**
- * <p>This class contains utility methods for performing mathematical operations over
- * the Galois Fields. Operations use a given primitive polynomial in calculations.</p>
- *
- * <p>Throughout this package, elements of the GF are represented as an {@code int}
- * for convenience and speed (but at the cost of memory).
- * </p>
- *
- * @author Sean Owen
- * @author David Olivier
+ * 二维码的伽罗瓦域定义
  */
 public final class QRCodeGField {
 
@@ -45,9 +37,9 @@ public final class QRCodeGField {
    */
   private final int FIELD_SIZE = 256;
   /**
-   * 生成器基数   这里是0
+   * 生成多项式基数的因数   这里是0
    */
-  private final int GENERATOR_BASE = 0;
+  public final int GENERATOR_BASE = 0;
 
   // 多项式指数序列
   private final int[] expTable = new int[FIELD_SIZE];
@@ -56,8 +48,8 @@ public final class QRCodeGField {
 
 
 
-//  private final GFPoly zero;
-//  private final GFPoly one;
+  private final GFPoly zero;
+  private final GFPoly one;
 
 
   /**
@@ -81,84 +73,106 @@ public final class QRCodeGField {
         x ^= BYTE_MOD_BASE;
         x &= FIELD_SIZE - 1;
       }
-      Log.d(" i ----  " + i + "   x  ---  " + x);
     }
     for (int i = 0; i < FIELD_SIZE - 1; i++) {
+      // 计算指数表的倒数，并储存至数组
       logTable[expTable[i]] = i;
     }
-//    // logTable[0] == 0 but this should never be used
-//    zero = new GFPoly(this, new int[]{0});
-//    one = new GFPoly(this, new int[]{1});
+    // logTable[0] == 0 but this should never be used yes, that is right
+    zero = new GFPoly(this, new int[]{0});
+    one = new GFPoly(this, new int[]{1});
   }
 
-//  GFPoly getZero() {
-//    return zero;
-//  }
+  /**
+   * 返回单项式0
+   * @return 单项式0的  伽罗瓦域表示
+   */
+  GFPoly getZero() {
+    return zero;
+  }
+
 //
 //  GFPoly getOne() {
 //    return one;
 //  }
 //
-//  /**
-//   * @return the monomial representing coefficient * x^degree
-//   */
-//  GFPoly buildMonomial(int degree, int coefficient) {
-//    if (degree < 0) {
-//      throw new IllegalArgumentException();
-//    }
-//    if (coefficient == 0) {
-//      return zero;
-//    }
-//    int[] coefficients = new int[degree + 1];
-//    coefficients[0] = coefficient;
-//    return new GFPoly(this, coefficients);
-//  }
+
+  /**
+   * 用单项式来代表  因数^x^系数
+   * @param degree
+   * @param coefficient
+   * @return
+   */
+  GFPoly buildMonomial(int degree, int coefficient) {
+    if (degree < 0) {
+      throw new IllegalArgumentException();
+    }
+    if (coefficient == 0) {
+      return zero;
+    }
+    int[] coefficients = new int[degree + 1];
+    coefficients[0] = coefficient;
+    return new GFPoly(this, coefficients);
+  }
 //
 //  /**
 //   * Implements both addition and subtraction -- they are the same in GF(size).
 //   *
 //   * @return sum/difference of a and b
 //   */
-//  static int addOrSubtract(int a, int b) {
-//    return a ^ b;
-//  }
+
+  /**
+   * 加减法实现，在有限域种都是异或运算，所以不区分（别问我为啥，我特么也没看懂）
+   *
+   * @param a
+   * @param b
+   * @return
+   */
+  static int addOrSubtract(int a, int b) {
+    return a ^ b;
+  }
 //
 //  /**
 //   * @return 2 to the power of a in GF(size)
 //   */
-//  int exp(int a) {
-//    return expTable[a];
-//  }
-//
-//  /**
-//   * @return base 2 log of a in GF(size)
-//   */
-//  int log(int a) {
-//    if (a == 0) {
-//      throw new IllegalArgumentException();
-//    }
-//    return logTable[a];
-//  }
-//
-//  /**
-//   * @return multiplicative inverse of a
-//   */
-//  int inverse(int a) {
-//    if (a == 0) {
-//      throw new ArithmeticException();
-//    }
-//    return expTable[size - logTable[a] - 1];
-//  }
-//
-//  /**
-//   * @return product of a and b in GF(size)
-//   */
-//  int multiply(int a, int b) {
-//    if (a == 0 || b == 0) {
-//      return 0;
-//    }
-//    return expTable[(logTable[a] + logTable[b]) % (size - 1)];
-//  }
+  int exp(int a) {
+    return expTable[a];
+  }
+
+  /**
+   * 获取指定位置的系数
+   * @param a
+   * @return
+   */
+  int log(int a) {
+    if (a == 0) {
+      throw new IllegalArgumentException();
+    }
+    return logTable[a];
+  }
+
+  /**
+   * 对某个数字进行反转，其实就是最大值相减
+   * @param a
+   * @return
+   */
+  int inverse(int a) {
+    if (a == 0) {
+      throw new ArithmeticException();
+    }
+    return expTable[FIELD_SIZE - logTable[a] - 1];
+  }
+
+  /**
+   * 有限域内的多项式乘法，因数相加然后 取模最大尺寸
+   */
+  int multiply(int a, int b) {
+    if (a == 0 || b == 0) {
+      return 0;
+    }
+    //Log.d("1111 a --- " + a);
+    return expTable[(logTable[a] + logTable[b]) % (FIELD_SIZE - 1)];
+  }
 //
 //  public int getSize() {
 //    return size;

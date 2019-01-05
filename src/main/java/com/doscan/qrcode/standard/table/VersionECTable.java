@@ -133,6 +133,14 @@ public class VersionECTable{
             this.ecb = ecb;
         }
 
+        public int getEcbNum(){
+            return ecb.length;
+        }
+
+        public ECBModel[] getEcbs(){
+            return ecb;
+        }
+
         /**
          * 获取指定版本，指定纠错的容量 码字数
          * @return
@@ -160,7 +168,7 @@ public class VersionECTable{
     /**
      * ECB 数据模型
      */
-    final class ECBModel{
+    final public class ECBModel{
 
         int dataCodewordNum;
         int totalCodewordNum;
@@ -171,7 +179,13 @@ public class VersionECTable{
         }
 
 
+        public int getDataCodewordNum() {
+            return dataCodewordNum;
+        }
 
+        public int getTotalCodewordNum() {
+            return totalCodewordNum;
+        }
 
     }
 

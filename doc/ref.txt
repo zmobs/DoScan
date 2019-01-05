@@ -1,2 +1,6 @@
 1  ISO-18004-2015 pdf
     http://www.doc88.com/p-9813410333607.html
+2  里德所罗门算法
+    https://www.cnblogs.com/swordc007/p/9151205.html
+3  我自己写的iso文档中文译文
+    https://www.jianshu.com/p/7f0f30f20ef5
