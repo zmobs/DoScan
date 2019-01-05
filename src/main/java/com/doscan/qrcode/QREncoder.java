@@ -4,7 +4,7 @@ import com.doscan.qrcode.exception.BombException;
 import com.doscan.qrcode.proto.BitArray;
 import com.doscan.qrcode.proto.EncodeStrategy;
 import com.doscan.qrcode.proto.IQRCode2015;
-import com.doscan.qrcode.proto.QRCodeSymbol;
+import com.doscan.qrcode.standard.qrcode.drawable.QRCodeSymbol;
 import com.doscan.qrcode.reedsolomon.QRBlockPair;
 import com.doscan.qrcode.reedsolomon.RSEncoder;
 import com.doscan.qrcode.standard.charset.Charset;
@@ -182,6 +182,8 @@ public class QREncoder {
 
         Log.d("2222   织入后的比特序列  ----  " + result);
         /******************************************************************/
+
+
         // 根据指定的版本，进行填充拆分
         QRCodeSymbol qrCodeSymbol = new QRCodeSymbol();
         return qrCodeSymbol;
