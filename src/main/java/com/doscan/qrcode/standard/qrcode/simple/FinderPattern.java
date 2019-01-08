@@ -12,6 +12,7 @@ public class FinderPattern {
 
 
     private void placeDots(DotTable table,int x,int y){
+
         byte[][] bytes = table.getData();
         // 1-1-3-1-1
         // D-L-D-L-D
@@ -25,7 +26,6 @@ public class FinderPattern {
                 }else{
                     bytes[x + i][y + j] = 0;
                 }
-
             }
         }
     }
@@ -49,10 +49,13 @@ public class FinderPattern {
         }
     }
 
+    /**
+     * 定位符号的三个可能位置
+     */
     public enum Position{
         LEFT_TOP,
         RIGHT_TOP,
-        LEFT_BOTTOM;
+        LEFT_BOTTOM
     }
 
 }

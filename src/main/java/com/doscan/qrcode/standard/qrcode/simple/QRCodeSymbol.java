@@ -14,7 +14,7 @@ public class QRCodeSymbol implements IQRCode2015 {
      */
     DotTable dotTable;
     // 最外侧是静默区域，并不是严格意义上的二维码组成部分
-
+    public final int QUIET_ZONE_SIZE = 5;
     // 三个定位符（包含分隔符）
     FinderPattern ltFP = new FinderPattern(FinderPattern.Position.LEFT_TOP);
     FinderPattern rtFP = new FinderPattern(FinderPattern.Position.RIGHT_TOP);
@@ -38,7 +38,10 @@ public class QRCodeSymbol implements IQRCode2015 {
         ltFP.place(dotTable);
         rtFP.place(dotTable);
         lbFP.place(dotTable);
-        //
+        // 定位符号对应的分割线
+        new SeparatorFP(ltFP).place(dotTable);
+        new SeparatorFP(rtFP).place(dotTable);
+        new SeparatorFP(lbFP).place(dotTable);
     }
 
     public DotTable getDotTable() {
