@@ -33,11 +33,17 @@ public class DotTable {
 
     }
 
+    private int sideSize;
+
+    public int getSideSize() {
+        return sideSize;
+    }
+
     /**
      * 模点表构造器
      */
     public DotTable(int sideSize){
-
+        this.sideSize = sideSize;
         // 初始化数据部分
         data = new byte[sideSize][sideSize];
         for(int i = 0; i < sideSize ; i++){

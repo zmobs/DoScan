@@ -15,15 +15,15 @@ public class FinderPattern {
         byte[][] bytes = table.getData();
         // 1-1-3-1-1
         // D-L-D-L-D
-        for(int i = x; i < 7; i++){
+        for(int i = 0; i < 7; i++){
             // 纵向
-            for(int j = y; j < 7;j++){
+            for(int j = 0; j < 7;j++){
                 if(i == 0 || i == 6 || j == 0 || j == 6){
-                  bytes[i][j] = 1;
+                  bytes[x + i][y + j] = 1;
                 }else if((i >= 2 && i <= 4) && (j >= 2 && j <= 4)){
-                    bytes[i][j] = 1;
+                    bytes[x + i][y + j] = 1;
                 }else{
-                    bytes[i][j] = 0;
+                    bytes[x + i][y + j] = 0;
                 }
 
             }
@@ -31,13 +31,18 @@ public class FinderPattern {
     }
 
     public void place(DotTable table){
+        int sideSize = table.getSideSize();
+        int borderStartPos = sideSize - 7;
         switch (position){
             case LEFT_TOP:
                 placeDots(table,0,0);
                 break;
             case RIGHT_TOP:
+                // 单边长度 -7 -1
+                placeDots(table,borderStartPos,0);
                 break;
             case LEFT_BOTTOM:
+                placeDots(table,0,borderStartPos);
                 break;
             default:
                 break;
