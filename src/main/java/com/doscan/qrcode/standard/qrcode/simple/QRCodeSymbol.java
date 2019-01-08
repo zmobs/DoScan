@@ -20,6 +20,9 @@ public class QRCodeSymbol implements IQRCode2015 {
     FinderPattern rtFP = new FinderPattern(FinderPattern.Position.RIGHT_TOP);
     FinderPattern lbFP = new FinderPattern(FinderPattern.Position.LEFT_BOTTOM);
 
+    // 孤独的小黑点 todo 需要定位文档说明地址
+    LonelyBlackPoint lonelyBlackPoint = new LonelyBlackPoint();
+
     // 左下上，右左 两处版本信息区域
 
     // 左上，右下+左下右的两处格式信息
@@ -42,6 +45,9 @@ public class QRCodeSymbol implements IQRCode2015 {
         new SeparatorFP(ltFP).place(dotTable);
         new SeparatorFP(rtFP).place(dotTable);
         new SeparatorFP(lbFP).place(dotTable);
+        // 孤独的小黑点
+        lonelyBlackPoint.place(dotTable);
+
     }
 
     public DotTable getDotTable() {

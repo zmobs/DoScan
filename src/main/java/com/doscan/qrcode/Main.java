@@ -5,10 +5,14 @@ import com.doscan.qrcode.standard.charset.Charset;
 import com.doscan.qrcode.standard.qrcode.ErrorCorrectLevel;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
+import com.google.zxing.MatrixToImageWriter;
 import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +28,10 @@ public class Main {
             Map<EncodeHintType,Object> hints = new HashMap<>();
             hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
             hints.put(EncodeHintType.QR_VERSION, 1);
-            qrCodeWriter.encode("11012011100", BarcodeFormat.QR_CODE,300,300,hints);
+            BitMatrix bitMatrix =  qrCodeWriter.encode("11012011100", BarcodeFormat.QR_CODE,300,300,hints);
+//            //直接写入文件
+//            File outputFile = new File("d:/new.png");
+//            MatrixToImageWriter.writeToFile(bitMatrix, "png", outputFile);
         } catch (WriterException e) {
             e.printStackTrace();
         }
