@@ -9,10 +9,16 @@ import com.doscan.qrcode.util.Log;
  * QRCODE 符号实现定义
  */
 public class QRCodeSymbol implements IQRCode2015 {
-
+    /**
+     * 点阵表
+     */
+    DotTable dotTable;
     // 最外侧是静默区域，并不是严格意义上的二维码组成部分
 
     // 三个定位符（包含分隔符）
+    FinderPattern ltFP = new FinderPattern(FinderPattern.Position.LEFT_TOP);
+    FinderPattern rtFP = new FinderPattern(FinderPattern.Position.RIGHT_TOP);
+    FinderPattern lbFP = new FinderPattern(FinderPattern.Position.LEFT_BOTTOM);
 
     // 左下上，右左 两处版本信息区域
 
@@ -27,7 +33,12 @@ public class QRCodeSymbol implements IQRCode2015 {
         if(version == null){
             Log.bomb("构造版本不能为空");
         }
-        DotTable dotTable = new DotTable(version.getSideModuleNum());
+        dotTable = new DotTable(version.getSideModuleNum());
+        // 放置定位符号
+        ltFP.place(dotTable);
+        rtFP.place(dotTable);
+        lbFP.place(dotTable);
+        //
     }
 
 }
