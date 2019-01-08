@@ -12,16 +12,20 @@ public class FinderPattern {
 
 
     private void placeDots(DotTable table,int x,int y){
+        byte[][] bytes = table.getData();
         // 1-1-3-1-1
         // D-L-D-L-D
-        for(int i = 0; i < 5; i++){
+        for(int i = x; i < 7; i++){
             // 纵向
-            for(int j = 0; i < 5;i++){
-                if(j == 1 || j == 4){
-                    table.set(x,y, DotTable.Value.LIGHT);
+            for(int j = y; j < 7;j++){
+                if(i == 0 || i == 6 || j == 0 || j == 6){
+                  bytes[i][j] = 1;
+                }else if((i >= 2 && i <= 4) && (j >= 2 && j <= 4)){
+                    bytes[i][j] = 1;
                 }else{
-                    table.set(x,y, DotTable.Value.DARK);
+                    bytes[i][j] = 0;
                 }
+
             }
         }
     }

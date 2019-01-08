@@ -41,4 +41,7 @@ public class QRCodeSymbol implements IQRCode2015 {
         //
     }
 
+    public DotTable getDotTable() {
+        return dotTable;
+    }
 }

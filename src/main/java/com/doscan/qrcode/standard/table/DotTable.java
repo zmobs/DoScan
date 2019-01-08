@@ -8,7 +8,6 @@ package com.doscan.qrcode.standard.table;
 public class DotTable {
 
 
-
     /**
      * 二维数组 数据储存的核心部分
      */
@@ -16,6 +15,22 @@ public class DotTable {
 
     public void set(int x,int y,Value value){
         data[x][y] = value.DESOLATION.value;
+    }
+
+    public byte[][] getData() {
+        return data;
+    }
+
+    public Value get(int x, int y){
+
+        if(data[x][y] == 1){
+            return Value.DARK;
+        }else if(data[x][y] == 0){
+            return Value.LIGHT;
+        }else{
+            return Value.DESOLATION;
+        }
+
     }
 
     /**
