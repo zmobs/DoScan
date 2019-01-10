@@ -28,10 +28,10 @@ public class QRCodeSymbol implements IQRCode2015 {
     // 左上，右下+左下右的两处格式信息
 
     // 两条分割线
-
+    TimingPattern timingPattern;
     // todo 这里需要考虑多个数据块的因素
     // 修正符号(version > 1)
-
+    AlignmentPattern alignmentPattern;
     public QRCodeSymbol(Version version){
         if(version == null){
             Log.bomb("构造版本不能为空");
@@ -47,7 +47,13 @@ public class QRCodeSymbol implements IQRCode2015 {
         new SeparatorFP(lbFP).place(dotTable);
         // 孤独的小黑点
         lonelyBlackPoint.place(dotTable);
-
+        // 矫正符号
+        alignmentPattern = new AlignmentPattern(version.getVersionNumber());
+        Log.d("version.getVersionNumber()  ---- " + version.getVersionNumber());
+        alignmentPattern.placeDots(dotTable);
+        //
+        timingPattern = new TimingPattern(version);
+        timingPattern.placeDots(dotTable);
     }
 
     public DotTable getDotTable() {
