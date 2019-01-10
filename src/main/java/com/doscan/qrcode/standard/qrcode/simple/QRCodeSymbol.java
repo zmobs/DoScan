@@ -51,9 +51,11 @@ public class QRCodeSymbol implements IQRCode2015 {
         alignmentPattern = new AlignmentPattern(version.getVersionNumber());
         Log.d("version.getVersionNumber()  ---- " + version.getVersionNumber());
         alignmentPattern.placeDots(dotTable);
-        //
+        // 终止符号完成
         timingPattern = new TimingPattern(version);
         timingPattern.placeDots(dotTable);
+        // 选择数据遮罩层
+
     }
 
     public DotTable getDotTable() {

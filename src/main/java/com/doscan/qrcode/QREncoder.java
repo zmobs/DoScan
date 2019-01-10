@@ -189,6 +189,7 @@ public class QREncoder {
         GraphicsHelper.showAnim(qrCodeSymbol);
         /******************************************************************/
         // 计算数据遮罩层
+//        int maskPattern = chooseMaskPattern(finalBits, ecLevel, version, matrix);
 
         /************************************************************/
         return qrCodeSymbol;
