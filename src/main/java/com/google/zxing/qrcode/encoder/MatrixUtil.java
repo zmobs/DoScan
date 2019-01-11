@@ -168,7 +168,6 @@ final class MatrixUtil {
       throws WriterException {
     BitArray typeInfoBits = new BitArray();
     makeTypeInfoBits(ecLevel, maskPattern, typeInfoBits);
-    Log.d("typeInfoBits   ---  " + typeInfoBits);
     for (int i = 0; i < typeInfoBits.getSize(); ++i) {
       // Place bits in LSB to MSB order.  LSB (least significant bit) is the last value in
       // "typeInfoBits".

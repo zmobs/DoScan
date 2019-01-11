@@ -88,8 +88,77 @@ public class VersionECTable{
                         new ECBModel(33,11),
                         new ECBModel(34,12),
                         new ECBModel(34,12))));
-
-        //  todo 需要添加5以后的版本数据
+        // 6
+        data.add(new VersionCapacityItem(
+                6,
+                new ECBlockInfo(9,
+                        new ECBModel(86,68),
+                        new ECBModel(86,68)),
+                new ECBlockInfo(8,
+                        new ECBModel(43,27),
+                        new ECBModel(43,27),
+                        new ECBModel(43,27),
+                        new ECBModel(43,27)),
+                new ECBlockInfo(12,
+                        new ECBModel(43,19),
+                        new ECBModel(43,19),
+                        new ECBModel(43,19),
+                        new ECBModel(43,19)),
+                new ECBlockInfo(14,
+                        new ECBModel(43,15),
+                        new ECBModel(43,15),
+                        new ECBModel(43,15),
+                        new ECBModel(43,15))));
+        // 7
+        data.add(new VersionCapacityItem(
+                7,
+                new ECBlockInfo(10,
+                        new ECBModel(98,78),
+                        new ECBModel(98,78)),
+                new ECBlockInfo(9,
+                        new ECBModel(49,31),
+                        new ECBModel(49,31),
+                        new ECBModel(49,31),
+                        new ECBModel(49,31)),
+                new ECBlockInfo(9,
+                        new ECBModel(32,14),
+                        new ECBModel(32,14),
+                        new ECBModel(33,15),
+                        new ECBModel(33,15),
+                        new ECBModel(33,15),
+                        new ECBModel(33,15)),
+                new ECBlockInfo(13,
+                        new ECBModel(39,13),
+                        new ECBModel(39,13),
+                        new ECBModel(39,13),
+                        new ECBModel(39,13),
+                        new ECBModel(40,14))));
+        // 8
+        data.add(new VersionCapacityItem(
+                8,
+                new ECBlockInfo(12,
+                        new ECBModel(121,97),
+                        new ECBModel(121,97)),
+                new ECBlockInfo(11,
+                        new ECBModel(60,38),
+                        new ECBModel(60,38),
+                        new ECBModel(61,39),
+                        new ECBModel(61,39)),
+                new ECBlockInfo(11,
+                        new ECBModel(40,18),
+                        new ECBModel(40,18),
+                        new ECBModel(40,18),
+                        new ECBModel(40,18),
+                        new ECBModel(41,19),
+                        new ECBModel(41,19)),
+                new ECBlockInfo(13,
+                        new ECBModel(40,14),
+                        new ECBModel(40,14),
+                        new ECBModel(40,14),
+                        new ECBModel(40,14),
+                        new ECBModel(41,15),
+                        new ECBModel(41,15))));
+        //  todo 需要添加8以后的版本数据
 
     }
 

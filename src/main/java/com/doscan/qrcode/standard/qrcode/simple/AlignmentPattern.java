@@ -27,6 +27,7 @@ public class AlignmentPattern {
             dotNum += 1;
         }
 
+        Log.d("dotNum   ---  " + dotNum);
         if(dotNum == 2){
             //  version 1- 6
             nums.add(new Coordinate(dotInfo[1],dotInfo[1]));
@@ -39,9 +40,13 @@ public class AlignmentPattern {
                     if(dotInfo[j] < 0){
                         break;
                     }
-                    if(i == j){
+                    if(i == 0 && j == 0){
                         continue;
-                    } else {
+                    } else if(i == 0 && j == dotNum - 1) {
+                        continue;
+                    }else if(i == dotNum - 1 && j == 0) {
+                        continue;
+                    }else {
                         nums.add(new Coordinate(dotInfo[i],dotInfo[j]));
                     }
                 }
@@ -53,10 +58,11 @@ public class AlignmentPattern {
         for(Coordinate coordinate :  nums){
             // 最中心
             data[coordinate.x][coordinate.y] = 1;
+            Log.d("coordinate.x  ----  " + coordinate.x + "    coordinate.y  ----  " + coordinate.y);
             // 外围一层 白色
             for(int i = coordinate.x - 1 ; i <= coordinate.x + 1; i++){
                 for(int j = coordinate.y - 1; j <= coordinate.y + 1;j++){
-                    if(i == j && j == coordinate.x){
+                    if(i == coordinate.x && j == coordinate.y){
                         continue;
                     }
                     data[i][j] = 0;
@@ -64,7 +70,6 @@ public class AlignmentPattern {
             }
             // 最外围一层 黑色
             for(int i = coordinate.x - 2 ; i <= coordinate.x + 2; i++){
-
                 for(int j = coordinate.y - 2; j <= coordinate.y + 2;j++){
                     if(i == coordinate.x - 2 || i == coordinate.x + 2){
                         data[i][j] = 1;

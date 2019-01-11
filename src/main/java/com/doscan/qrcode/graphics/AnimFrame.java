@@ -36,7 +36,9 @@ public class AnimFrame extends JFrame {
                     g.setColor(Color.WHITE);
                 }else if(perValue == 1){
                     g.setColor(Color.BLACK);
-                }else{
+                }else if(perValue == -2){
+                    g.setColor(Color.BLUE);
+                }else {
                     g.setColor(Color.RED);
                 }
                 g.fillRect(xPos,yPos,STEP_PIX,STEP_PIX);

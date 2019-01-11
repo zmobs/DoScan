@@ -26,7 +26,7 @@ public class QRCodeSymbol implements IQRCode2015 {
     // 左下上，右左 两处版本信息区域
 
     // 左上，右下+左下右的两处格式信息
-
+    VersionPattern versionPattern = new VersionPattern();
     // 两条分割线
     TimingPattern timingPattern;
     // todo 这里需要考虑多个数据块的因素
@@ -54,6 +54,8 @@ public class QRCodeSymbol implements IQRCode2015 {
         // 终止符号完成
         timingPattern = new TimingPattern(version);
         timingPattern.placeDots(dotTable);
+
+        versionPattern.placeHold(dotTable);
         // 选择数据遮罩层
 
     }
