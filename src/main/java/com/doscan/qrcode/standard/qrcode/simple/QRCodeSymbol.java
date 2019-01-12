@@ -1,5 +1,6 @@
 package com.doscan.qrcode.standard.qrcode.simple;
 
+import com.doscan.qrcode.proto.BitArray;
 import com.doscan.qrcode.proto.IQRCode2015;
 import com.doscan.qrcode.standard.table.DotTable;
 import com.doscan.qrcode.standard.version.Version;
@@ -35,6 +36,8 @@ public class QRCodeSymbol implements IQRCode2015 {
 
     VersionPattern versionPattern;
 
+    DataArea dataArea = new DataArea();
+
     public QRCodeSymbol(Version version){
         if(version == null){
             Log.bomb("构造版本不能为空");
@@ -61,6 +64,12 @@ public class QRCodeSymbol implements IQRCode2015 {
         // 选择数据遮罩层
         versionPattern = new VersionPattern(version);
         versionPattern.placeDot(dotTable);
+
+    }
+
+
+    public void placeData(BitArray bitArray){
+        dataArea.place(dotTable,bitArray);
     }
 
     public DotTable getDotTable() {
