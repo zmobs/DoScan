@@ -18,6 +18,14 @@ public class Version {
     private ECBlock[] ecBlocks;
 
     /**
+     * 获取版本的数字形态
+     * @return
+     */
+    public int getVerNum(){
+        return versionNumber;
+    }
+
+    /**
      * 构造器
      * @param num
      */
@@ -25,6 +33,7 @@ public class Version {
         this.versionNumber = num;
         // todo 根据版本号去初始化 ec块结构
     }
+
 
     /**
      * 单边模点数量
