@@ -28,19 +28,22 @@ public class DataArea {
             byte perByte = bits.get(i) ? (byte) 1 : 0;
             // 按照指定的排列规则，推演出下一个比特应该存在的位置
             int codewordIndex = 0;
-            int m,n;
+            int m;
+            int n;
+            m = n = sideNum - 1;
             int firstCol = m;
             int secondCol = m - 1;
 
             int preM;
             int preN;
+            // 当前的码字方向
             int order = 1;
-            for(m = n = sideNum - 1; m >= 0; ){
+            for(; m >= 0; ){
 
                 // 迭代规则编写
 
                 if(dotData[m][n] == -1){
-                    //  -1 是未使用状态
+                        //  -1 是未使用状态
                         dotData[m][n] = perByte;
                         i++;
                         codewordIndex += 1;
@@ -51,35 +54,54 @@ public class DataArea {
                 }
                 if(order == 1){
                     // up
-                    if(m == firstCol){
-                        m = secondCol;
-                    }else{
+                    if(m == secondCol && m == 0){
+                        // 到达了当前列编码位置的终止部分，则需要转换方向
+                        order = 0;
 
+                        // 整体向下挪2列
+                        firstCol -= 1;
+                        if(firstCol == 6){
+                            firstCol -= 1;
+                        }
+                        secondCol -= firstCol -1;
+                        if(secondCol == 6){
+                            secondCol -= 1;
+                        }
+
+                    }else if(m == firstCol){
+                        m = secondCol;
+                    } else{
+                        //  第二列，而且尚未到达顶部
+                        m -= 1;
                     }
                 }else{
                     // down
+                    //
+
+                    if(m == secondCol && m == sideNum - 1){
+                        // 到达了当前列编码位置的终止部分，则需要转换方向
+                        order = 1;
+
+                        // 整体向下挪2列
+                        firstCol -= 1;
+                        if(firstCol == 6){
+                            firstCol -= 1;
+                        }
+                        secondCol -= firstCol -1;
+                        if(secondCol == 6){
+                            secondCol -= 1;
+                        }
+
+                    }else if(m == firstCol){
+                        m = secondCol;
+                    } else{
+                        //  第二列，而且尚未到达顶部
+                        m += 1;
+                    }
                 }
 
-                // 需要先分块，按照每个模块的数值来计算  57页
 
-//                for(int n = sideNum - 1; n >= 0; ) {
-//
-//                    // 成功赋值一位
-//                    if (dotData[m][n] == -1) {
-//
-//                    }
-//
-//                    // 以及存在其他区域的数据，寻找下一个的算法实现
-//                    if (n < 0) {
-//                        m -= 2;
-//                        n = sideNum;
-//                    }
-//
-//                    if(codewordIndex > 7){
-//                        codewordIndex = 0;
-//                    }
-//                }
-//            }
+            }
         }
 
     }
