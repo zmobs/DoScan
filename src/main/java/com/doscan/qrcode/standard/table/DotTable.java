@@ -48,7 +48,7 @@ public class DotTable {
         data = new byte[sideSize][sideSize];
         for(int i = 0; i < sideSize ; i++){
             for(int j = 0; j < sideSize ; j++){
-                data[i][j] = Value.DESOLATION.value;
+                data[i][j] = -1;
             }
         }
 

@@ -138,7 +138,7 @@ public final class Encoder {
                                                version.getTotalCodewords(),
                                                numDataBytes,
                                                ecBlocks.getNumBlocks());
-
+    Log.d("finalBits   ----  " + finalBits.getSize());
     QRCode qrCode = new QRCode();
 
     qrCode.setECLevel(ecLevel);
@@ -152,6 +152,7 @@ public final class Encoder {
     qrCode.setMaskPattern(maskPattern);
 
     // Build the matrix and set it to "qrCode".
+
     MatrixUtil.buildMatrix(finalBits, ecLevel, version, maskPattern, matrix);
     qrCode.setMatrix(matrix);
 
@@ -406,6 +407,7 @@ public final class Encoder {
     // Since, we know the number of reedsolmon blocks, we can initialize the vector with the number.
     Collection<BlockPair> blocks = new ArrayList<>(numRSBlocks);
 
+
     for (int i = 0; i < numRSBlocks; ++i) {
       int[] numDataBytesInBlock = new int[1];
       int[] numEcBytesInBlock = new int[1];
@@ -430,30 +432,36 @@ public final class Encoder {
     }
 
     BitArray result = new BitArray();
-
+    Log.d("55555555555555555555555555555555555555555555   ----  ");
     // First, place data blocks.
+    int dataNum = 0;
     for (int i = 0; i < maxNumDataBytes; ++i) {
       for (BlockPair block : blocks) {
         byte[] dataBytes = block.getDataBytes();
         if (i < dataBytes.length) {
+          dataNum += 1;
           result.appendBits(dataBytes[i], 8);
         }
       }
     }
+    Log.d("dataNum   ----  " + dataNum);
+    int ecNum = 0;
     // Then, place error correction blocks.
     for (int i = 0; i < maxNumEcBytes; ++i) {
       for (BlockPair block : blocks) {
         byte[] ecBytes = block.getErrorCorrectionBytes();
         if (i < ecBytes.length) {
+          ecNum  += 1;
           result.appendBits(ecBytes[i], 8);
         }
       }
     }
+    Log.d("ecNum   ----  " + ecNum);
     if (numTotalBytes != result.getSizeInBytes()) {  // Should be same.
       throw new WriterException("Interleaving error: " + numTotalBytes + " and " +
           result.getSizeInBytes() + " differ.");
     }
-    Log.d("织入后的比特序列  ----  " + result);
+
     return result;
   }
 

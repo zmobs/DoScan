@@ -58,7 +58,6 @@ public class AlignmentPattern {
         for(Coordinate coordinate :  nums){
             // 最中心
             data[coordinate.x][coordinate.y] = 1;
-            Log.d("coordinate.x  ----  " + coordinate.x + "    coordinate.y  ----  " + coordinate.y);
             // 外围一层 白色
             for(int i = coordinate.x - 1 ; i <= coordinate.x + 1; i++){
                 for(int j = coordinate.y - 1; j <= coordinate.y + 1;j++){

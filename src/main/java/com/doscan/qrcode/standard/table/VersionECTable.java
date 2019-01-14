@@ -206,6 +206,8 @@ public class VersionECTable{
             return ecb.length;
         }
 
+
+
         public ECBModel[] getEcbs(){
             return ecb;
         }
@@ -223,13 +225,11 @@ public class VersionECTable{
         }
 
 
-        public int getECCodewordNum(){
+        public int getECCodewordNum(int i){
             int codeLength = 0;
-            for(ECBModel ecbModel : ecb){
-                int ecNum = ecbModel.totalCodewordNum - ecbModel.dataCodewordNum;
-                codeLength += ecNum;
-            }
-            return codeLength;
+            ECBModel ecbModel = ecb[i];
+            int ecc = ecbModel.totalCodewordNum - ecbModel.dataCodewordNum;
+            return ecc;
         }
 
     }

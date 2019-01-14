@@ -39,6 +39,7 @@ public class QRCodeSymbol implements IQRCode2015 {
     DataArea dataArea = new DataArea();
 
     public QRCodeSymbol(Version version){
+
         if(version == null){
             Log.bomb("构造版本不能为空");
         }

@@ -123,9 +123,9 @@ public class QREncoder {
         // 记录数据序列中，每一个模块的Bit起始下标
         int byteOffset = 0;
 
+        Log.d("ecbNum  ----- " + ecbNum);
         // 循环计算各个模块
         for(int i = 0; i < ecbNum;i++){
-
 
             // 获取当前正在计算的model块
             VersionECTable.ECBModel ecbModel = ecbModels[i];
@@ -133,16 +133,17 @@ public class QREncoder {
 
             // 承载数据的byte数组
             byte[] dataBytes = new byte[dataBlockByteNum];
-
+            Log.d("dataBytes  -----11111111111 " + dataBytes.length);
             finalBits.toBytes(8 * byteOffset, dataBytes, dataBlockByteNum);
 
             /**
              * 生成多项式  /  消息多项式  =  纠错结果多项式
              */
             // 计算ec码字
-            int ecBlockByteNum = ecBlockInfo.getECCodewordNum();
+            int ecBlockByteNum = ecBlockInfo.getECCodewordNum(i);
             //  得到纠错码编码
             int[] ecInts = RSEncoder.getInstance().getRSCode(dataBytes,ecBlockByteNum);
+
             byte[] ecBytes = HexUtil.intArrToByteArr(ecInts);
 
             QRBlockPair qrBlockPair = new QRBlockPair(dataBytes,ecBytes);
@@ -165,8 +166,8 @@ public class QREncoder {
                 if (i < dataBytes.length) {
                     result.appendBits(dataBytes[i], 8);
                 }else{
-                    // 填充0
-                    result.appendBits(0, 8);
+//                    // 填充0
+//                    result.appendBits(0, 8);
                 }
             }
         }
