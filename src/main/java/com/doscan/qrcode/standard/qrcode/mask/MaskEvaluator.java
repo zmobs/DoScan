@@ -3,6 +3,7 @@ package com.doscan.qrcode.standard.qrcode.mask;
 
 import com.doscan.qrcode.standard.qrcode.simple.FormatPattern;
 import com.doscan.qrcode.standard.table.DotTable;
+import com.doscan.qrcode.util.Log;
 
 /**
  * 编码区域得遮罩层评估
@@ -136,9 +137,8 @@ public class MaskEvaluator {
             }
         }
 
-        int sideNum = dataTable.length;
-        for(int i = 0 ; i < sideNum; i++){
-            for(int j = 0; j < sideNum;j++){
+        for(int i = 0 ; i < dataSideNum; i++){
+            for(int j = 0; j < dataSideNum;j++){
 
                 if(dataTable[i][j] != -1){
                     // 只处理数据区域，但是评估时，需要评估整体区域
@@ -211,23 +211,33 @@ public class MaskEvaluator {
         // 根据已经选择的mask 对formatinfo 进行补充
         formatPattern.tempDataWithMash(tempData,mask);
 
+
+
         // 对已经进行xor 整体数据进行 评分操作
         //dotTable
-        int maxColNum = sideNum - 5;
+        int maxColNum = dataSideNum - 5;
+        int maxDotNum = dataSideNum - 2;
         int preN1X = -1;
         int preN1Y = -1;
-        int N1 = 0;
-        int N2Time = 0;
-        for(int i = 0 ; i < sideNum; i++) {
 
-            for (int j = 0; j < sideNum; j++) {
+        int N1 = 0;
+        int N2 = 0;
+
+
+        for(int i = 0 ; i < dataSideNum; i++) {
+
+            for (int j = 0; j < dataSideNum; j++) {
 
                 // 横纵坐标
-                if(i < maxColNum && i > preN1X){
+                if(i <= maxColNum && i > preN1X){
                     // 计算横向连续同色模点
                     int m = i +1;
-                    while(dotTable[m][j] == dotTable[i][j]){
+                    while(tempData[m][j] == tempData[i][j]){
                         m += 1;
+                        if(m >= dataSideNum){
+                            m = dataSideNum -1;
+                            break;
+                        }
                     }
                     // 走到这里，就是不同色了，进行判断
                     int n1 = m - i;
@@ -237,22 +247,48 @@ public class MaskEvaluator {
                     }
                 }
 
-                if(j < maxColNum && j > preN1Y){
+                if(j <= maxColNum && j > preN1Y){
                     // 计算横向连续同色模点
                     int m = j + 1;
-                    while(dotTable[i][m] == dotTable[i][m]){
+                    while(tempData[i][m] == tempData[i][m]){
                         m += 1;
+                        if(m >= dataSideNum){
+                            m = dataSideNum -1;
+                            break;
+                        }
                     }
                     // 走到这里，就是不同色了，进行判断
-                    int n1 = m - i;
+                    int n1 = m - j;
                     if(n1 > 4){
                         N1 += n1;
                         preN1X = m;
+                    }
+                }
+
+
+                // 方块检测函数
+                if(i <= maxDotNum && j <= maxDotNum){
+                    int dot1 = tempData[i][j];
+                    int dot2 = tempData[i+1][j+1];
+                    int dot3 = tempData[i+1][j];
+                    int dot4 = tempData[i][j + 1];
+                    if(dot1 == dot2 && dot2 == dot3 && dot3 == dot4){
+                        N2 += 1;
                     }
                 }
 
             }
         }
+
+        for(int i = 0; i < dataSideNum;i++){
+            for(int j = 0; j < dataSideNum;j++){
+                dotTable[i][j] = tempData[i][j];
+            }
+        }
+
+        Log.d("mask  ----  " + mask);
+        Log.d("N1  ----  " + N1);
+        Log.d("N2  ----  " + N2);
         return 0;
     }
 

@@ -27,7 +27,6 @@ public class AlignmentPattern {
             dotNum += 1;
         }
 
-        Log.d("dotNum   ---  " + dotNum);
         if(dotNum == 2){
             //  version 1- 6
             nums.add(new Coordinate(dotInfo[1],dotInfo[1]));

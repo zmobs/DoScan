@@ -432,7 +432,6 @@ public final class Encoder {
     }
 
     BitArray result = new BitArray();
-    Log.d("55555555555555555555555555555555555555555555   ----  ");
     // First, place data blocks.
     int dataNum = 0;
     for (int i = 0; i < maxNumDataBytes; ++i) {
@@ -444,7 +443,6 @@ public final class Encoder {
         }
       }
     }
-    Log.d("dataNum   ----  " + dataNum);
     int ecNum = 0;
     // Then, place error correction blocks.
     for (int i = 0; i < maxNumEcBytes; ++i) {
@@ -456,7 +454,6 @@ public final class Encoder {
         }
       }
     }
-    Log.d("ecNum   ----  " + ecNum);
     if (numTotalBytes != result.getSizeInBytes()) {  // Should be same.
       throw new WriterException("Interleaving error: " + numTotalBytes + " and " +
           result.getSizeInBytes() + " differ.");
@@ -498,7 +495,6 @@ public final class Encoder {
     }
     bits.appendBits(numLetters, numBits);
 
-    Log.d("111  bits  " + bits);
   }
 
   /**

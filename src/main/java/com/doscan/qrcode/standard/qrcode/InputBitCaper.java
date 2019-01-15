@@ -38,7 +38,6 @@ public class InputBitCaper {
             appendNum = 8 - leftNum;
         }
         bitArray.appendBits(0,appendNum);
-        Log.d("maxBitNum  ---   " + maxBitNum);
         int paddingBitNum = maxBitNum - bitArray.getSize();
         int paddingByteNum = paddingBitNum / 8;
         for(int i = 0; i < paddingByteNum;i++){

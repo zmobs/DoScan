@@ -97,9 +97,6 @@ public class DataArea {
                 // down
                 if (m == secondCol && n == sideNum - 1) {
 
-                    Log.d(" m --- " + m);
-                    Log.d(" n  --- " + n);
-                    Log.d(" i  --- " + i);
 
                     // 到达了当前列编码位置的终止部分，则需要转换方向
                     placeOrientation = 1;
