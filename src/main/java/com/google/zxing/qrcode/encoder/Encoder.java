@@ -138,7 +138,7 @@ public final class Encoder {
                                                version.getTotalCodewords(),
                                                numDataBytes,
                                                ecBlocks.getNumBlocks());
-    Log.d("finalBits   ----  " + finalBits.getSize());
+
     QRCode qrCode = new QRCode();
 
     qrCode.setECLevel(ecLevel);

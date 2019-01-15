@@ -2,6 +2,7 @@ package com.doscan.qrcode.standard.qrcode.simple;
 
 import com.doscan.qrcode.proto.BitArray;
 import com.doscan.qrcode.proto.IQRCode2015;
+import com.doscan.qrcode.standard.qrcode.mask.MaskEvaluator;
 import com.doscan.qrcode.standard.table.DotTable;
 import com.doscan.qrcode.standard.version.Version;
 import com.doscan.qrcode.util.Log;
@@ -70,7 +71,8 @@ public class QRCodeSymbol implements IQRCode2015 {
 
 
     public void placeData(BitArray bitArray){
-        dataArea.place(dotTable,bitArray);
+//        dataArea.place(dotTable,bitArray);
+        new MaskEvaluator().mockMask(dotTable.getData(),0x07);
     }
 
     public DotTable getDotTable() {
