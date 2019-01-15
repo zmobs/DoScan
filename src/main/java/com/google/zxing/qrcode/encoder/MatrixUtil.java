@@ -328,7 +328,7 @@ final class MatrixUtil {
 
     int bchCode = calculateBCHCode(typeInfo, TYPE_INFO_POLY);
     bits.appendBits(bchCode, 10);
-
+    Log.d("maskPattern  -------- " + maskPattern + "   makeTypeInfoBits  ----  " + bits);
     BitArray maskBits = new BitArray();
     maskBits.appendBits(TYPE_INFO_MASK_PATTERN, 15);
     bits.xor(maskBits);
