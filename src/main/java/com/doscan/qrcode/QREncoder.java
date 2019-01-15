@@ -123,7 +123,6 @@ public class QREncoder {
         // 记录数据序列中，每一个模块的Bit起始下标
         int byteOffset = 0;
 
-        Log.d("ecbNum  ----- " + ecbNum);
         // 循环计算各个模块
         for(int i = 0; i < ecbNum;i++){
 
@@ -133,7 +132,6 @@ public class QREncoder {
 
             // 承载数据的byte数组
             byte[] dataBytes = new byte[dataBlockByteNum];
-            Log.d("dataBytes  -----11111111111 " + dataBytes.length);
             finalBits.toBytes(8 * byteOffset, dataBytes, dataBlockByteNum);
 
             /**
@@ -184,7 +182,7 @@ public class QREncoder {
 
         /*************************************************************/
         // 根据指定的版本，进行填充拆分
-        QRCodeSymbol qrCodeSymbol = new QRCodeSymbol(version);
+        QRCodeSymbol qrCodeSymbol = new QRCodeSymbol(version,correctLevel);
         qrCodeSymbol.placeData(result);
         // 测试阶段，插播一个窗口
         GraphicsHelper.showAnim(qrCodeSymbol);

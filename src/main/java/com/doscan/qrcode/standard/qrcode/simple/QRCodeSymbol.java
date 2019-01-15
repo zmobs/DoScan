@@ -2,6 +2,7 @@ package com.doscan.qrcode.standard.qrcode.simple;
 
 import com.doscan.qrcode.proto.BitArray;
 import com.doscan.qrcode.proto.IQRCode2015;
+import com.doscan.qrcode.standard.qrcode.ErrorCorrectLevel;
 import com.doscan.qrcode.standard.qrcode.mask.MaskEvaluator;
 import com.doscan.qrcode.standard.table.DotTable;
 import com.doscan.qrcode.standard.version.Version;
@@ -28,7 +29,7 @@ public class QRCodeSymbol implements IQRCode2015 {
     // 左下上，右左 两处版本信息区域
 
     // 左上，右下+左下右的两处格式信息
-    FormatPattern formatPattern = new FormatPattern();
+    FormatPattern formatPattern;
     // 两条分割线
     TimingPattern timingPattern;
     // todo 这里需要考虑多个数据块的因素
@@ -39,7 +40,7 @@ public class QRCodeSymbol implements IQRCode2015 {
 
     DataArea dataArea = new DataArea();
 
-    public QRCodeSymbol(Version version){
+    public QRCodeSymbol(Version version, ErrorCorrectLevel correctLevel){
 
         if(version == null){
             Log.bomb("构造版本不能为空");
@@ -62,6 +63,7 @@ public class QRCodeSymbol implements IQRCode2015 {
         timingPattern = new TimingPattern(version);
         timingPattern.placeDots(dotTable);
 
+        formatPattern = new FormatPattern(correctLevel);
         formatPattern.placeHold(dotTable);
         // 选择数据遮罩层
         versionPattern = new VersionPattern(version);
@@ -72,7 +74,8 @@ public class QRCodeSymbol implements IQRCode2015 {
 
     public void placeData(BitArray bitArray){
 //        dataArea.place(dotTable,bitArray);
-        new MaskEvaluator().mockMask(dotTable.getData(),0x07);
+        new MaskEvaluator(formatPattern)
+                .evaluateMask(dotTable.getData(),dataArea.dataTable);
     }
 
     public DotTable getDotTable() {

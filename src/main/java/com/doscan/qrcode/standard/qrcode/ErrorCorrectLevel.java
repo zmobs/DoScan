@@ -9,31 +9,31 @@ public enum  ErrorCorrectLevel {
     /**
      * 7%
      */
-    L(7),
+    L("01"),
     /**
      * 15%
      */
-    M(15),
+    M("00"),
     /**
      * 25%
      */
-    Q(25),
+    Q("11"),
     /**
      * 30%
      */
-    H(30);
+    H("10");
 
 
     /**
      * 各个级别的标示位
      */
-    private final int flag;
+    private final String flag;
 
-    ErrorCorrectLevel(int flag){
-        this.flag = flag;
+    ErrorCorrectLevel(String str){
+        this.flag = str;
     }
 
-    public int getValue(){
+    public String getValue(){
         return flag;
     }
 }
