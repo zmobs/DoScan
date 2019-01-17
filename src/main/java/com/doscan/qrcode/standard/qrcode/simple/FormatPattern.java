@@ -22,28 +22,30 @@ public class FormatPattern {
         // 2015 新规定，进行xor操作
         BitArray xorBits = HexUtil.strToBitArray("101010000010010");
         bits.xor(xorBits);
+        Log.d("bits2222222 ------  " + bits);
         int sideNum = tempData.length - 1;
         // 对临时数据，进行format信息布局操作
         for(int i = 0; i < 15;i++){
 
-            byte peerByte = (byte) (bits.get(i) ? 0 : 1);
+            byte peerByte = (byte) (bits.get(i) ? 1 : 0);
             if(i < 8){
-
                 if(i < 6){
                     tempData[8][i] = peerByte;
                     tempData[sideNum - i][8] = peerByte;
+
                 }else{
                     tempData[8][i + 1] = peerByte;
                     tempData[sideNum - i][8] = peerByte;
                 }
+
             }else{
                 // 8 - 15
                 if(i < 9){
-                    tempData[8][8] = peerByte;
-                    tempData[8][sideNum - 7 + i - 8] = peerByte;
+                    tempData[7][8] = peerByte;
+                    tempData[8][sideNum - 6 + i - 8] = peerByte;
                 }else{
                     tempData[14 - i][8] = peerByte;
-                    tempData[8][sideNum - 7 + i - 8] = peerByte;
+                    tempData[8][sideNum - 6 + i - 8] = peerByte;
                 }
             }
 

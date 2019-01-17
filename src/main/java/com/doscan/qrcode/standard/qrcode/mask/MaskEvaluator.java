@@ -31,7 +31,7 @@ public class MaskEvaluator {
         /**
          * 二维码得中默认0-7 8个遮罩模式
          */
-        for(int i = 0; i < 8;i++){
+        for(int i = 1; i < 2;i++){
             int penalty = calculateMaskPenalty(dotTable,dataTable,i);
             if(penalty < minPenalty){
                 minPenalty = penalty;
@@ -147,7 +147,18 @@ public class MaskEvaluator {
                             // 0
                             if((i + j) % 2 == 0){
                                 // 该位置为黑色
-                                reverse(tempData,i,j);
+                                if(tempData[i][j] == 0){
+                                    tempData[i][j] = 0;
+                                }else{
+                                    tempData[i][j] = 1;
+                                }
+                            }else{
+                                // 该位置是白色
+                                if(tempData[i][j] == 1){
+                                    tempData[i][j] = 0;
+                                }else{
+                                    tempData[i][j] = 1;
+                                }
                             }
                             break;
                         case 0x01:
@@ -161,13 +172,24 @@ public class MaskEvaluator {
                             // 0
                             if(j % 3 == 0){
                                 // 该位置为黑色
-                                reverse(tempData,i,j);
+                                if(tempData[i][j] == 0){
+                                    tempData[i][j] = 1;
+                                }else{
+                                    tempData[i][j] = 0;
+                                }
+                            }else{
+                                if(tempData[i][j] == 1){
+                                    tempData[i][j] = 1;
+                                }else{
+                                    tempData[i][j] = 0;
+                                }
                             }
                             break;
                         case 0x03:
                             // 0
                             if((i + j) % 3 == 0){
                                 // 该位置为黑色
+
                                 reverse(tempData,i,j);
                             }
                             break;
@@ -208,9 +230,9 @@ public class MaskEvaluator {
             }
         }
 
+        Log.d("maskPattern   ---  " + mask);
         // 根据已经选择的mask 对formatinfo 进行补充
         formatPattern.tempDataWithMash(tempData,mask);
-
 
 
         // 对已经进行xor 整体数据进行 评分操作
@@ -242,6 +264,7 @@ public class MaskEvaluator {
                     // 走到这里，就是不同色了，进行判断
                     int n1 = m - i;
                     if(n1 > 4){
+
                         N1 += n1;
                         preN1X = m;
                     }
@@ -250,7 +273,7 @@ public class MaskEvaluator {
                 if(j <= maxColNum && j > preN1Y){
                     // 计算横向连续同色模点
                     int m = j + 1;
-                    while(tempData[i][m] == tempData[i][m]){
+                    while(tempData[i][m] == tempData[i][j]){
                         m += 1;
                         if(m >= dataSideNum){
                             m = dataSideNum -1;
@@ -261,7 +284,7 @@ public class MaskEvaluator {
                     int n1 = m - j;
                     if(n1 > 4){
                         N1 += n1;
-                        preN1X = m;
+                        preN1Y = m;
                     }
                 }
 
@@ -277,18 +300,32 @@ public class MaskEvaluator {
                     }
                 }
 
+                // 检测 1：1：3：1：1
+                if(i < dataSideNum - 7 && j < dataSideNum - 7){
+
+                    int dot1 = tempData[i][j];
+                    int dot2 = tempData[i+1][j+1];
+                    int dot3 = tempData[i+1][j];
+                    int dot4 = tempData[i][j + 1];
+                    if(dot1 == dot2 && dot2 == dot3 && dot3 == dot4){
+                        N2 += 1;
+                    }
+                }
+
+
             }
         }
-
+//
+//        // 临时给界面绘制出来 测试代码 fixme
         for(int i = 0; i < dataSideNum;i++){
             for(int j = 0; j < dataSideNum;j++){
                 dotTable[i][j] = tempData[i][j];
             }
         }
-
-        Log.d("mask  ----  " + mask);
-        Log.d("N1  ----  " + N1);
-        Log.d("N2  ----  " + N2);
+//
+//        Log.d("mask  ----  " + mask);
+//        Log.d("N1  ----  " + N1);
+//        Log.d("N2  ----  " + N2);
         return 0;
     }
 

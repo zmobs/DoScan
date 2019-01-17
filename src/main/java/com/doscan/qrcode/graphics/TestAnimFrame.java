@@ -2,22 +2,27 @@ package com.doscan.qrcode.graphics;
 
 import com.doscan.qrcode.standard.qrcode.simple.QRCodeSymbol;
 import com.doscan.qrcode.standard.table.DotTable;
-import com.doscan.qrcode.util.Log;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class AnimFrame extends JFrame {
+public class TestAnimFrame extends JFrame {
 
 
-    QRCodeSymbol qrCodeSymbol;
+    byte[][] qrCodeSymbol;
     final int STEP_PIX = 15;
     int PADDING_WIDTH = 120;
 
-    public AnimFrame(QRCodeSymbol symbol){
-        qrCodeSymbol = symbol;
-        this.setTitle("QR Code Painter");
-        PADDING_WIDTH = symbol.QUIET_ZONE_SIZE * STEP_PIX;
+    public TestAnimFrame(byte[][] symbol){
+        int dataSize =  symbol.length;
+        qrCodeSymbol = new byte[dataSize][dataSize];
+        for(int i = 0; i < dataSize; i++){
+            for(int j = 0; j < dataSize; j++){
+                qrCodeSymbol[i][j] = symbol[i][j];
+            }
+        }
+        this.setTitle("222222222222 test");
+        PADDING_WIDTH = 5 * STEP_PIX;
     }
 
 
@@ -25,8 +30,7 @@ public class AnimFrame extends JFrame {
     public void paint(Graphics g) {
 
         // 递归绘制所有的模点，并将其绘制
-        DotTable dotTable = qrCodeSymbol.getDotTable();
-        byte[][] data = dotTable.getData();
+        byte[][] data = qrCodeSymbol;
         int sideNum = data.length;
         for(int i = 0; i < sideNum;i++){
             for(int j = 0; j < sideNum;j++){

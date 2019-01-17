@@ -168,6 +168,7 @@ final class MatrixUtil {
       throws WriterException {
     BitArray typeInfoBits = new BitArray();
     makeTypeInfoBits(ecLevel, maskPattern, typeInfoBits);
+    Log.d("typeInfoBits ------  " + typeInfoBits);
     for (int i = 0; i < typeInfoBits.getSize(); ++i) {
       // Place bits in LSB to MSB order.  LSB (least significant bit) is the last value in
       // "typeInfoBits".
@@ -248,9 +249,9 @@ final class MatrixUtil {
           }
 
           // Skip masking if mask_pattern is -1.
-          if (maskPattern != -1 && MaskUtil.getDataMaskBit(maskPattern, xx, y)) {
-            bit = !bit;
-          }
+//          if (maskPattern != -1 && MaskUtil.getDataMaskBit(maskPattern, xx, y)) {
+//            bit = !bit;
+//          }
           matrix.set(xx, y, bit);
         }
         y += direction;

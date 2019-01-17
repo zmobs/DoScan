@@ -27,14 +27,15 @@ public class Main {
         try {
             Map<EncodeHintType,Object> hints = new HashMap<>();
             hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
-            hints.put(EncodeHintType.QR_VERSION, 8);
-            BitMatrix bitMatrix =  qrCodeWriter.encode("1101201110011122222222211012011100111222222222" +
-                    "110120111001112222222221101201110011122222222211012011100111222222222" +
-                    "110120111001112222222221101201110011122222222211012011100111222222222",
+            BitMatrix bitMatrix =  qrCodeWriter.encode("110120119",
                     BarcodeFormat.QR_CODE,300,300,hints);
 //            //直接写入文件
 //            File outputFile = new File("d:/new.png");
-//            MatrixToImageWriter.writeToFile(bitMatrix, "png", outputFile);
+//            try {
+//                MatrixToImageWriter.writeToFile(bitMatrix, "png", outputFile);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
         } catch (WriterException e) {
             e.printStackTrace();
         }
@@ -46,9 +47,7 @@ public class Main {
 //                .correctLevel(ErrorCorrectLevel.M)
                 .strategy(EncodeStrategy.HIGN_QUALITY)
                 .charset(Charset.ISO_8859_1)
-                .content("1101201110011122222222211012011100111222222222" +
-                        "110120111001112222222221101201110011122222222211012011100111222222222" +
-                        "110120111001112222222221101201110011122222222211012011100111222222222")
+                .content("110120119")
                 .code();
 
     }

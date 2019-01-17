@@ -16,6 +16,7 @@
 
 package com.google.zxing.qrcode.encoder;
 
+import com.doscan.qrcode.graphics.GraphicsHelper;
 import com.doscan.qrcode.util.Log;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.WriterException;
@@ -148,12 +149,16 @@ public final class Encoder {
     //  Choose the mask pattern and set to "qrCode".
     int dimension = version.getDimensionForVersion();
     ByteMatrix matrix = new ByteMatrix(dimension, dimension);
-    int maskPattern = chooseMaskPattern(finalBits, ecLevel, version, matrix);
-    qrCode.setMaskPattern(maskPattern);
 
+//    int maskPattern = chooseMaskPattern(finalBits, ecLevel, version, matrix);
+//    Log.d("finalBits   ---  " + finalBits);
+
+//    qrCode.setMaskPattern(maskPattern);
+    int maskPattern = 1;
+        Log.d("maskPattern   ---  " + maskPattern);
     // Build the matrix and set it to "qrCode".
-
     MatrixUtil.buildMatrix(finalBits, ecLevel, version, maskPattern, matrix);
+    GraphicsHelper.showTestAnim(matrix.getArray());
     qrCode.setMatrix(matrix);
 
     return qrCode;

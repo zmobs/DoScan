@@ -13,4 +13,12 @@ public class GraphicsHelper {
         animFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
+
+    public static void showTestAnim(byte[][] data){
+        TestAnimFrame animFrame = new TestAnimFrame(data);
+        animFrame.setVisible(true);
+        animFrame.setBounds(280,180,1000,1000);
+        animFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    }
+
 }
