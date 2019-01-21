@@ -39,8 +39,8 @@ public class DataArea {
         int m = sideNum - 1;
         int n = sideNum - 1;
 
-        int firstCol = m;
-        int secondCol = m - 1;
+        int firstCol = n;
+        int secondCol = n - 1;
         int i = 0;
 
         int preI = -1;
@@ -60,15 +60,15 @@ public class DataArea {
                 preI = i;
             }
 
-            if(i > 15){
-                break;
-            }
+//            if(i > 15){
+//                break;
+//            }
             // 迭代规则编写
             if (dotData[m][n] == -1) {
                 //  -1 是未使用状态,其他组件已经占位的前提下，上下的都是合法的数据区域
 //                Log.d("m  ------ " + m + "    ----n -----   " + n + "        perByte  ----  " + perByte);
-                dotData[n][m] = perByte;
-                dataTable[n][m] = perByte;
+                dotData[m][n] = perByte;
+                dataTable[m][n] = perByte;
                 i++;
                 continue;
             } else {
@@ -77,15 +77,15 @@ public class DataArea {
             }
 
             // 寻找下一个可放置位置的算法实现
-            if (m == firstCol) {
+            if (n == firstCol) {
                 // 不论任何场景 第一列永远不会发生转折
-                m = secondCol;
+                n = secondCol;
                 continue;
             }
 
             if (placeOrientation == 1) {
-                // up
-                if (m == secondCol && n == 0) {
+                // 向左
+                if (n == secondCol && m == 0) {
 
                     // 到达了当前列编码位置的终止部分，则需要转换方向
                     placeOrientation = 0;
@@ -100,17 +100,16 @@ public class DataArea {
                         secondCol -= 1;
                     }
 
-                    m = firstCol;
+                    n = firstCol;
 
                 } else {
                     //  第二列，而且尚未到达顶部
-                    n -= 1;
-                    m = firstCol;
+                    m -= 1;
+                    n = firstCol;
                 }
             } else {
-                // down
-                if (m == secondCol && n == sideNum - 1) {
-
+                // 向右
+                if (n == secondCol && m == sideNum - 1) {
 
                     // 到达了当前列编码位置的终止部分，则需要转换方向
                     placeOrientation = 1;
@@ -124,11 +123,11 @@ public class DataArea {
                     if (secondCol == 6) {
                         secondCol -= 1;
                     }
-                    m = firstCol;
+                    n = firstCol;
                 } else {
                     //  第二列，而且尚未到达顶部
-                    n += 1;
-                    m = firstCol;
+                    m += 1;
+                    n = firstCol;
                 }
             }
         }
