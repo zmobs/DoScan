@@ -28,6 +28,8 @@ public class TestAnimFrame extends JFrame {
 
     @Override
     public void paint(Graphics g) {
+        g.setColor(Color.WHITE);
+        g.fillRect(0,0,1000,1000);
 
         // 递归绘制所有的模点，并将其绘制
         byte[][] data = qrCodeSymbol;

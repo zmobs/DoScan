@@ -259,9 +259,11 @@ final class MatrixUtil {
 //          Log.d("xx  ------ " + xx + "        y ------- " + y + "  ");
 
           // Skip masking if mask_pattern is -1.
-//          if (maskPattern != -1 && MaskUtil.getDataMaskBit(maskPattern, xx, y)) {
+          if (maskPattern != -1 && MaskUtil.getDataMaskBit(maskPattern, xx, y)) {
 //            bit = !bit;
-//          }
+            bit = true;
+          }
+//          bit = false;
           matrix.set(xx, y, bit);
         }
         y += direction;

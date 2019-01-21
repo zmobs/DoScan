@@ -163,8 +163,10 @@ public class MaskEvaluator {
                             break;
                         case 0x01:
                             // 0
-                            if(j % 2 == 0){
+//
+                            if((i & 0x1) == 0){
                                 // 该位置为黑色
+//                                tempData[i][j] = -2;
                                 reverse(tempData,i,j);
                             }
                             break;
