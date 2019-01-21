@@ -235,86 +235,86 @@ public class MaskEvaluator {
         formatPattern.tempDataWithMash(tempData,mask);
 
 
-        // 对已经进行xor 整体数据进行 评分操作
-        //dotTable
-        int maxColNum = dataSideNum - 5;
-        int maxDotNum = dataSideNum - 2;
-        int preN1X = -1;
-        int preN1Y = -1;
-
-        int N1 = 0;
-        int N2 = 0;
-
-
-        for(int i = 0 ; i < dataSideNum; i++) {
-
-            for (int j = 0; j < dataSideNum; j++) {
-
-                // 横纵坐标
-                if(i <= maxColNum && i > preN1X){
-                    // 计算横向连续同色模点
-                    int m = i +1;
-                    while(tempData[m][j] == tempData[i][j]){
-                        m += 1;
-                        if(m >= dataSideNum){
-                            m = dataSideNum -1;
-                            break;
-                        }
-                    }
-                    // 走到这里，就是不同色了，进行判断
-                    int n1 = m - i;
-                    if(n1 > 4){
-
-                        N1 += n1;
-                        preN1X = m;
-                    }
-                }
-
-                if(j <= maxColNum && j > preN1Y){
-                    // 计算横向连续同色模点
-                    int m = j + 1;
-                    while(tempData[i][m] == tempData[i][j]){
-                        m += 1;
-                        if(m >= dataSideNum){
-                            m = dataSideNum -1;
-                            break;
-                        }
-                    }
-                    // 走到这里，就是不同色了，进行判断
-                    int n1 = m - j;
-                    if(n1 > 4){
-                        N1 += n1;
-                        preN1Y = m;
-                    }
-                }
-
-
-                // 方块检测函数
-                if(i <= maxDotNum && j <= maxDotNum){
-                    int dot1 = tempData[i][j];
-                    int dot2 = tempData[i+1][j+1];
-                    int dot3 = tempData[i+1][j];
-                    int dot4 = tempData[i][j + 1];
-                    if(dot1 == dot2 && dot2 == dot3 && dot3 == dot4){
-                        N2 += 1;
-                    }
-                }
-
-                // 检测 1：1：3：1：1
-                if(i < dataSideNum - 7 && j < dataSideNum - 7){
-
-                    int dot1 = tempData[i][j];
-                    int dot2 = tempData[i+1][j+1];
-                    int dot3 = tempData[i+1][j];
-                    int dot4 = tempData[i][j + 1];
-                    if(dot1 == dot2 && dot2 == dot3 && dot3 == dot4){
-                        N2 += 1;
-                    }
-                }
-
-
-            }
-        }
+//        // 对已经进行xor 整体数据进行 评分操作
+//        //dotTable
+//        int maxColNum = dataSideNum - 5;
+//        int maxDotNum = dataSideNum - 2;
+//        int preN1X = -1;
+//        int preN1Y = -1;
+//
+//        int N1 = 0;
+//        int N2 = 0;
+//
+//
+//        for(int i = 0 ; i < dataSideNum; i++) {
+//
+//            for (int j = 0; j < dataSideNum; j++) {
+//
+//                // 横纵坐标
+//                if(i <= maxColNum && i > preN1X){
+//                    // 计算横向连续同色模点
+//                    int m = i +1;
+//                    while(tempData[m][j] == tempData[i][j]){
+//                        m += 1;
+//                        if(m >= dataSideNum){
+//                            m = dataSideNum -1;
+//                            break;
+//                        }
+//                    }
+//                    // 走到这里，就是不同色了，进行判断
+//                    int n1 = m - i;
+//                    if(n1 > 4){
+//
+//                        N1 += n1;
+//                        preN1X = m;
+//                    }
+//                }
+//
+//                if(j <= maxColNum && j > preN1Y){
+//                    // 计算横向连续同色模点
+//                    int m = j + 1;
+//                    while(tempData[i][m] == tempData[i][j]){
+//                        m += 1;
+//                        if(m >= dataSideNum){
+//                            m = dataSideNum -1;
+//                            break;
+//                        }
+//                    }
+//                    // 走到这里，就是不同色了，进行判断
+//                    int n1 = m - j;
+//                    if(n1 > 4){
+//                        N1 += n1;
+//                        preN1Y = m;
+//                    }
+//                }
+//
+//
+//                // 方块检测函数
+//                if(i <= maxDotNum && j <= maxDotNum){
+//                    int dot1 = tempData[i][j];
+//                    int dot2 = tempData[i+1][j+1];
+//                    int dot3 = tempData[i+1][j];
+//                    int dot4 = tempData[i][j + 1];
+//                    if(dot1 == dot2 && dot2 == dot3 && dot3 == dot4){
+//                        N2 += 1;
+//                    }
+//                }
+//
+//                // 检测 1：1：3：1：1
+//                if(i < dataSideNum - 7 && j < dataSideNum - 7){
+//
+//                    int dot1 = tempData[i][j];
+//                    int dot2 = tempData[i+1][j+1];
+//                    int dot3 = tempData[i+1][j];
+//                    int dot4 = tempData[i][j + 1];
+//                    if(dot1 == dot2 && dot2 == dot3 && dot3 == dot4){
+//                        N2 += 1;
+//                    }
+//                }
+//
+//
+//            }
+//        }
 //
 //        // 临时给界面绘制出来 测试代码 fixme
         for(int i = 0; i < dataSideNum;i++){

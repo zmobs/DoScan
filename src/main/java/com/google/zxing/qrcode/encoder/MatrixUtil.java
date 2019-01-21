@@ -168,7 +168,7 @@ final class MatrixUtil {
       throws WriterException {
     BitArray typeInfoBits = new BitArray();
     makeTypeInfoBits(ecLevel, maskPattern, typeInfoBits);
-    Log.d("typeInfoBits ------  " + typeInfoBits);
+
     for (int i = 0; i < typeInfoBits.getSize(); ++i) {
       // Place bits in LSB to MSB order.  LSB (least significant bit) is the last value in
       // "typeInfoBits".
@@ -179,17 +179,22 @@ final class MatrixUtil {
       int y1 = TYPE_INFO_COORDINATES[i][1];
       matrix.set(x1, y1, bit);
 
+//      Log.d("x1 ---  " + x1 + " y1 ----  " + y1 + "   bit ---- " + bit);
+
       if (i < 8) {
         // Right top corner.
         int x2 = matrix.getWidth() - i - 1;
         int y2 = 8;
         matrix.set(x2, y2, bit);
+//        Log.d("x2 ---  " + x2 + "  y2 ----  " + y2 + "   bit ---- " + bit);
       } else {
         // Left bottom corner.
         int x2 = 8;
         int y2 = matrix.getHeight() - 7 + (i - 8);
         matrix.set(x2, y2, bit);
+//        Log.d("x2 ---  " + x2 + "  y2 ----  " + y2 + "   bit ---- " + bit);
       }
+
     }
   }
 
@@ -247,11 +252,11 @@ final class MatrixUtil {
             // in 8.4.9 of JISX0510:2004 (p. 24).
             bit = false;
           }
-//          if(bitIndex > 8){
-//            return;
-//          }
-          Log.d("bit  ------ " + bit);
-          Log.d("xx  ------ " + xx + "        y ------- " + y + "  ");
+          if(bitIndex > 16){
+            return;
+          }
+//          Log.d("bit  ------ " + bit);
+//          Log.d("xx  ------ " + xx + "        y ------- " + y + "  ");
 
           // Skip masking if mask_pattern is -1.
 //          if (maskPattern != -1 && MaskUtil.getDataMaskBit(maskPattern, xx, y)) {

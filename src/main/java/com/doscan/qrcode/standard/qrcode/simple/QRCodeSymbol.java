@@ -37,7 +37,9 @@ public class QRCodeSymbol implements IQRCode2015 {
     AlignmentPattern alignmentPattern;
 
     VersionPattern versionPattern;
-
+    /**
+     * 数据编码区域
+     */
     DataArea dataArea = new DataArea();
 
     public QRCodeSymbol(Version version, ErrorCorrectLevel correctLevel){
@@ -73,6 +75,7 @@ public class QRCodeSymbol implements IQRCode2015 {
 
 
     public void placeData(BitArray bitArray){
+        // 置放数据区域的比特序列
         dataArea.place(dotTable,bitArray);
 //        new MaskEvaluator(formatPattern)
 //                .evaluateMask(dotTable.getData(),dataArea.dataTable);

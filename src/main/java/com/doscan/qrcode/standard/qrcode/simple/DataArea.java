@@ -44,26 +44,31 @@ public class DataArea {
         int i = 0;
 
         int preI = -1;
+
         while (true) {
+
             if (m < 0 || i >= bitLen) {
                 break;
             }
 
+//            int timeNum = i / 8;
+//            int leftNum = i % 8;
+//
+//            int indexInByte =  8 * timeNum  + (8 - leftNum) - 1;i
             byte perByte = bits.get(i) ? (byte) 1 : 0;
             if(i != preI){
-                Log.d("perByte  ------ " + perByte);
                 preI = i;
             }
 
-//            if(i > 7){
-//                break;
-//            }
+            if(i > 15){
+                break;
+            }
             // 迭代规则编写
             if (dotData[m][n] == -1) {
-                //  -1 是未使用状态
+                //  -1 是未使用状态,其他组件已经占位的前提下，上下的都是合法的数据区域
 //                Log.d("m  ------ " + m + "    ----n -----   " + n + "        perByte  ----  " + perByte);
-                dotData[m][n] = perByte;
-                dataTable[m][n] = perByte;
+                dotData[n][m] = perByte;
+                dataTable[n][m] = perByte;
                 i++;
                 continue;
             } else {
@@ -128,7 +133,6 @@ public class DataArea {
             }
         }
 
-        Log.d(" i  --- " + i);
 
     }
 
