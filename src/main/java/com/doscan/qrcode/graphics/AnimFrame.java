@@ -31,6 +31,7 @@ public class AnimFrame extends JFrame {
         for(int i = 0; i < sideNum;i++){
             for(int j = 0; j < sideNum;j++){
                 byte perValue = data[i][j];
+
                 int xPos = PADDING_WIDTH + i * STEP_PIX;
                 int yPos = PADDING_WIDTH + j * STEP_PIX;
                 if(perValue == 0){

@@ -43,16 +43,25 @@ public class DataArea {
         int secondCol = m - 1;
         int i = 0;
 
-
+        int preI = -1;
         while (true) {
             if (m < 0 || i >= bitLen) {
                 break;
             }
 
             byte perByte = bits.get(i) ? (byte) 1 : 0;
+            if(i != preI){
+                Log.d("perByte  ------ " + perByte);
+                preI = i;
+            }
+
+//            if(i > 7){
+//                break;
+//            }
             // 迭代规则编写
             if (dotData[m][n] == -1) {
                 //  -1 是未使用状态
+//                Log.d("m  ------ " + m + "    ----n -----   " + n + "        perByte  ----  " + perByte);
                 dotData[m][n] = perByte;
                 dataTable[m][n] = perByte;
                 i++;

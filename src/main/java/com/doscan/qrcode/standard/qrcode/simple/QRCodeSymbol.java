@@ -74,8 +74,8 @@ public class QRCodeSymbol implements IQRCode2015 {
 
     public void placeData(BitArray bitArray){
         dataArea.place(dotTable,bitArray);
-        new MaskEvaluator(formatPattern)
-                .evaluateMask(dotTable.getData(),dataArea.dataTable);
+//        new MaskEvaluator(formatPattern)
+//                .evaluateMask(dotTable.getData(),dataArea.dataTable);
     }
 
     public DotTable getDotTable() {
