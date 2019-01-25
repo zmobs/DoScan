@@ -29,13 +29,7 @@ public class Main {
             hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
             BitMatrix bitMatrix =  qrCodeWriter.encode("110120119",
                     BarcodeFormat.QR_CODE,300,300,hints);
-//            //直接写入文件
-//            File outputFile = new File("d:/new.png");
-//            try {
-//                MatrixToImageWriter.writeToFile(bitMatrix, "png", outputFile);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
+
         } catch (WriterException e) {
             e.printStackTrace();
         }

@@ -36,6 +36,7 @@ public class QREncoder {
     private EncodeStrategy encodeStrategy = EncodeStrategy.HIGN_QUALITY;
 
 
+
     public static QREncoder obain(){
         return new QREncoder();
     }

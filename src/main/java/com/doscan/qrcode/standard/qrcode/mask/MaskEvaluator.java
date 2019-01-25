@@ -16,6 +16,91 @@ public class MaskEvaluator {
         this.formatPattern = formatPattern;
     }
 
+
+
+    public void embedMask(byte[][] dotTable, byte[][] dataTable,int mask){
+
+        int dataSideNum = dotTable.length;
+
+
+        for (int i = 0; i < dataSideNum; i++) {
+            for (int j = 0; j < dataSideNum; j++) {
+
+                int honyVal = ((i * j) % 2) + (i * j % 3);
+
+                if (dataTable[i][j] != -1) {
+                    // 只处理数据区域，但是评估时，需要评估整体区域
+                    switch (mask) {
+                        case 0x00:
+                            // 0
+                            if ((i + j) % 2 == 0) {
+                                // 该位置为黑色
+                                reverse(dotTable, i, j);
+                            }
+                            break;
+                        case 0x01:
+                            // 1
+                            if ((i & 0x1) == 0) {
+                                // 该位置为黑色
+                                reverse(dotTable, i, j);
+                            }
+                            break;
+                        case 0x02:
+                            // 2
+                            if (i % 3 == 0) {
+                                // 该位置为黑色
+                                reverse(dotTable, i, j);
+                            }
+                            break;
+                        case 0x03:
+                            // 0
+                            if ((i + j) % 3 == 0) {
+                                // 该位置为黑色
+                                reverse(dotTable, i, j);
+                            }
+                            break;
+                        case 0x04:
+                            // 0
+                            if ((i / 2 + j / 3) % 2 == 0) {
+                                // 该位置为黑色
+                                reverse(dotTable, i, j);
+                            }
+                            break;
+                        case 0x05:
+                            // 0
+                            if (honyVal == 0) {
+                                // 该位置为黑色
+                                reverse(dotTable, i, j);
+                            }
+                            break;
+                        case 0x06:
+                            // 0
+                            if (honyVal % 2 == 0) {
+                                // 该位置为黑色
+                                reverse(dotTable, i, j);
+                            }
+                            break;
+                        case 0x07:
+                            // 0
+                            if ((((i + j) % 2) + (i * j % 3)) % 2 == 0) {
+                                // 该位置为黑色
+                                reverse(dotTable, i, j);
+                            }
+                            break;
+                        default:
+
+                            break;
+
+                    }
+                }
+            }
+        }
+
+        // 根据已经选择的mask 对formatinfo 进行补充
+        formatPattern.tempDataWithMash(dotTable, mask);
+
+
+    }
     public int evaluateMask(byte[][] dotTable, byte[][] dataTable) {
 
 
@@ -33,97 +118,14 @@ public class MaskEvaluator {
          */
         for (int i = 0; i < 8; i++) {
             int penalty = calculateMaskPenalty(dotTable, dataTable, i);
-            Log.d("penalty  --- " + penalty);
             if (penalty < minPenalty) {
                 minPenalty = penalty;
                 bestMaskPattern = i;
             }
         }
-        Log.d("minPenalty  --- " + minPenalty);
-        Log.d("bestMaskPattern  --- " + bestMaskPattern);
         return bestMaskPattern;
     }
 
-    /**
-     * 测试用的代码
-     *
-     * @param dataTable
-     * @param mask
-     */
-    public void mockMask(byte[][] dataTable, int mask) {
-
-        int sideNum = dataTable.length;
-        for (int i = 0; i < sideNum; i++) {
-            for (int j = 0; j < sideNum; j++) {
-
-                if (dataTable[i][j] == -1) {
-                    // 只处理数据区域，但是评估时，需要评估整体区域
-                    switch (mask) {
-                        case 0x00:
-                            // 0
-                            if ((i + j) % 2 == 0) {
-                                // 该位置为黑色
-                                reverse(dataTable, i, j);
-                            }
-                            break;
-                        case 0x01:
-                            // 0
-                            if (j % 2 == 0) {
-                                // 该位置为黑色
-                                reverse(dataTable, i, j);
-                            }
-                            break;
-                        case 0x02:
-                            // 0
-                            if (j % 3 == 0) {
-                                // 该位置为黑色
-                                reverse(dataTable, i, j);
-                            }
-                            break;
-                        case 0x03:
-                            // 0
-                            if ((i + j) % 3 == 0) {
-                                // 该位置为黑色
-                                reverse(dataTable, i, j);
-                            }
-                            break;
-                        case 0x04:
-                            // 0
-                            if ((j / 2 + i / 3) % 2 == 0) {
-                                // 该位置为黑色
-                                reverse(dataTable, i, j);
-                            }
-                            break;
-                        case 0x05:
-                            // 0
-                            if (((i * j) % 2) + (i * j % 3) == 0) {
-                                // 该位置为黑色
-                                reverse(dataTable, i, j);
-                            }
-                            break;
-                        case 0x06:
-                            // 0
-                            if ((((i * j) % 2) + (i * j % 3)) % 2 == 0) {
-                                // 该位置为黑色
-                                reverse(dataTable, i, j);
-                            }
-                            break;
-                        case 0x07:
-                            // 0
-                            if ((((i + j) % 2) + (i * j % 3)) % 2 == 0) {
-                                // 该位置为黑色
-                                reverse(dataTable, i, j);
-                            }
-                            break;
-                        default:
-
-                            break;
-
-                    }
-                }
-            }
-        }
-    }
 
     /**
      * 对数据区域进行整体换算
@@ -141,7 +143,6 @@ public class MaskEvaluator {
                 tempData[i][j] = dotTable[i][j];
             }
         }
-
 
         for (int i = 0; i < dataSideNum; i++) {
             for (int j = 0; j < dataSideNum; j++) {
@@ -282,7 +283,7 @@ public class MaskEvaluator {
                     int dot3 = tempData[i + 1][j];
                     int dot4 = tempData[i][j + 1];
                     if (dot1 == dot2 && dot2 == dot3 && dot3 == dot4) {
-                        N2 += 1;
+                        N2 += 4;
                     }
                 }
 

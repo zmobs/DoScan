@@ -1,5 +1,6 @@
 package com.doscan.qrcode.standard.qrcode.simple;
 
+import com.doscan.qrcode.graphics.GraphicsHelper;
 import com.doscan.qrcode.proto.BitArray;
 import com.doscan.qrcode.proto.IQRCode2015;
 import com.doscan.qrcode.standard.qrcode.ErrorCorrectLevel;
@@ -77,8 +78,12 @@ public class QRCodeSymbol implements IQRCode2015 {
     public void placeData(BitArray bitArray){
         // 置放数据区域的比特序列
         dataArea.place(dotTable,bitArray);
-        new MaskEvaluator(formatPattern)
+        MaskEvaluator maskEvaluator = new MaskEvaluator(formatPattern);
+        int bestMask = maskEvaluator
                 .evaluateMask(dotTable.getData(),dataArea.dataTable);
+
+        maskEvaluator.embedMask(dotTable.getData(),dataArea.dataTable,bestMask);
+        GraphicsHelper.showAnim(this);
     }
 
     public DotTable getDotTable() {

@@ -21,7 +21,7 @@ public class TestAnimFrame extends JFrame {
                 qrCodeSymbol[i][j] = symbol[i][j];
             }
         }
-        this.setTitle("222222222222 test");
+        this.setTitle("QR Encoder");
         PADDING_WIDTH = 5 * STEP_PIX;
     }
 
