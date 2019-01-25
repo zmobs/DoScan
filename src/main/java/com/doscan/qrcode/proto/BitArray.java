@@ -2,6 +2,7 @@ package com.doscan.qrcode.proto;
 
 import com.doscan.qrcode.exception.BombException;
 import com.doscan.qrcode.exception.HumingException;
+import com.doscan.qrcode.util.Log;
 
 /**
  * 节省空间的bit容器
@@ -23,12 +24,26 @@ public class BitArray {
     }
 
 
+
     public BitArray(int defaultSize){
         // 32bit default
         bits = new int[1];
         this.size = defaultSize;
     }
 
+    public void appendBytes(byte[] data){
+        byte primaryMask = 1;
+        for(int i = 0; i < data.length;i++){
+            //
+            byte peerByte = data[i];
+            for(int m = 0 ; m < 8; m++){
+                int val = peerByte >> (7- m);
+                int mask = val & primaryMask;
+                boolean peerBit = (mask == 1 ? true : false);
+                this.appendBit(peerBit);
+            }
+        }
+    }
     /**
      * 转换为8比特
      * @param bitOffset
@@ -41,7 +56,6 @@ public class BitArray {
             int theByte = 0;
             // 连续读取八个比特，封装进入一个字节
             for (int j = 0; j < 8; j++) {
-                // todo 需要重写这部分
                 if (get(bitOffset)) {
                     int mask = 1 << (7 -j);
                     theByte |= mask;

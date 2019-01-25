@@ -40,8 +40,8 @@ public class Main {
 //                .version(2)
 //                .correctLevel(ErrorCorrectLevel.M)
                 .strategy(EncodeStrategy.HIGN_QUALITY)
-                .charset(Charset.ISO_8859_1)
-                .content("110120119")
+                .charset(Charset.GB2312)
+                .content("己亥猪年2019")
                 .code();
 
     }

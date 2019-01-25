@@ -1,6 +1,7 @@
 package com.doscan.qrcode;
 
 import com.doscan.qrcode.exception.BombException;
+import com.doscan.qrcode.standard.charset.Charset;
 import com.doscan.qrcode.standard.qrcode.input.AlphanumericInputThing;
 import com.doscan.qrcode.standard.qrcode.input.ByteInputThing;
 import com.doscan.qrcode.standard.qrcode.input.InputThing;
@@ -20,12 +21,11 @@ public class InputResolver {
         inputThings.add(new AlphanumericInputThing());
         //inputThings.add(new ShiftJISInputThing());
         //inputThings.add(new MixInputThing());
-        //inputThings.add(new ByteInputThing());
         //inputThings.add(new ChineseInputThing());
     }
 
 
-    public InputThing detect(String content) {
+    public InputThing detect(String content, Charset charset) {
 
         if (StringUtil.isEmpty(content)) {
             throw new BombException("输入内容为空");
@@ -38,9 +38,10 @@ public class InputResolver {
             }
         }
 
-        Log.d("no input match.  bomb!");
         // 兜底的是字节模式
+        ByteInputThing byteInputThing = new ByteInputThing(charset);
+        byteInputThing.content(content);
 
-        return new ByteInputThing();
+        return byteInputThing;
     }
 }

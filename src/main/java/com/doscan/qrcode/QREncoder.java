@@ -82,7 +82,7 @@ public class QREncoder {
     public QRCodeSymbol code(){
 
         InputResolver inputResolver = new InputResolver();
-        InputThing inputThing = inputResolver.detect(content);
+        InputThing inputThing = inputResolver.detect(content,charset);
 
         // 如果没有手动指定version，则需要选择器智能选择
         VersionDetector.VersionCap versionCap;
@@ -107,7 +107,7 @@ public class QREncoder {
         }
         // 获取到完整的数据区域bit序列
         BitArray finalBits = new InputBitCaper().getInputBits(versionCap,inputThing);
-
+        Log.d("finalBits   ---  " + finalBits);
         /********************************  前方高能，，纠错码算法实现部分************************************/
         VersionECTable.ECBlockInfo ecBlockInfo = VersionECTable.instance
                 .findBlockInfo(versionCap.getVersion().getVersionNumber(),versionCap.getCorrectLevel());

@@ -15,6 +15,7 @@ public class InputBitCaper {
 
 
     public BitArray getInputBits(VersionDetector.VersionCap versionCap, InputThing inputThing){
+
         BitArray bitArray = new BitArray();
         bitArray.appendBitArray(inputThing.getModeIndicator());
         bitArray.appendBitArray(inputThing.getCountLength(versionCap.getVersion()));
