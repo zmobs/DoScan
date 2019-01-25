@@ -150,14 +150,13 @@ public final class Encoder {
     int dimension = version.getDimensionForVersion();
     ByteMatrix matrix = new ByteMatrix(dimension, dimension);
 
-//    int maskPattern = chooseMaskPattern(finalBits, ecLevel, version, matrix);
-//    Log.d("finalBits   ---  " + finalBits);
+    int maskPattern = chooseMaskPattern(finalBits, ecLevel, version, matrix);
+    Log.d("maskPattern   ---  " + maskPattern);
 
-//    qrCode.setMaskPattern(maskPattern);
-    int maskPattern = 1;
+    qrCode.setMaskPattern(maskPattern);
     // Build the matrix and set it to "qrCode".
     MatrixUtil.buildMatrix(finalBits, ecLevel, version, maskPattern, matrix);
-    GraphicsHelper.showTestAnim(matrix.getArray());
+//    GraphicsHelper.showTestAnim(matrix.getArray());
     qrCode.setMatrix(matrix);
 
     return qrCode;

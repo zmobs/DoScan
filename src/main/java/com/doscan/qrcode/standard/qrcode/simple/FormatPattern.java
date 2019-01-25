@@ -22,7 +22,6 @@ public class FormatPattern {
         // 2015 新规定，进行xor操作
         BitArray xorBits = HexUtil.strToBitArray("101010000010010");
         bits.xor(xorBits);
-        Log.d("bits2222222 ------  " + bits);
         int sideNum = tempData.length - 1;
         // 对临时数据，进行format信息布局操作
         for(int i = 0; i < 15;i++){

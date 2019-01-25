@@ -260,8 +260,7 @@ final class MatrixUtil {
 
           // Skip masking if mask_pattern is -1.
           if (maskPattern != -1 && MaskUtil.getDataMaskBit(maskPattern, xx, y)) {
-//            bit = !bit;
-            bit = true;
+            bit = !bit;
           }
 //          bit = false;
           matrix.set(xx, y, bit);

@@ -178,13 +178,12 @@ public class QREncoder {
             }
         }
 
-        Log.d("result   ----  " + result);
         /*************************************************************/
         // 根据指定的版本，进行填充拆分
         QRCodeSymbol qrCodeSymbol = new QRCodeSymbol(version,correctLevel);
         qrCodeSymbol.placeData(result);
         // 测试阶段，插播一个窗口
-        GraphicsHelper.showAnim(qrCodeSymbol);
+//        GraphicsHelper.showAnim(qrCodeSymbol);
         /******************************************************************/
         // 计算数据遮罩层
 //        int maskPattern = chooseMaskPattern(finalBits, ecLevel, version, matrix);
