@@ -9,6 +9,8 @@ import com.doscan.qrcode.util.Log;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
+import static com.doscan.qrcode.QREncoder.defaultCharset;
+
 /**
  * 字节模式
  */
@@ -43,17 +45,25 @@ public class ByteInputThing extends InputThing {
 
     @Override
     public BitArray getBits() {
-        byte[] bytes;
-        try {
-            bytes = this.content.getBytes(charset.name());
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            Log.bomb(" 不支持的字符集");
+
+        if(!charset.equals(defaultCharset)){
+            //
+            byte[] bytes;
+            try {
+                bytes = this.content.getBytes(charset.name());
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+                Log.bomb(" 不支持的字符集");
+                return null;
+            }
+            BitArray bitArray = new BitArray();
+            bitArray.appendBytes(bytes);
+            return bitArray;
+        }else{
+            // 使用的默认字符集，则可以不做ECI处理
             return null;
         }
-        BitArray bitArray = new BitArray();
-        bitArray.appendBytes(bytes);
-        return bitArray;
+
     }
 
 

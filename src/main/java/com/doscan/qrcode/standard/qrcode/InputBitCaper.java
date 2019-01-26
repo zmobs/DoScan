@@ -23,7 +23,9 @@ public class InputBitCaper {
 
 
         VersionECTable.ECBlockInfo ecBlockInfo = VersionECTable.instance
-                .findBlockInfo(versionCap.getVersion().getVersionNumber(),versionCap.getCorrectLevel());
+                .findBlockInfo(versionCap.getVersion().getVersionNumber(),
+                                versionCap.getCorrectLevel());
+
         int maxBitNum = ecBlockInfo.getCapacityCodeword() * 8;
         int terminatorNum = maxBitNum - bitArray.getSize();
         final int maxTerminal = 4;

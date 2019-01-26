@@ -27,7 +27,8 @@ public class Main {
         try {
             Map<EncodeHintType,Object> hints = new HashMap<>();
             hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
-            BitMatrix bitMatrix =  qrCodeWriter.encode("110120119",
+            hints.put(EncodeHintType.CHARACTER_SET, "GB2312");
+            BitMatrix bitMatrix =  qrCodeWriter.encode("己亥猪年2019",
                     BarcodeFormat.QR_CODE,300,300,hints);
 
         } catch (WriterException e) {

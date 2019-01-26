@@ -95,7 +95,7 @@ public class VersionDetector {
         int headBitLen = inputThing.getModeIndicator().getSize();
         int charCountBitLen = version.getCharIndicatorCount(inputThing);
 
-        int inputLen = inputThing.getStrContent().length();
+        int inputLen = inputThing.getBits().getSize();
 
         VersionECTable.ECBlockInfo ecBlockInfo= VersionECTable
                                             .instance
@@ -104,8 +104,8 @@ public class VersionDetector {
         int capacityCodes = ecBlockInfo.getCapacityCodeword();
         int capBits = capacityCodes * 8;
         int dataCapBit = capBits - headBitLen - charCountBitLen;
-        int capForType = inputThing.getCapNum(dataCapBit);
-        if(inputLen > capForType){
+
+        if(inputLen > dataCapBit){
             return false;
         }else{
             return true;

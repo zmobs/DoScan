@@ -108,7 +108,7 @@ public final class Encoder {
     // main payload yet.
     BitArray dataBits = new BitArray();
     appendBytes(content, mode, dataBits, encoding);
-
+    Log.d("dataBits   22  -----  " + dataBits);
     Version version;
     if (hints != null && hints.containsKey(EncodeHintType.QR_VERSION)) {
       int versionNumber = Integer.parseInt(hints.get(EncodeHintType.QR_VERSION).toString());

@@ -28,6 +28,7 @@ public class QREncoder {
     private IQRCode2015 type;
     private Version version;
     private Charset charset = Charset.ISO_8859_1;
+    public static final Charset defaultCharset  = Charset.ISO_8859_1;
     private String content;
     private ErrorCorrectLevel correctLevel;
     /**
@@ -107,6 +108,8 @@ public class QREncoder {
         }
         // 获取到完整的数据区域bit序列
         BitArray finalBits = new InputBitCaper().getInputBits(versionCap,inputThing);
+        Log.d("version   ---  " + version.getVersionNumber());
+        Log.d("correctLevel   ---  " + correctLevel.name());
         Log.d("finalBits   ---  " + finalBits);
         /********************************  前方高能，，纠错码算法实现部分************************************/
         VersionECTable.ECBlockInfo ecBlockInfo = VersionECTable.instance
