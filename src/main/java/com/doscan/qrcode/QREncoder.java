@@ -107,10 +107,9 @@ public class QREncoder {
             Log.bomb("版本错误");
         }
         // 获取到完整的数据区域bit序列
+        // 7.4.1
         BitArray finalBits = new InputBitCaper().getInputBits(versionCap,inputThing);
-        Log.d("version   ---  " + version.getVersionNumber());
-        Log.d("correctLevel   ---  " + correctLevel.name());
-        Log.d("finalBits   ---  " + finalBits);
+
         /********************************  前方高能，，纠错码算法实现部分************************************/
         VersionECTable.ECBlockInfo ecBlockInfo = VersionECTable.instance
                 .findBlockInfo(versionCap.getVersion().getVersionNumber(),versionCap.getCorrectLevel());
@@ -181,16 +180,13 @@ public class QREncoder {
                 }
             }
         }
-
+        Log.d("result   ----  " + result.getSize());
         /*************************************************************/
         // 根据指定的版本，进行填充拆分
         QRCodeSymbol qrCodeSymbol = new QRCodeSymbol(version,correctLevel);
         qrCodeSymbol.placeData(result);
         // 测试阶段，插播一个窗口
-//        GraphicsHelper.showAnim(qrCodeSymbol);
-        /******************************************************************/
-        // 计算数据遮罩层
-//        int maskPattern = chooseMaskPattern(finalBits, ecLevel, version, matrix);
+        GraphicsHelper.showAnim(qrCodeSymbol);
 
         /************************************************************/
         return qrCodeSymbol;

@@ -100,7 +100,6 @@ public final class Encoder {
         appendECI(eci, headerBits);
       }
     }
-
     // (With ECI in place,) Write the mode marker
     appendModeInfo(mode, headerBits);
 
@@ -108,7 +107,6 @@ public final class Encoder {
     // main payload yet.
     BitArray dataBits = new BitArray();
     appendBytes(content, mode, dataBits, encoding);
-    Log.d("dataBits   22  -----  " + dataBits);
     Version version;
     if (hints != null && hints.containsKey(EncodeHintType.QR_VERSION)) {
       int versionNumber = Integer.parseInt(hints.get(EncodeHintType.QR_VERSION).toString());
@@ -128,18 +126,18 @@ public final class Encoder {
     appendLengthInfo(numLetters, version, mode, headerAndDataBits);
     // Put data together into the overall payload
     headerAndDataBits.appendBitArray(dataBits);
-
     Version.ECBlocks ecBlocks = version.getECBlocksForLevel(ecLevel);
     int numDataBytes = version.getTotalCodewords() - ecBlocks.getTotalECCodewords();
 
     // Terminate the bits properly.
     terminateBits(numDataBytes, headerAndDataBits);
+
     // Interleave data bits with error correction code.
     BitArray finalBits = interleaveWithECBytes(headerAndDataBits,
                                                version.getTotalCodewords(),
                                                numDataBytes,
                                                ecBlocks.getNumBlocks());
-
+    Log.d("finalBits  ----  " + finalBits.getSize());
     QRCode qrCode = new QRCode();
 
     qrCode.setECLevel(ecLevel);
@@ -151,12 +149,12 @@ public final class Encoder {
     ByteMatrix matrix = new ByteMatrix(dimension, dimension);
 
     int maskPattern = chooseMaskPattern(finalBits, ecLevel, version, matrix);
-    Log.d("maskPattern   ---  " + maskPattern);
 
     qrCode.setMaskPattern(maskPattern);
+    Log.d("maskPattern   ----  " + maskPattern);
     // Build the matrix and set it to "qrCode".
     MatrixUtil.buildMatrix(finalBits, ecLevel, version, maskPattern, matrix);
-//    GraphicsHelper.showTestAnim(matrix.getArray());
+    GraphicsHelper.showTestAnim(matrix.getArray());
     qrCode.setMatrix(matrix);
 
     return qrCode;

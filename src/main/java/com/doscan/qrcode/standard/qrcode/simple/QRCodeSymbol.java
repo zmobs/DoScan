@@ -81,9 +81,8 @@ public class QRCodeSymbol implements IQRCode2015 {
         MaskEvaluator maskEvaluator = new MaskEvaluator(formatPattern);
         int bestMask = maskEvaluator
                 .evaluateMask(dotTable.getData(),dataArea.dataTable);
-
+        bestMask = 3;
         maskEvaluator.embedMask(dotTable.getData(),dataArea.dataTable,bestMask);
-        GraphicsHelper.showAnim(this);
     }
 
     public DotTable getDotTable() {

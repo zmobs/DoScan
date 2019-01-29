@@ -252,17 +252,11 @@ final class MatrixUtil {
             // in 8.4.9 of JISX0510:2004 (p. 24).
             bit = false;
           }
-//          if(bitIndex > 16){
-//            return;
-//          }
-//          Log.d("bit  ------ " + bit);
-//          Log.d("xx  ------ " + xx + "        y ------- " + y + "  ");
 
           // Skip masking if mask_pattern is -1.
           if (maskPattern != -1 && MaskUtil.getDataMaskBit(maskPattern, xx, y)) {
             bit = !bit;
           }
-//          bit = false;
           matrix.set(xx, y, bit);
         }
         y += direction;

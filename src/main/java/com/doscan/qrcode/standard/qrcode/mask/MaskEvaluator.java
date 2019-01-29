@@ -21,8 +21,7 @@ public class MaskEvaluator {
     public void embedMask(byte[][] dotTable, byte[][] dataTable,int mask){
 
         int dataSideNum = dotTable.length;
-
-
+        Log.d("mask   ----  " + mask);
         for (int i = 0; i < dataSideNum; i++) {
             for (int j = 0; j < dataSideNum; j++) {
 

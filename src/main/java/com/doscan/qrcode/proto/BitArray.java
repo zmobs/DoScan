@@ -199,6 +199,9 @@ public class BitArray {
      * @param other
      */
     public void appendBitArray(BitArray other) {
+        if(other == null){
+            return ;
+        }
         int otherSize = other.getSize();
         ensureCapacity(size + otherSize);
         for (int i = 0; i < otherSize; i++) {

@@ -21,7 +21,6 @@ public class InputBitCaper {
         bitArray.appendBitArray(inputThing.getCountLength(versionCap.getVersion()));
         bitArray.appendBitArray(inputThing.getBits());
 
-
         VersionECTable.ECBlockInfo ecBlockInfo = VersionECTable.instance
                 .findBlockInfo(versionCap.getVersion().getVersionNumber(),
                                 versionCap.getCorrectLevel());
