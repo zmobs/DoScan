@@ -43,6 +43,7 @@ public class Main {
                 .strategy(EncodeStrategy.HIGN_QUALITY)
                 .charset(Charset.GB2312)
                 .content("己亥猪年2019")
+                .setAnimDemo(true)
                 .code();
 
     }

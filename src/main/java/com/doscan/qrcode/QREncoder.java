@@ -32,11 +32,20 @@ public class QREncoder {
     private String content;
     private ErrorCorrectLevel correctLevel;
     /**
+     * 是否配置动画演示编码过程
+     */
+    private boolean animDemo = false;
+
+    /**
      * 默认高质量策略
      */
     private EncodeStrategy encodeStrategy = EncodeStrategy.HIGN_QUALITY;
 
 
+    public QREncoder setAnimDemo(boolean animDemo) {
+        this.animDemo = animDemo;
+        return this;
+    }
 
     public static QREncoder obain(){
         return new QREncoder();
@@ -81,6 +90,11 @@ public class QREncoder {
      * @return 编码完成的二维码定义
      */
     public QRCodeSymbol code(){
+
+        if(this.animDemo){
+            // 展示对话框
+            GraphicsHelper.showAnimDemo();
+        }
 
         InputResolver inputResolver = new InputResolver();
         InputThing inputThing = inputResolver.detect(content,charset);
@@ -180,7 +194,6 @@ public class QREncoder {
                 }
             }
         }
-        Log.d("result   ----  " + result.getSize());
         /*************************************************************/
         // 根据指定的版本，进行填充拆分
         QRCodeSymbol qrCodeSymbol = new QRCodeSymbol(version,correctLevel);

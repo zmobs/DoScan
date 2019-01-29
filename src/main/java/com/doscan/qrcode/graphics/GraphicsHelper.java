@@ -6,6 +6,16 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 public class GraphicsHelper {
 
+    static AnimDemoFrame animDemoFrame;
+
+    public static void showAnimDemo(){
+        if(animDemoFrame == null){
+            animDemoFrame = new AnimDemoFrame();
+        }
+    }
+
+
+
     public static void showAnim(QRCodeSymbol symbol){
         AnimFrame animFrame = new AnimFrame(symbol);
         animFrame.setVisible(true);

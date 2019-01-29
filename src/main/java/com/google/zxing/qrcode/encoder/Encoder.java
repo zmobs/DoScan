@@ -151,10 +151,8 @@ public final class Encoder {
     int maskPattern = chooseMaskPattern(finalBits, ecLevel, version, matrix);
 
     qrCode.setMaskPattern(maskPattern);
-    Log.d("maskPattern   ----  " + maskPattern);
     // Build the matrix and set it to "qrCode".
     MatrixUtil.buildMatrix(finalBits, ecLevel, version, maskPattern, matrix);
-    GraphicsHelper.showTestAnim(matrix.getArray());
     qrCode.setMatrix(matrix);
 
     return qrCode;
