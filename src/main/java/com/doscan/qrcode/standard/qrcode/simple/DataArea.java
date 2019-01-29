@@ -24,8 +24,8 @@ public class DataArea {
 
         sideNum = table.getSideSize();
         dataTable = new byte[sideNum][sideNum];
-        for(int i = 0 ; i < sideNum; i++){
-            for(int j = 0; j < sideNum;j++){
+        for (int i = 0; i < sideNum; i++) {
+            for (int j = 0; j < sideNum; j++) {
                 dataTable[i][j] = -1;
             }
         }
@@ -43,30 +43,27 @@ public class DataArea {
         int secondCol = n - 1;
         int i = 0;
 
-        int preI = -1;
 
         while (true) {
 
-            if (m < 0 || i >= bitLen) {
+            //|| i >= bitLen
+            if (m < 0 || n < 0) {
                 break;
             }
 
-//            int timeNum = i / 8;
-//            int leftNum = i % 8;
-//
-//            int indexInByte =  8 * timeNum  + (8 - leftNum) - 1;i
-            byte perByte = bits.get(i) ? (byte) 1 : 0;
-            if(i != preI){
-                preI = i;
+            byte perByte = 0;
+            if (i >= bitLen) {
+                // Log.d("aaa  -----  " + i + "    mmm ---  " + m + "   n ---  " + n);
+            } else {
+                perByte = bits.get(i) ? (byte) 1 : 0;
             }
 
-//            if(i > 15){
-//                break;
-//            }
+
+
+
             // 迭代规则编写
             if (dotData[m][n] == -1) {
                 //  -1 是未使用状态,其他组件已经占位的前提下，上下的都是合法的数据区域
-//                Log.d("m  ------ " + m + "    ----n -----   " + n + "        perByte  ----  " + perByte);
                 dotData[m][n] = perByte;
                 dataTable[m][n] = perByte;
                 i++;
