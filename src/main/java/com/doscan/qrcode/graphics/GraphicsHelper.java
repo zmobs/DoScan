@@ -6,9 +6,9 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 public class GraphicsHelper {
 
-    static AnimDemoFrame animDemoFrame;
+    AnimDemoFrame animDemoFrame;
 
-    public static void showAnimDemo(){
+    public void showAnimDemo(){
         if(animDemoFrame == null){
             animDemoFrame = new AnimDemoFrame();
         }

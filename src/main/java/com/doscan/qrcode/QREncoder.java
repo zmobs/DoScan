@@ -93,7 +93,7 @@ public class QREncoder {
 
         if(this.animDemo){
             // 展示对话框
-            GraphicsHelper.showAnimDemo();
+            new GraphicsHelper().showAnimDemo();
         }
 
         InputResolver inputResolver = new InputResolver();
@@ -199,7 +199,7 @@ public class QREncoder {
         QRCodeSymbol qrCodeSymbol = new QRCodeSymbol(version,correctLevel);
         qrCodeSymbol.placeData(result);
         // 测试阶段，插播一个窗口
-        GraphicsHelper.showAnim(qrCodeSymbol);
+//        GraphicsHelper.showAnim(qrCodeSymbol);
 
         /************************************************************/
         return qrCodeSymbol;
