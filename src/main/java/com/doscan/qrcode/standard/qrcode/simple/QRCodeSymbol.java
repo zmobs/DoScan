@@ -127,14 +127,8 @@ public class QRCodeSymbol implements IQRCode2015 {
             maskEvaluator.animAllMask(animTable,dataArea.dataTable);
             SystemUtil.sleep(200);
             byte[][] finalData = dotTable.getData().clone();
-            Log.d("finalData444 ---  " + finalData[8][4]);
-            Log.d("finalData555 ---  " + finalData[8][5]);
-            Log.d("finalData666 ---  " + finalData[8][6]);
             animTable.setData(finalData);
-
         }
-
-
 
     }
 
