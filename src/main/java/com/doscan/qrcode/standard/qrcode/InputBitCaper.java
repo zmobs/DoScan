@@ -18,12 +18,17 @@ public class InputBitCaper {
 
         BitArray bitArray = new BitArray();
         bitArray.appendBitArray(inputThing.getModeIndicator());
+        Log.defaultLog().record("模式头部标识比特序列：  " + inputThing.getModeIndicator());
         bitArray.appendBitArray(inputThing.getCountLength(versionCap.getVersion()));
+        Log.defaultLog().record("长度标识比特序列：  " + inputThing.getModeIndicator());
         bitArray.appendBitArray(inputThing.getBits());
+        Log.defaultLog().record("内容比特序列：  " + inputThing.getModeIndicator());
+
 
         VersionECTable.ECBlockInfo ecBlockInfo = VersionECTable.instance
                 .findBlockInfo(versionCap.getVersion().getVersionNumber(),
                                 versionCap.getCorrectLevel());
+        Log.defaultLog().record("查找对应的纠错码块信息：  " + ecBlockInfo.getEcbNum());
 
         int maxBitNum = ecBlockInfo.getCapacityCodeword() * 8;
         int terminatorNum = maxBitNum - bitArray.getSize();
@@ -31,6 +36,7 @@ public class InputBitCaper {
         if(terminatorNum > maxTerminal){
             terminatorNum = maxTerminal;
         }
+        Log.defaultLog().record("填充纠错码块比特：  " + terminatorNum);
         bitArray.appendBits(0,terminatorNum);
         int nowBitNum = bitArray.getSize();
         int leftNum = nowBitNum % 8;
@@ -40,6 +46,7 @@ public class InputBitCaper {
             appendNum = 8 - leftNum;
         }
         bitArray.appendBits(0,appendNum);
+        Log.defaultLog().record("对齐8个比特，添加空白比特个数：  " + appendNum);
         int paddingBitNum = maxBitNum - bitArray.getSize();
         int paddingByteNum = paddingBitNum / 8;
         for(int i = 0; i < paddingByteNum;i++){

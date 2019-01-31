@@ -5,6 +5,7 @@ import com.doscan.qrcode.util.Log;
 import com.doscan.qrcode.util.SystemUtil;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class BCHPanel extends JScrollPane  {
@@ -34,6 +35,7 @@ public class BCHPanel extends JScrollPane  {
                 stringBuilder.append(log);
                 stringBuilder.append("\n");
                 jtextarea.setText(stringBuilder.toString());
+                jtextarea.selectAll();
                 SystemUtil.sleep(500);
             }
         }
@@ -68,6 +70,7 @@ public class BCHPanel extends JScrollPane  {
         jtextarea.setEditable(false);
         jtextarea.setSize(800,300);
         this.setViewportView(jtextarea);
+
 
     }
 }

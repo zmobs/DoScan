@@ -19,6 +19,7 @@ import com.doscan.qrcode.util.HexUtil;
 import com.doscan.qrcode.util.Log;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * QRCode 编码器
@@ -164,6 +165,9 @@ public class QREncoder {
 
             byte[] ecBytes = HexUtil.intArrToByteArr(ecInts);
 
+            Log.defaultLog().record("计算得到第" + i+"个数据数值" + Arrays.toString(ecInts));
+            Log.defaultLog().record("计算得到第" + i+"个纠错码字数值" + Arrays.toString(ecBytes));
+
             QRBlockPair qrBlockPair = new QRBlockPair(dataBytes,ecBytes);
             blocks.add(qrBlockPair);
 
@@ -198,6 +202,8 @@ public class QREncoder {
                 }
             }
         }
+
+        Log.defaultLog().record("得到最终的对齐后的数据" + result);
         /*************************************************************/
         // 根据指定的版本，进行填充拆分
         QRCodeSymbol qrCodeSymbol = new QRCodeSymbol(version,correctLevel);
