@@ -66,12 +66,12 @@ public class AnimPanel extends JPanel {
 
             while (isRun) {
 
-                // 200 ms 一帧+
+                // 100 ms 一帧+
                 AnimPanel.this.validate();
                 AnimPanel.this.repaint();
 
                 try {
-                    Thread.sleep(200);
+                    Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

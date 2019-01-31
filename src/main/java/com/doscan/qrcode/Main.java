@@ -42,7 +42,7 @@ public class Main {
 //                .correctLevel(ErrorCorrectLevel.M)
                 .strategy(EncodeStrategy.HIGN_QUALITY)
                 .charset(Charset.GB2312)
-                .content("时里的website: www.duqingquan.com")
+                .content("2019 文体两开花，加油~")
                 .setAnimDemo(true)
                 .code();
 

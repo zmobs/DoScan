@@ -51,7 +51,7 @@ public class DataArea {
                 animData[m][n] = dataTable[m][n];
 
                 try {
-                    Thread.sleep(20);
+                    Thread.sleep(10);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
