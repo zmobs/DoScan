@@ -1,6 +1,7 @@
 package com.doscan.qrcode.graphics;
 
 import com.doscan.qrcode.standard.qrcode.simple.QRCodeSymbol;
+import com.doscan.qrcode.util.Log;
 import com.doscan.qrcode.util.SystemUtil;
 
 import javax.swing.*;
@@ -26,7 +27,7 @@ public class BCHPanel extends JScrollPane  {
 
         @Override
         public void run() {
-            for(String log : logs){
+            for(String log : Log.defaultLog().logs()){
                 if(!isRun){
                     break;
                 }
@@ -55,10 +56,7 @@ public class BCHPanel extends JScrollPane  {
 
     JTextArea jtextarea = new JTextArea(5,10);
     StringBuilder stringBuilder = new StringBuilder();
-    ArrayList<String> logs = new ArrayList<>();
-    public void setLogs(ArrayList<String> logs){
-        this.logs = logs;
-    }
+
 
     public BCHPanel() {
 

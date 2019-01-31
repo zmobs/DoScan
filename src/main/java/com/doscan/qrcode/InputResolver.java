@@ -26,11 +26,11 @@ public class InputResolver {
 
 
     public InputThing detect(String content, Charset charset) {
-        return detect(content,charset,null);
+        return detect(content,charset,false);
     }
 
 
-    public InputThing detect(String content, Charset charset,ArrayList<String> logs) {
+    public InputThing detect(String content, Charset charset,boolean isRecord) {
 
         if (StringUtil.isEmpty(content)) {
             throw new BombException("输入内容为空");
@@ -39,13 +39,13 @@ public class InputResolver {
         for (InputThing inputThing : inputThings) {
             inputThing.content(content);
             if (inputThing.isMatch()) {
-                if(logs != null){
-                    logs.add("输入模式匹配 ：" + inputThing.getName());
+                if(isRecord){
+                    Log.defaultLog().record("输入模式匹配 ：" + inputThing.getName());
                 }
                 return inputThing;
             }else{
-                if(logs != null){
-                    logs.add("输入模式不匹配 pass ：" + inputThing.getName());
+                if(isRecord){
+                    Log.defaultLog().record("输入模式不匹配 pass ：" + inputThing.getName());
                 }
             }
         }
@@ -53,8 +53,8 @@ public class InputResolver {
         // 兜底的是字节模式
         ByteInputThing byteInputThing = new ByteInputThing(charset);
         byteInputThing.content(content);
-        if(logs != null){
-            logs.add("兜底输入模式 ：" + byteInputThing.getName());
+        if(isRecord){
+            Log.defaultLog().record("兜底输入模式 ：" + byteInputThing.getName());
         }
 
         return byteInputThing;

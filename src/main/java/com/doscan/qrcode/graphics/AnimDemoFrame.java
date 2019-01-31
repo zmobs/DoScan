@@ -22,9 +22,7 @@ public class AnimDemoFrame extends JFrame {
         bchPanel.setQrCodeSymbol(symbol);
     }
 
-    public void setLogs(ArrayList<String> logs){
-        bchPanel.setLogs(logs);
-    }
+
 
     public AnimDemoFrame(){
         this.setTitle("QR Code Painter");

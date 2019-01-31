@@ -18,9 +18,6 @@ public class GraphicsHelper {
         }
     }
 
-    public void setLogs(ArrayList<String> logs){
-        animDemoFrame.setLogs(logs);
-    }
 
 
     public static void showAnim(QRCodeSymbol symbol){
