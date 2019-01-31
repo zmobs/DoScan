@@ -121,10 +121,17 @@ public class MaskEvaluator {
         }
     }
 
+    /**
+     * 嵌入遮罩层信息，并且安置对应得格式信息
+     * @param allTable
+     * @param dataTable
+     * @param mask
+     */
+    public void embedMask(DotTable allTable, byte[][] dataTable,int mask){
 
-    public void embedMask(byte[][] dotTable, byte[][] dataTable,int mask){
+        byte[][] dotTable = allTable.getData();
+        int dataSideNum = allTable.getSideSize();
 
-        int dataSideNum = dotTable.length;
         for (int i = 0; i < dataSideNum; i++) {
             for (int j = 0; j < dataSideNum; j++) {
 
@@ -199,8 +206,7 @@ public class MaskEvaluator {
         }
 
         // 根据已经选择的mask 对formatinfo 进行补充
-        formatPattern.tempDataWithMash(dotTable, mask);
-
+        formatPattern.embDataWithMash(allTable, mask);
 
     }
     public int evaluateMask(byte[][] dotTable, byte[][] dataTable) {
@@ -319,7 +325,7 @@ public class MaskEvaluator {
         }
 
         // 根据已经选择的mask 对formatinfo 进行补充
-        formatPattern.tempDataWithMash(tempData, mask);
+        formatPattern.embDataWithMash(tempData, mask);
 
         // 对已经进行xor 整体数据进行 评分操作
         //dotTable

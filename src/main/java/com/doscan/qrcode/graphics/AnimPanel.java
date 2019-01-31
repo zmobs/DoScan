@@ -13,8 +13,7 @@ public class AnimPanel extends JPanel {
 
     final int STEP_PIX = 15;
     int PADDING_WIDTH = 120;
-    int sideNum = 10;
-    byte[][] data = new byte[sideNum][sideNum];
+    byte[][] data = new byte[0][0];
     UIThread uiThread = new UIThread();
     DataThread dataThread = new DataThread();
     ReentrantLock dataLock = new ReentrantLock();
@@ -27,12 +26,6 @@ public class AnimPanel extends JPanel {
     public AnimPanel() {
 
         PADDING_WIDTH = 5 * STEP_PIX;
-
-        for (int i = 0; i < sideNum; i++) {
-            for (int j = 0; j < sideNum; j++) {
-                data[i][j] = -1;
-            }
-        }
 
         // 新启一个线程，不断的刷新界面
         uiThread.start();
@@ -105,7 +98,7 @@ public class AnimPanel extends JPanel {
         if (dataLock.tryLock()) {
 
             data = qrCodeSymbol.obtainAnimData();
-            g.setColor(Color.blue);
+            g.setColor(Color.GRAY);
             g.fillRect(0, 0, 1000, 1000);
 
             // 递归绘制所有的模点，并将其绘制

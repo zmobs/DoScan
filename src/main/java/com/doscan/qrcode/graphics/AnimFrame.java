@@ -18,6 +18,7 @@ public class AnimFrame extends JFrame {
         qrCodeSymbol = symbol;
         this.setTitle("QR Code Painter");
         PADDING_WIDTH = symbol.QUIET_ZONE_SIZE * STEP_PIX;
+        byte[][] finalData = symbol.getDotTable().getData().clone();
     }
 
 

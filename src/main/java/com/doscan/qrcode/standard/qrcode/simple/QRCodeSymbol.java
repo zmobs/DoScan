@@ -15,7 +15,7 @@ import com.doscan.qrcode.util.SystemUtil;
  */
 public class QRCodeSymbol implements IQRCode2015 {
     /**
-     * 点阵表
+     * 点阵表,符号内部唯一得数据核心
      */
     DotTable dotTable;
     // 最外侧是静默区域，并不是严格意义上的二维码组成部分
@@ -86,11 +86,10 @@ public class QRCodeSymbol implements IQRCode2015 {
     }
     /**
      * 带动画的绘制动作
-     * @param data
      */
     public void plateWithAnim(){
 
-        byte[][] finalData = dotTable.getData().clone();
+
 
         // 放置定位符号
         ltFP.place(animTable);
@@ -116,7 +115,7 @@ public class QRCodeSymbol implements IQRCode2015 {
         // 终止符号完成
         timingPattern.placeDots(animTable);
         SystemUtil.sleep(200);
-        formatPattern.placeHold(dotTable);
+        formatPattern.placeHold(animTable);
         SystemUtil.sleep(200);
         // 选择数据遮罩层
         versionPattern.placeDot(animTable);
@@ -126,7 +125,13 @@ public class QRCodeSymbol implements IQRCode2015 {
             dataArea.placeAnim(animTable);
             // 绘制遮罩层
             maskEvaluator.animAllMask(animTable,dataArea.dataTable);
+            SystemUtil.sleep(200);
+            byte[][] finalData = dotTable.getData().clone();
+            Log.d("finalData444 ---  " + finalData[8][4]);
+            Log.d("finalData555 ---  " + finalData[8][5]);
+            Log.d("finalData666 ---  " + finalData[8][6]);
             animTable.setData(finalData);
+
         }
 
 
@@ -137,14 +142,16 @@ public class QRCodeSymbol implements IQRCode2015 {
     MaskEvaluator maskEvaluator;
     int bestMask;
     public void placeData(BitArray bitArray){
-        hasPlaceData = true;
+
         // 置放数据区域的比特序列
         dataArea.place(dotTable,bitArray);
         maskEvaluator = new MaskEvaluator(formatPattern);
 
         bestMask = maskEvaluator
                 .evaluateMask(dotTable.getData(),dataArea.dataTable);
-        maskEvaluator.embedMask(dotTable.getData(),dataArea.dataTable,bestMask);
+        maskEvaluator.embedMask(dotTable,dataArea.dataTable,bestMask);
+
+        hasPlaceData = true;
 
     }
 

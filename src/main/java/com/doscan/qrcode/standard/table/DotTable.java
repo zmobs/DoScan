@@ -21,9 +21,15 @@ public class DotTable {
         return data;
     }
 
-    public void setData(byte[][] data) {
-        this.data = data;
+    public void setData(byte[][] newData) {
+        int sideSize = newData.length;
+        for(int i = 0; i < sideSize;i++){
+            for(int j = 0; j < sideSize;j++){
+                this.data[i][j] = newData[i][j];
+            }
+        }
     }
+
     public Value get(int x, int y){
 
         if(data[x][y] == 1){

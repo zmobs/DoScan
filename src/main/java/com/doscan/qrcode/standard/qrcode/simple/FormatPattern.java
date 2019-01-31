@@ -16,7 +16,8 @@ public class FormatPattern {
         ecLevel = errorCorrectLevel;
     }
 
-    public void tempDataWithMash(byte[][] tempData,int mask){
+
+    private void actualEmbed(byte[][] tempData,int mask){
 
         BitArray bits = generateBCH(ecLevel,mask);
         // 2015 新规定，进行xor操作
@@ -31,7 +32,6 @@ public class FormatPattern {
                 if(i < 6){
                     tempData[8][i] = peerByte;
                     tempData[sideNum - i][8] = peerByte;
-
                 }else{
                     tempData[8][i + 1] = peerByte;
                     tempData[sideNum - i][8] = peerByte;
@@ -49,10 +49,17 @@ public class FormatPattern {
             }
 
         }
+
     }
 
+    public void embDataWithMash(DotTable dotTable, int mask){
+        byte[][] tempData = dotTable.getData();
+        actualEmbed(tempData,mask);
+    }
 
-
+    public void embDataWithMash(byte[][] tempData, int mask){
+        actualEmbed(tempData,mask);
+    }
 
 
     public void placeHold(DotTable dotTable){
