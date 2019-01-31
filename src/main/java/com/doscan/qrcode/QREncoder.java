@@ -91,10 +91,7 @@ public class QREncoder {
      */
     public QRCodeSymbol code(){
 
-        if(this.animDemo){
-            // 展示对话框
-            new GraphicsHelper().showAnimDemo();
-        }
+
 
         InputResolver inputResolver = new InputResolver();
         InputThing inputThing = inputResolver.detect(content,charset);
@@ -198,6 +195,10 @@ public class QREncoder {
         // 根据指定的版本，进行填充拆分
         QRCodeSymbol qrCodeSymbol = new QRCodeSymbol(version,correctLevel);
         qrCodeSymbol.placeData(result);
+        if(this.animDemo){
+            // 展示对话框
+            new GraphicsHelper().showAnimDemo(qrCodeSymbol);
+        }
         // 测试阶段，插播一个窗口
 //        GraphicsHelper.showAnim(qrCodeSymbol);
 

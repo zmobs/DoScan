@@ -8,6 +8,7 @@ import com.doscan.qrcode.standard.qrcode.mask.MaskEvaluator;
 import com.doscan.qrcode.standard.table.DotTable;
 import com.doscan.qrcode.standard.version.Version;
 import com.doscan.qrcode.util.Log;
+import com.doscan.qrcode.util.SystemUtil;
 
 /**
  * QRCODE 符号实现定义
@@ -42,12 +43,13 @@ public class QRCodeSymbol implements IQRCode2015 {
      * 数据编码区域
      */
     DataArea dataArea = new DataArea();
-
+    Version version;
     public QRCodeSymbol(Version version, ErrorCorrectLevel correctLevel){
 
         if(version == null){
             Log.bomb("构造版本不能为空");
         }
+        this.version = version;
         dotTable = new DotTable(version.getSideModuleNum());
         // 放置定位符号
         ltFP.place(dotTable);
@@ -71,6 +73,50 @@ public class QRCodeSymbol implements IQRCode2015 {
         // 选择数据遮罩层
         versionPattern = new VersionPattern(version);
         versionPattern.placeDot(dotTable);
+        animTable = new DotTable(version.getSideModuleNum());
+    }
+
+
+
+    DotTable animTable;
+    public byte[][] obtainAnimData(){
+        return animTable.getData();
+    }
+    /**
+     * 带动画的绘制动作
+     * @param data
+     */
+    public void plateWithAnim(byte[][] data){
+        // 放置定位符号
+        ltFP.place(animTable);
+        SystemUtil.sleep(200);
+        rtFP.place(animTable);
+        SystemUtil.sleep(200);
+        lbFP.place(animTable);
+        SystemUtil.sleep(200);
+        // 定位符号对应的分割线
+        new SeparatorFP(ltFP).place(animTable);
+        SystemUtil.sleep(200);
+        new SeparatorFP(rtFP).place(animTable);
+        SystemUtil.sleep(200);
+        new SeparatorFP(lbFP).place(animTable);
+        SystemUtil.sleep(200);
+        // 孤独的小黑点
+        lonelyBlackPoint.place(animTable);
+        SystemUtil.sleep(200);
+
+        // 矫正符号
+        alignmentPattern.placeDots(animTable);
+        SystemUtil.sleep(200);
+        // 终止符号完成
+        timingPattern.placeDots(animTable);
+        SystemUtil.sleep(200);
+        formatPattern.placeHold(dotTable);
+        SystemUtil.sleep(200);
+        // 选择数据遮罩层
+        versionPattern.placeDot(animTable);
+        SystemUtil.sleep(200);
+        // 内容绘制区域动画，重点啊
 
     }
 

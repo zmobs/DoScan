@@ -8,9 +8,10 @@ public class GraphicsHelper {
 
     AnimDemoFrame animDemoFrame;
 
-    public void showAnimDemo(){
+    public void showAnimDemo(QRCodeSymbol symbol){
         if(animDemoFrame == null){
             animDemoFrame = new AnimDemoFrame();
+            animDemoFrame.setQrCodeSymbol(symbol);
         }
     }
 

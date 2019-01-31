@@ -1,28 +1,30 @@
 package com.doscan.qrcode.graphics;
 
 import com.doscan.qrcode.standard.qrcode.simple.QRCodeSymbol;
-import com.doscan.qrcode.standard.table.DotTable;
 import com.doscan.qrcode.util.Log;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/**
+ * 动画播放窗体
+ */
 public class AnimDemoFrame extends JFrame {
 
+    AnimPanel animPanel = new AnimPanel();
 
+    public void setQrCodeSymbol(QRCodeSymbol symbol){
+        animPanel.setQrCodeSymbol(symbol);
+    }
 
     public AnimDemoFrame(){
         this.setTitle("QR Code Painter");
-        AnimPannel animPannel = new AnimPannel();
-        this.add(animPannel);
+        this.add(animPanel);
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
-                Log.d("rrrrrrr");
-                animPannel.stop();
-//                super.windowClosed(e);
+                animPanel.stop();
             }
         });
         this.setVisible(true);
