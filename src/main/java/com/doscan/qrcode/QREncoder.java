@@ -84,6 +84,7 @@ public class QREncoder {
         return this;
     }
 
+    ArrayList<String> bchLogs = new ArrayList<>();
 
     /**
      * 进行组装编码的主流程
@@ -92,9 +93,12 @@ public class QREncoder {
     public QRCodeSymbol code(){
 
 
+        bchLogs.add("键入文本 ： " + content);
+        bchLogs.add("指定编码 ： " + charset.content());
 
         InputResolver inputResolver = new InputResolver();
-        InputThing inputThing = inputResolver.detect(content,charset);
+        InputThing inputThing = inputResolver.detect(content,charset,bchLogs);
+
 
         // 如果没有手动指定version，则需要选择器智能选择
         VersionDetector.VersionCap versionCap;
@@ -117,6 +121,9 @@ public class QREncoder {
         if(version == null){
             Log.bomb("版本错误");
         }
+
+        bchLogs.add("计算得出QR 版本号为 ： " + version.getVersionNumber());
+        bchLogs.add("计算得出纠错级别为 ： " + correctLevel.getValue());
         // 获取到完整的数据区域bit序列
         // 7.4.1
         BitArray finalBits = new InputBitCaper().getInputBits(versionCap,inputThing);
@@ -197,7 +204,9 @@ public class QREncoder {
         qrCodeSymbol.placeData(result);
         if(this.animDemo){
             // 展示对话框
-            new GraphicsHelper().showAnimDemo(qrCodeSymbol);
+            GraphicsHelper graphicsHelper = new GraphicsHelper();
+            graphicsHelper.setLogs(bchLogs);
+            graphicsHelper.showAnimDemo(qrCodeSymbol);
         }
         // 测试阶段，插播一个窗口
 //        GraphicsHelper.showAnim(qrCodeSymbol);

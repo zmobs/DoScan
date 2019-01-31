@@ -95,6 +95,9 @@ public class AnimPanel extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+        if(qrCodeSymbol == null){
+            return ;
+        }
         if (dataLock.tryLock()) {
 
             data = qrCodeSymbol.obtainAnimData();

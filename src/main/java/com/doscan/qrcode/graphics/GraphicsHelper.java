@@ -2,19 +2,25 @@ package com.doscan.qrcode.graphics;
 
 import com.doscan.qrcode.standard.qrcode.simple.QRCodeSymbol;
 
+import java.util.ArrayList;
+
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 public class GraphicsHelper {
 
-    AnimDemoFrame animDemoFrame;
+    AnimDemoFrame animDemoFrame = new AnimDemoFrame();
 
     public void showAnimDemo(QRCodeSymbol symbol){
-        if(animDemoFrame == null){
-            animDemoFrame = new AnimDemoFrame();
+        if(animDemoFrame != null){
             animDemoFrame.setQrCodeSymbol(symbol);
+        }else{
+            animDemoFrame = new AnimDemoFrame();
         }
     }
 
+    public void setLogs(ArrayList<String> logs){
+        animDemoFrame.setLogs(logs);
+    }
 
 
     public static void showAnim(QRCodeSymbol symbol){

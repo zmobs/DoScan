@@ -84,11 +84,17 @@ public class QRCodeSymbol implements IQRCode2015 {
     public byte[][] obtainAnimData(){
         return animTable.getData();
     }
+
+    /**
+     * 带动画的绘制动作
+     */
+    public void bchWithAnim(){
+
+    }
     /**
      * 带动画的绘制动作
      */
     public void plateWithAnim(){
-
 
 
         // 放置定位符号
