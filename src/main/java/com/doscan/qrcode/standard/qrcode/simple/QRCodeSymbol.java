@@ -44,6 +44,8 @@ public class QRCodeSymbol implements IQRCode2015 {
      */
     DataArea dataArea = new DataArea();
     Version version;
+
+
     public QRCodeSymbol(Version version, ErrorCorrectLevel correctLevel){
 
         if(version == null){
@@ -86,7 +88,10 @@ public class QRCodeSymbol implements IQRCode2015 {
      * 带动画的绘制动作
      * @param data
      */
-    public void plateWithAnim(byte[][] data){
+    public void plateWithAnim(){
+
+        byte[][] finalData = dotTable.getData().clone();
+
         // 放置定位符号
         ltFP.place(animTable);
         SystemUtil.sleep(200);
@@ -117,18 +122,30 @@ public class QRCodeSymbol implements IQRCode2015 {
         versionPattern.placeDot(animTable);
         SystemUtil.sleep(200);
         // 内容绘制区域动画，重点啊
+        if(hasPlaceData){
+            dataArea.placeAnim(animTable);
+            // 绘制遮罩层
+            maskEvaluator.animAllMask(animTable,dataArea.dataTable);
+            animTable.setData(finalData);
+        }
+
+
 
     }
 
-
+    boolean hasPlaceData = false;
+    MaskEvaluator maskEvaluator;
+    int bestMask;
     public void placeData(BitArray bitArray){
+        hasPlaceData = true;
         // 置放数据区域的比特序列
         dataArea.place(dotTable,bitArray);
-        MaskEvaluator maskEvaluator = new MaskEvaluator(formatPattern);
-        int bestMask = maskEvaluator
+        maskEvaluator = new MaskEvaluator(formatPattern);
+
+        bestMask = maskEvaluator
                 .evaluateMask(dotTable.getData(),dataArea.dataTable);
-//        bestMask = 3;
         maskEvaluator.embedMask(dotTable.getData(),dataArea.dataTable,bestMask);
+
     }
 
     public DotTable getDotTable() {

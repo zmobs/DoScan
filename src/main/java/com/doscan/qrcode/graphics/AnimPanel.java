@@ -52,7 +52,7 @@ public class AnimPanel extends JPanel {
 
         @Override
         public void run() {
-            qrCodeSymbol.plateWithAnim(data);
+            qrCodeSymbol.plateWithAnim();
         }
 
     }

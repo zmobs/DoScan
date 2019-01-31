@@ -4,6 +4,7 @@ package com.doscan.qrcode.standard.qrcode.mask;
 import com.doscan.qrcode.standard.qrcode.simple.FormatPattern;
 import com.doscan.qrcode.standard.table.DotTable;
 import com.doscan.qrcode.util.Log;
+import com.doscan.qrcode.util.SystemUtil;
 
 /**
  * 编码区域得遮罩层评估
@@ -17,11 +18,113 @@ public class MaskEvaluator {
     }
 
 
+    public void animAllMask(DotTable dotTable,byte[][] dataArea){
+
+        int dataSideNum = dotTable.getSideSize();
+
+        byte[][] data = dotTable.getData();
+
+
+        /**
+         * 二维码得中默认0-7 8个遮罩模式
+         */
+        for (int m = 0; m < 8; m++) {
+
+            SystemUtil.sleep(200);
+
+            for (int i = 0; i < dataSideNum; i++) {
+                for (int j = 0; j < dataSideNum; j++) {
+
+                    int honyVal = ((i * j) % 2) + (i * j % 3);
+
+                    if (dataArea[i][j] != -1) {
+                        // 只处理数据区域，但是评估时，需要评估整体区域
+                        switch (m) {
+                            case 0x00:
+                            // 0
+                            if ((i + j) % 2 == 0) {
+                                // 该位置为黑色
+                                data[i][j] = 1;
+                            }else{
+                                data[i][j] = 0;
+                            }
+                            break;
+                            case 0x01:
+                                // 1
+                                if ((i & 0x1) == 0) {
+                                    // 该位置为黑色
+                                    data[i][j] = 1;
+                                }else{
+                                    data[i][j] = 0;
+                                }
+                                break;
+                            case 0x02:
+                                // 2
+                                if (i % 3 == 0) {
+                                    // 该位置为黑色
+                                    data[i][j] = 1;
+                                }else{
+                                    data[i][j] = 0;
+                                }
+                                break;
+                            case 0x03:
+                                // 0
+                                if ((i + j) % 3 == 0) {
+                                    // 该位置为黑色
+                                    data[i][j] = 1;
+                                }else{
+                                    data[i][j] = 0;
+                                }
+                                break;
+                            case 0x04:
+                                // 0
+                                if ((i / 2 + j / 3) % 2 == 0) {
+                                    // 该位置为黑色
+                                    data[i][j] = 1;
+                                }else{
+                                    data[i][j] = 0;
+                                }
+                                break;
+                            case 0x05:
+                                // 0
+                                if (honyVal == 0) {
+                                    // 该位置为黑色
+                                    data[i][j] = 1;
+                                }else{
+                                    data[i][j] = 0;
+                                }
+                                break;
+                            case 0x06:
+                                // 0
+                                if (honyVal % 2 == 0) {
+                                    // 该位置为黑色
+                                    data[i][j] = 1;
+                                }else{
+                                    data[i][j] = 0;
+                                }
+                                break;
+                            case 0x07:
+                                // 0
+                                if ((((i + j) % 2) + (i * j % 3)) % 2 == 0) {
+                                    // 该位置为黑色
+                                    data[i][j] = 1;
+                                }else{
+                                    data[i][j] = 0;
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 
     public void embedMask(byte[][] dotTable, byte[][] dataTable,int mask){
 
         int dataSideNum = dotTable.length;
-        Log.d("mask   ----  " + mask);
         for (int i = 0; i < dataSideNum; i++) {
             for (int j = 0; j < dataSideNum; j++) {
 

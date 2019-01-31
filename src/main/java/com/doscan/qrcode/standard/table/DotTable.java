@@ -21,6 +21,9 @@ public class DotTable {
         return data;
     }
 
+    public void setData(byte[][] data) {
+        this.data = data;
+    }
     public Value get(int x, int y){
 
         if(data[x][y] == 1){
