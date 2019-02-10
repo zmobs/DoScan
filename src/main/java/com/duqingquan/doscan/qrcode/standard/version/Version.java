@@ -2,7 +2,6 @@ package com.duqingquan.doscan.qrcode.standard.version;
 
 import com.duqingquan.doscan.qrcode.exception.BombException;
 import com.duqingquan.doscan.qrcode.standard.qrcode.errorcorrect.ECBlock;
-import com.doscan.qrcode.standard.qrcode.input.*;
 import com.duqingquan.doscan.qrcode.standard.qrcode.input.*;
 
 /**
