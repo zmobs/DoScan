@@ -16,10 +16,7 @@
 
 package com.google.zxing.common.reedsolomon;
 
-import com.doscan.qrcode.util.Log;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**

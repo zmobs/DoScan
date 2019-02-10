@@ -16,8 +16,6 @@
 
 package com.google.zxing.common.reedsolomon;
 
-import com.doscan.qrcode.util.Log;
-
 /**
  * <p>This class contains utility methods for performing mathematical operations over
  * the Galois Fields. Operations use a given primitive polynomial in calculations.</p>

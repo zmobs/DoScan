@@ -16,8 +16,7 @@
 
 package com.google.zxing.qrcode.encoder;
 
-import com.doscan.qrcode.graphics.GraphicsHelper;
-import com.doscan.qrcode.util.Log;
+import com.duqingquan.doscan.qrcode.util.Log;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitArray;
@@ -30,7 +29,6 @@ import com.google.zxing.qrcode.decoder.Version;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
 

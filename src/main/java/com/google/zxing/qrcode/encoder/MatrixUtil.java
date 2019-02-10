@@ -16,7 +16,6 @@
 
 package com.google.zxing.qrcode.encoder;
 
-import com.doscan.qrcode.util.Log;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitArray;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;

@@ -1,0 +1,1 @@
+package com.duqingquan.doscan.qrcode.standard;
