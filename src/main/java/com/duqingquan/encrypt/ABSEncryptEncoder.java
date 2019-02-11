@@ -43,6 +43,12 @@ public abstract class ABSEncryptEncoder {
         return this;
     }
 
+
+    public byte[] finalBytes(){
+        return this.finalInfo;
+    }
+
+
     public String string(){
         return string(null);
     }
