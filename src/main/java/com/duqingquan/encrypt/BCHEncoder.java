@@ -23,6 +23,7 @@ public class BCHEncoder extends ABSEncryptEncoder {
             finalByte[i] = perByte;
         }
         finalByte[srcLen] = EncryptedFlag;
+        // 标准加密动作完成，进行BCH纠错码计算
         return finalByte;
     }
 }

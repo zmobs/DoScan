@@ -94,29 +94,6 @@ final class GFPoly {
     return coefficients[coefficients.length - 1 - degree];
   }
 
-//  /**
-//   * @return evaluation of this polynomial at a given point
-//   */
-//  int evaluateAt(int a) {
-//    if (a == 0) {
-//      // Just return the x^0 coefficient
-//      return getCoefficient(0);
-//    }
-//    if (a == 1) {
-//      // Just the sum of the coefficients
-//      int result = 0;
-//      for (int coefficient : coefficients) {
-//        result = QRCodeGField.addOrSubtract(result, coefficient);
-//      }
-//      return result;
-//    }
-//    int result = coefficients[0];
-//    int size = coefficients.length;
-//    for (int i = 1; i < size; i++) {
-//      result = QRCodeGField.addOrSubtract(field.multiply(a, result), coefficients[i]);
-//    }
-//    return result;
-//  }
 
   /**
    * 多项式内的加减法实现
