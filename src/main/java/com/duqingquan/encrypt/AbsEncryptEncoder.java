@@ -4,30 +4,38 @@ import com.duqingquan.doscan.qrcode.util.Log;
 
 import java.io.UnsupportedEncodingException;
 
-public abstract class ABSEncryptEncoder {
+public abstract class AbsEncryptEncoder {
 
     protected byte[] srcInfo;
     protected byte[] finalInfo;
     protected int key = 0;
 
+    boolean isEncrypt = true;
     protected final byte EncryptedFlag = (byte)200;
 
-    public ABSEncryptEncoder source(byte[] src){
+    public AbsEncryptEncoder source(byte[] src){
         srcInfo = src;
         return this;
     }
 
-    public ABSEncryptEncoder key(int key){
+    public AbsEncryptEncoder key(int key){
         this.key = key;
 
         return this;
     }
 
-    private boolean isPrepared(){
+    private boolean isPrepared(boolean isEncrypt){
 
-        if(srcInfo == null){
-            return false;
+        if(isEncrypt){
+            if(srcInfo == null){
+                return false;
+            }
+        }else{
+            if(finalInfo == null){
+                return false;
+            }
         }
+
         if(key == 0){
             return false;
         }
@@ -35,14 +43,23 @@ public abstract class ABSEncryptEncoder {
         return true;
     }
 
-    public ABSEncryptEncoder encrypt(){
-        if(!isPrepared()){
+    public AbsEncryptEncoder encrypt(){
+        if(!isPrepared(true)){
             Log.bomb("加密组件初始化失败");
         }
         finalInfo = doEncrypt();
+        isEncrypt = true;
         return this;
     }
 
+    public AbsEncryptEncoder decrypt(){
+        if(!isPrepared(false)){
+            Log.bomb("解密组件初始化失败");
+        }
+        srcInfo = doDecrypt();
+        isEncrypt = false;
+        return this;
+    }
 
     public byte[] finalBytes(){
         return this.finalInfo;
@@ -58,10 +75,19 @@ public abstract class ABSEncryptEncoder {
             Log.bomb("final info null");
         }
         if(charset == null){
-            return new String(finalInfo);
+            if(isEncrypt){
+                return new String(finalInfo);
+            }else{
+                return new String(srcInfo);
+            }
+
         }else{
             try {
-                return new String(finalInfo,charset);
+                if(isEncrypt){
+                    return new String(finalInfo,charset);
+                }else{
+                    return new String(srcInfo,charset);
+                }
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
                 Log.bomb("UnsupportedEncodingException");
@@ -71,5 +97,7 @@ public abstract class ABSEncryptEncoder {
     }
 
     public abstract byte[] doEncrypt();
+
+    public abstract byte[] doDecrypt();
 
 }

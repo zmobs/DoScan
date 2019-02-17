@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c6bcf1ac-286b-4e75-9dfe-136f4f1008a4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/bch/FormatInfoGnnerator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/GFPoly.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/GFPoly.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/ABSEncryptEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/AbsEncryptEncoder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/BCHEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/BCHEncoder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/Demo.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -23,13 +25,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/ABSEncryptEncoder.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/AbsEncryptEncoder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="72" column="27" selection-start-line="72" selection-start-column="27" selection-end-line="72" selection-end-column="27" />
+            <state relative-caret-position="502">
+              <caret line="89" column="17" lean-forward="true" selection-start-line="89" selection-start-column="17" selection-end-line="89" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1169#1170#0" expanded="true" />
+                <element signature="e#1206#1207#0" expanded="true" />
+                <element signature="e#1236#1237#0" expanded="true" />
+                <element signature="e#1271#1272#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -38,8 +44,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/Demo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
+            <state relative-caret-position="304">
+              <caret line="16" column="54" selection-start-line="16" selection-start-column="54" selection-end-line="16" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -47,8 +53,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/BCHEncoder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+            <state relative-caret-position="665">
+              <caret line="35" column="34" lean-forward="true" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -56,17 +62,47 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/QRCodeGField.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+            <state relative-caret-position="503">
+              <caret line="76" column="14" selection-start-line="76" selection-start-column="6" selection-end-line="76" selection-end-column="14" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/standard/version/Version.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/standard/qrcode/errorcorrect/ECBlock.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="95">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/standard/table/VersionECTable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="356">
+              <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/GFPoly.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="95" column="2" selection-start-line="95" selection-start-column="2" selection-end-line="95" selection-end-column="2" />
+            <state relative-caret-position="702">
+              <caret line="216" selection-start-line="216" selection-end-line="216" />
             </state>
           </provider>
         </entry>
@@ -84,8 +120,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>makeVersionInfoBits</find>
-      <find>maybeEmbedVersionInfo</find>
       <find>embedTypeInfo</find>
       <find>dataArea</find>
       <find>bits2222222</find>
@@ -114,6 +148,8 @@
       <find>dotTable</find>
       <find>qrCodeSymbol</find>
       <find>cachedGenerators</find>
+      <find>coefficients</find>
+      <find>doEncrypt</find>
     </findStrings>
     <dirStrings>
       <dir>D:\IdeaProjects\DoScan</dir>
@@ -125,7 +161,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/drawable/QRCodeSymbol.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/drawable/module.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/drawable/SymbolColor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/doscan/qrcode/standard/qrcode/drawable/ModuleDot.java" />
@@ -173,9 +208,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/standard/version/Version.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/IEncryptEncoder.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/ABSEncryptEncoder.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/GFPoly.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/Demo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/BCHEncoder.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/GFPoly.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/AbsEncryptEncoder.java" />
       </list>
     </option>
   </component>
@@ -202,42 +238,44 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="DoScan" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DoScan" type="462c0819:PsiDirectoryNode" />
+              <item name="doscan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="doscan" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="DoScan" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DoScan" type="462c0819:PsiDirectoryNode" />
+              <item name="doscan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="doscan" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="DoScan" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DoScan" type="462c0819:PsiDirectoryNode" />
+              <item name="doscan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="doscan" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
             <path>
-              <item name="DoScan" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DoScan" type="462c0819:PsiDirectoryNode" />
+              <item name="doscan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="doscan" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="DoScan" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DoScan" type="462c0819:PsiDirectoryNode" />
+              <item name="doscan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="doscan" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="DoScan" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DoScan" type="462c0819:PsiDirectoryNode" />
+              <item name="doscan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="doscan" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -245,8 +283,8 @@
               <item name="duqingquan" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="DoScan" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DoScan" type="462c0819:PsiDirectoryNode" />
+              <item name="doscan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="doscan" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -255,8 +293,19 @@
               <item name="qrcode" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="DoScan" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DoScan" type="462c0819:PsiDirectoryNode" />
+              <item name="doscan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="doscan" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="duqingquan" type="462c0819:PsiDirectoryNode" />
+              <item name="qrcode" type="462c0819:PsiDirectoryNode" />
+              <item name="proto" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="doscan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="doscan" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -266,8 +315,68 @@
               <item name="reedsolomon" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="DoScan" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DoScan" type="462c0819:PsiDirectoryNode" />
+              <item name="doscan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="doscan" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="duqingquan" type="462c0819:PsiDirectoryNode" />
+              <item name="qrcode" type="462c0819:PsiDirectoryNode" />
+              <item name="standard" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="doscan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="doscan" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="duqingquan" type="462c0819:PsiDirectoryNode" />
+              <item name="qrcode" type="462c0819:PsiDirectoryNode" />
+              <item name="standard" type="462c0819:PsiDirectoryNode" />
+              <item name="qrcode" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="doscan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="doscan" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="duqingquan" type="462c0819:PsiDirectoryNode" />
+              <item name="qrcode" type="462c0819:PsiDirectoryNode" />
+              <item name="standard" type="462c0819:PsiDirectoryNode" />
+              <item name="qrcode" type="462c0819:PsiDirectoryNode" />
+              <item name="errorcorrect" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="doscan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="doscan" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="duqingquan" type="462c0819:PsiDirectoryNode" />
+              <item name="qrcode" type="462c0819:PsiDirectoryNode" />
+              <item name="standard" type="462c0819:PsiDirectoryNode" />
+              <item name="table" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="doscan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="doscan" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="duqingquan" type="462c0819:PsiDirectoryNode" />
+              <item name="qrcode" type="462c0819:PsiDirectoryNode" />
+              <item name="standard" type="462c0819:PsiDirectoryNode" />
+              <item name="version" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="doscan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="doscan" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -275,25 +384,10 @@
               <item name="duqingquan" type="462c0819:PsiDirectoryNode" />
               <item name="encrypt" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="DoScan" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DoScan" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="zxing" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DoScan" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -726,10 +820,10 @@
     <option name="totallyTimeSpent" value="3047000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2600536" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26279318" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -737,8 +831,8 @@
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.35977337" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932975" visible="true" weight="0.20679887" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.35900217" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49932975" visible="true" weight="0.20607375" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39660057" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -747,7 +841,7 @@
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3286119" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50067025" side_tool="true" weight="0.37818697" />
       <window_info anchor="bottom" id="Build" order="10" sideWeight="0.49798927" weight="0.3937677" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.3243626" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.324295" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -914,7 +1008,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/standard/qrcode/simple/ModuleDot.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/standard/qrcode/simple/PlacementHelper.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/standard/qrcode/simple/SeparatorFP.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/standard/qrcode/simple/AlignmentPattern.java" />
@@ -1047,13 +1140,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_192/src.zip!/java/lang/Thread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19688">
-          <caret line="913" column="16" selection-start-line="913" selection-start-column="16" selection-end-line="913" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://D:/Program Files/Java/jdk1.8.0_192/src.zip!/java/lang/Thread.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/util/SystemUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
@@ -1126,17 +1213,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_192/src.zip!/java/awt/Component.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="2171" column="16" selection-start-line="2171" selection-start-column="16" selection-end-line="2171" selection-end-column="16" />
-          <folding>
-            <element signature="e#74817#74818#0" expanded="true" />
-            <element signature="e#74854#74855#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://D:/Program Files/Java/jdk1.8.0_192/src.zip!/java/awt/Component.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/standard/qrcode/simple/QRCodeSymbol.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="218">
@@ -1188,31 +1265,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/standard/table/VersionECTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5543">
-          <caret line="250" column="19" selection-start-line="250" selection-start-column="19" selection-end-line="250" selection-end-column="19" />
-          <folding>
-            <element signature="e#8002#8003#0" expanded="true" />
-            <element signature="e#8048#8049#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/standard/qrcode/InputBitCaper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="989">
           <caret line="48" column="66" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/standard/version/Version.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1264,48 +1320,70 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/Demo.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/bch/FormatInfoGnnerator.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/GFPoly.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
+        <state relative-caret-position="702">
+          <caret line="216" selection-start-line="216" selection-end-line="216" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/ABSEncryptEncoder.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/QRCodeGField.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="72" column="27" selection-start-line="72" selection-start-column="27" selection-end-line="72" selection-end-column="27" />
+        <state relative-caret-position="503">
+          <caret line="76" column="14" selection-start-line="76" selection-start-column="6" selection-end-line="76" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/standard/version/Version.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/bch/FormatInfoGnnerator.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/standard/qrcode/errorcorrect/ECBlock.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        <state relative-caret-position="95">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/standard/table/VersionECTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/BCHEncoder.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="665">
+          <caret line="35" column="34" lean-forward="true" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/Demo.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
-          <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+          <caret line="16" column="54" selection-start-line="16" selection-start-column="54" selection-end-line="16" selection-end-column="54" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/QRCodeGField.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/AbsEncryptEncoder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/GFPoly.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="95" column="2" selection-start-line="95" selection-start-column="2" selection-end-line="95" selection-end-column="2" />
+        <state relative-caret-position="502">
+          <caret line="89" column="17" lean-forward="true" selection-start-line="89" selection-start-column="17" selection-end-line="89" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1169#1170#0" expanded="true" />
+            <element signature="e#1206#1207#0" expanded="true" />
+            <element signature="e#1236#1237#0" expanded="true" />
+            <element signature="e#1271#1272#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
