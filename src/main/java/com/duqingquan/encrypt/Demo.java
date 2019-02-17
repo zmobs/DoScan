@@ -9,9 +9,9 @@ public class Demo {
 
         AbsEncryptEncoder encryptEncoder = new BCHEncoder();
         encryptEncoder = encryptEncoder.source("这是一条原始信息333".getBytes())
-                .key(336)
-                .encrypt();
-        String finalInfo = encryptEncoder.string();
+                .key(336);
+
+        String finalInfo = encryptEncoder.encrypt().string();
 
         Log.d("finalInfo ..." + finalInfo);
         String srcInfo  = encryptEncoder.decrypt().string();
