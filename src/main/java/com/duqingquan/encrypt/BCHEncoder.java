@@ -1,6 +1,11 @@
 package com.duqingquan.encrypt;
 
+import com.duqingquan.doscan.qrcode.reedsolomon.GFPoly;
+import com.duqingquan.doscan.qrcode.reedsolomon.RSEncoder;
 import com.duqingquan.doscan.qrcode.util.Log;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class BCHEncoder extends AbsEncryptEncoder {
 
@@ -17,7 +22,8 @@ public class BCHEncoder extends AbsEncryptEncoder {
     @Override
     public byte[] doEncrypt() {
         int srcLen = srcInfo.length;
-        byte[] finalByte = new byte[srcLen + 1];
+        int subSize = srcLen + 1;
+        byte[] finalByte = new byte[subSize];
         // 环境检测通过，才会执行到这里
         for(int i = 0; i < srcLen;i++){
             byte perByte = srcInfo[i];
@@ -26,7 +32,24 @@ public class BCHEncoder extends AbsEncryptEncoder {
         }
         finalByte[srcLen] = EncryptedFlag;
         // 标准加密动作完成，进行BCH纠错码计算
-        return finalByte;
+        /**************************************/
+        // 纠错码字节不存在负数，需要换证
+        // 得到了生成多项式
+        int[] ecInts = RSEncoder.getInstance().getRSCode(finalByte,subSize);
+
+
+        byte[] bytes = new byte[subSize * 2];
+        for(int i = 0; i < subSize;i++){
+            bytes[i] = finalByte[i];
+        }
+        for(int i = 0; i < ecInts.length;i++){
+            bytes[i + subSize] = (byte) ecInts[i];
+        }
+
+        Log.d("finalByte  ----  " + Arrays.toString(finalByte));
+        Log.d("ecInts  ----  " + Arrays.toString(ecInts));
+        Log.d("bytes  ----  " + Arrays.toString(bytes));
+        return bytes;
     }
 
     @Override

@@ -14,7 +14,7 @@ public class Demo {
         String finalInfo = encryptEncoder.encrypt().string();
 
         Log.d("finalInfo ..." + finalInfo);
-        String srcInfo  = encryptEncoder.decrypt().string();
-        Log.d("srcInfo ..." + srcInfo);
+//        String srcInfo  = encryptEncoder.decrypt().string();
+//        Log.d("srcInfo ..." + srcInfo);
     }
 }

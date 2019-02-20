@@ -19,7 +19,7 @@ package com.duqingquan.doscan.qrcode.reedsolomon;
 /**
  * 伽罗瓦域的生成多项式
  */
-final class GFPoly {
+public final class GFPoly {
 
   /**
    * 伽罗瓦域
