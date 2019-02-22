@@ -51,22 +51,30 @@ public class RSEncoder {
         return cachedGenerators.get(degree);
     }
 
+    /**
+     * 前方高能，下面是具体的里德所罗门算法解码部分实现
+     * @param data
+     * @param dataLength
+     * @return
+     */
     public int[] decodeRSCode(byte[] data,int dataLength){
 
-
+        // 先将字节数据展开为int,使用的位运算，效率高
         int[] codewordsInts = new int[data.length];
         for (int i = 0; i < data.length; i++) {
             codewordsInts[i] = data[i] & 0xFF;
         }
-        Log.d("decode  22222222222222222  ----  " + Arrays.toString(codewordsInts));
 
+        Log.d("decode  22222222222222222  ----  " + Arrays.toString(codewordsInts));
         int errLength = data.length - dataLength;
+        // 对纠错码占据的位置，进行系数运算和比较
         int[] syndromeCoefficients = new int[errLength];
 
         GFPoly poly = new GFPoly(qrCodeGField, codewordsInts);
         for (int i = 0; i < errLength; i++) {
-            int eval = poly.evaluateAt(qrCodeGField.exp(i + qrCodeGField.GENERATOR_BASE));
-            syndromeCoefficients[syndromeCoefficients.length - 1 - i] = eval;
+            int eval = poly.evaluateAt(qrCodeGField.exp(i));
+            // 倒序逐个防止eval至数组
+            syndromeCoefficients[errLength - 1 - i] = eval;
             Log.d("eval  ---  "  + i + "  " + eval);
         }
 

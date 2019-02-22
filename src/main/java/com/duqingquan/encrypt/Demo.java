@@ -16,21 +16,21 @@ public class Demo {
 
 
         byte[] finalInfo = encryptEncoder.encrypt().finalInfo;
-        int dataLen = finalInfo.length;
-        byte[] data = new byte[dataLen];
+//        int dataLen = finalInfo.length;
+//        byte[] data = new byte[dataLen];
 
         Log.d("finalInfo ..." + Arrays.toString(finalInfo));
         finalInfo[2] = 10;
         finalInfo[3] = 10;
         Log.d("finalInfo222 ..." + Arrays.toString(finalInfo));
 
-        System.arraycopy(finalInfo,0,data,0,dataLen);
-        try {
-            new BCHEncoder().correctErrors(data,data.length / 2);
-        } catch (ChecksumException e) {
-            e.printStackTrace();
-        }
-        Log.d("data ..." + Arrays.toString(data));
+//        System.arraycopy(finalInfo,0,data,0,dataLen);
+//        try {
+//            new BCHEncoder().correctErrors(data,data.length / 2);
+//        } catch (ChecksumException e) {
+//            e.printStackTrace();
+//        }
+//        Log.d("data ..." + Arrays.toString(data));
         String strInfo  = encryptEncoder.decrypt().string();
         Log.d("decryptInfo ..." + strInfo);
     }

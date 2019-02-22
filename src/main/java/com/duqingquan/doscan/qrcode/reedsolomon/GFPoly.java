@@ -31,9 +31,14 @@ public final class GFPoly {
    */
   private final int[] coefficients;
 
-
+  /**
+   * 不仅带限制域还带生成因数数组参数
+   * @param field
+   * @param coefficients
+   */
   GFPoly(QRCodeGField field, int[] coefficients) {
     if (coefficients.length == 0) {
+      // 如果选择传递因数，因数数组不能为空
       throw new IllegalArgumentException();
     }
     this.field = field;
@@ -61,7 +66,7 @@ public final class GFPoly {
 
 
   /**
-   * @return evaluation of this polynomial at a given point
+   * @return 返回指定位置的，当前多项式对应的数值
    */
   int evaluateAt(int a) {
     if (a == 0) {

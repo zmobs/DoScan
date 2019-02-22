@@ -129,10 +129,12 @@ public final class QRCodeGField {
   static int addOrSubtract(int a, int b) {
     return a ^ b;
   }
-//
-//  /**
-//   * @return 2 to the power of a in GF(size)
-//   */
+
+  /**
+   * 返回指定位置的 数字 2的指数值
+   * @param a
+   * @return
+   */
   int exp(int a) {
     return expTable[a];
   }
