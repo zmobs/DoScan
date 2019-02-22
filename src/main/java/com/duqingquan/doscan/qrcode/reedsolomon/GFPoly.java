@@ -17,6 +17,8 @@
 package com.duqingquan.doscan.qrcode.reedsolomon;
 
 
+import com.duqingquan.doscan.qrcode.util.Log;
+
 /**
  * 伽罗瓦域的生成多项式
  */
@@ -41,9 +43,12 @@ public final class GFPoly {
       // 如果选择传递因数，因数数组不能为空
       throw new IllegalArgumentException();
     }
+    // 设置有限域参数
     this.field = field;
     int coefficientsLength = coefficients.length;
+
     if (coefficientsLength > 1 && coefficients[0] == 0) {
+      // 等式换算的多项式首位 不能为0
       // Leading term must be non-zero for anything except the constant polynomial "0"
       int firstNonZero = 1;
       while (firstNonZero < coefficientsLength && coefficients[firstNonZero] == 0) {
@@ -70,10 +75,12 @@ public final class GFPoly {
    */
   int evaluateAt(int a) {
     if (a == 0) {
-      // Just return the x^0 coefficient
+      // 如果是第一个位置，返回x^0的结果
+      Log.d("getCoefficient(0)  ---  " + getCoefficient(0));
       return getCoefficient(0);
     }
     if (a == 1) {
+      // 如果是第二个位置，位数是1 ，返回系数的和
       // Just the sum of the coefficients
       int result = 0;
       for (int coefficient : coefficients) {

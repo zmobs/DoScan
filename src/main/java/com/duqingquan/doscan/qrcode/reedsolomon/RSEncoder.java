@@ -69,9 +69,9 @@ public class RSEncoder {
         int errLength = data.length - dataLength;
         // 对纠错码占据的位置，进行系数运算和比较
         int[] syndromeCoefficients = new int[errLength];
-
         GFPoly poly = new GFPoly(qrCodeGField, codewordsInts);
         for (int i = 0; i < errLength; i++) {
+            Log.d("qrCodeGField.exp(i)  ---  " + qrCodeGField.exp(i));
             int eval = poly.evaluateAt(qrCodeGField.exp(i));
             // 倒序逐个防止eval至数组
             syndromeCoefficients[errLength - 1 - i] = eval;
