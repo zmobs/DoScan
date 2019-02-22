@@ -16,6 +16,7 @@
 
 package com.duqingquan.doscan.qrcode.reedsolomon;
 
+
 /**
  * 伽罗瓦域的生成多项式
  */
@@ -57,6 +58,36 @@ public final class GFPoly {
       this.coefficients = coefficients;
     }
   }
+
+
+  /**
+   * @return evaluation of this polynomial at a given point
+   */
+  int evaluateAt(int a) {
+    if (a == 0) {
+      // Just return the x^0 coefficient
+      return getCoefficient(0);
+    }
+    if (a == 1) {
+      // Just the sum of the coefficients
+      int result = 0;
+      for (int coefficient : coefficients) {
+        result = addOrSubtract(result, coefficient);
+      }
+      return result;
+    }
+    int result = coefficients[0];
+    int size = coefficients.length;
+    for (int i = 1; i < size; i++) {
+      result = addOrSubtract(field.multiply(a, result), coefficients[i]);
+    }
+    return result;
+  }
+
+  static int addOrSubtract(int a, int b) {
+    return a ^ b;
+  }
+
 
   /**
    * 获取当前指数序列
@@ -128,6 +159,21 @@ public final class GFPoly {
     }
 
     return new GFPoly(field, sumDiff);
+  }
+
+  GFPoly multiply(int scalar) {
+    if (scalar == 0) {
+      return field.getZero();
+    }
+    if (scalar == 1) {
+      return this;
+    }
+    int size = coefficients.length;
+    int[] product = new int[size];
+    for (int i = 0; i < size; i++) {
+      product[i] = field.multiply(coefficients[i], scalar);
+    }
+    return new GFPoly(field, product);
   }
 
 

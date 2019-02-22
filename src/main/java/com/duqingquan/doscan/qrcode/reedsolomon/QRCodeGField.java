@@ -44,7 +44,9 @@ public final class QRCodeGField {
   // 多项式对数序列
   private final int[] logTable = new int[FIELD_SIZE];
 
-
+  public int getSize(){
+    return 256;
+  }
 
   private final GFPoly zero;
   private final GFPoly one;
@@ -89,11 +91,9 @@ public final class QRCodeGField {
     return zero;
   }
 
-//
-//  GFPoly getOne() {
-//    return one;
-//  }
-//
+  GFPoly getOne() {
+    return one;
+  }
 
   /**
    * 用单项式来代表  因数^x^系数
