@@ -16,22 +16,23 @@ public class Demo {
         encryptEncoder = encryptEncoder.source("这是一条原始信息333".getBytes())
                 .key(336);
 
-//        String finalInfo = encryptEncoder.encrypt().string();
 
         byte[] finalInfo = encryptEncoder.encrypt().finalInfo;
         int dataLen = finalInfo.length;
         byte[] data = new byte[dataLen];
-        System.arraycopy(finalInfo,0,data,0,dataLen);
+
         Log.d("finalInfo ..." + Arrays.toString(finalInfo));
         finalInfo[2] = 10;
         Log.d("finalInfo222 ..." + Arrays.toString(finalInfo));
-//        String srcInfo  = encryptEncoder.decrypt().string();
 
+        System.arraycopy(finalInfo,0,data,0,dataLen);
         try {
             new BCHEncoder().correctErrors(data,data.length / 2);
         } catch (ChecksumException e) {
             e.printStackTrace();
         }
         Log.d("data ..." + Arrays.toString(data));
+        byte[] decryptInfo  = encryptEncoder.decrypt().srcInfo;
+        Log.d("decryptInfo ..." + Arrays.toString(decryptInfo));
     }
 }

@@ -53,11 +53,12 @@ public class RSEncoder {
 
     public int[] decodeRSCode(byte[] data,int dataLength){
 
-        int[] codewordsInts = new int[dataLength];
-        for (int i = 0; i < dataLength; i++) {
+
+        int[] codewordsInts = new int[data.length];
+        for (int i = 0; i < data.length; i++) {
             codewordsInts[i] = data[i] & 0xFF;
         }
-        Log.d("codewordsInts  ---  "  + Arrays.toString(codewordsInts));
+        Log.d("decode  22222222222222222  ----  " + Arrays.toString(codewordsInts));
 
         int errLength = data.length - dataLength;
         int[] syndromeCoefficients = new int[errLength];
@@ -83,6 +84,8 @@ public class RSEncoder {
             }
             codewordsInts[position] = qrCodeGField.addOrSubtract(codewordsInts[position], errorMagnitudes[i]);
         }
+
+
 
         return codewordsInts;
     }

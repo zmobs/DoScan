@@ -37,13 +37,13 @@ public class BCHEncoder extends AbsEncryptEncoder {
         finalByte[srcLen] = EncryptedFlag;
         // 标准加密动作完成，进行BCH纠错码计算
         /**************************************/
-        Log.d("finalByte 1111 ----  " + Arrays.toString(finalByte));
+//        Log.d("finalByte 1111 ----  " + Arrays.toString(finalByte));
 
         // 纠错码字节不存在负数，需要换证
         // 得到了生成多项式
         int[] ecInts = RSEncoder.getInstance().getRSCode(finalByte,subSize);
 
-        Log.d("ecInts  ----  " + Arrays.toString(ecInts));
+//        Log.d("ecInts  ----  " + Arrays.toString(ecInts));
         byte[] bytes = new byte[subSize * 2];
         for(int i = 0; i < subSize;i++){
             bytes[i] = finalByte[i];
@@ -51,7 +51,8 @@ public class BCHEncoder extends AbsEncryptEncoder {
         for(int i = 0; i < ecInts.length;i++){
             bytes[i + subSize] = (byte) ecInts[i];
         }
-        Log.d("bytes  ----  " + Arrays.toString(bytes));
+//        Log.d("bytes  ----  " + Arrays.toString(bytes));
+        finalInfo = bytes;
         return bytes;
     }
 
@@ -83,22 +84,19 @@ public class BCHEncoder extends AbsEncryptEncoder {
         int subSize = finalInfo.length / 2;
         int[] ecInts = RSEncoder.getInstance().decodeRSCode(finalInfo,subSize);
 
-        int srcLen = ecInts.length;
-        byte flag = (byte) ecInts[srcLen - 1];
-        if(flag != EncryptedFlag){
-            Log.bomb("尚未加密的内容，请检查");
+        for (int i = 0; i < subSize; i++) {
+            finalInfo[i] = (byte) ecInts[i];
         }
-        int srcPrimeLength = srcLen - 1;
-        srcInfo = new byte[srcPrimeLength];
+        Log.d("finalInfo ..." + Arrays.toString(finalInfo));
 
+        srcInfo = new byte[subSize];
 
         // 环境检测通过，才会执行到这里
-        for(int i = 0; i < srcPrimeLength;i++){
-            byte perByte = (byte) ecInts[i];
+        for(int i = 0; i < subSize - 1;i++){
+            byte perByte = finalInfo[i];
             perByte ^= key;
             srcInfo[i] = perByte;
         }
-
         // 标准加密动作完成，进行BCH纠错码计算
         return srcInfo;
     }

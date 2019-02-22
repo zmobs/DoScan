@@ -16,6 +16,10 @@
 
 package com.google.zxing.common.reedsolomon;
 
+import com.duqingquan.doscan.qrcode.util.Log;
+
+import java.util.Arrays;
+
 /**
  * <p>Implements Reed-Solomon decoding, as the name implies.</p>
  *
@@ -56,11 +60,13 @@ public final class ReedSolomonDecoder {
    * @throws ReedSolomonException if decoding fails for any reason
    */
   public void decode(int[] received, int twoS) throws ReedSolomonException {
+    Log.d("decode  11111111111111  ----  " + Arrays.toString(received));
     GenericGFPoly poly = new GenericGFPoly(field, received);
     int[] syndromeCoefficients = new int[twoS];
     boolean noError = true;
     for (int i = 0; i < twoS; i++) {
       int eval = poly.evaluateAt(field.exp(i + field.getGeneratorBase()));
+      Log.d("eval aaaaa  ----  " + eval);
       syndromeCoefficients[syndromeCoefficients.length - 1 - i] = eval;
       if (eval != 0) {
         noError = false;
