@@ -2,8 +2,6 @@ package com.duqingquan.encrypt;
 
 import com.duqingquan.doscan.qrcode.util.Log;
 import com.google.zxing.ChecksumException;
-import com.google.zxing.common.reedsolomon.GenericGF;
-import com.google.zxing.common.reedsolomon.ReedSolomonDecoder;
 
 import java.util.Arrays;
 
@@ -23,6 +21,7 @@ public class Demo {
 
         Log.d("finalInfo ..." + Arrays.toString(finalInfo));
         finalInfo[2] = 10;
+        finalInfo[3] = 10;
         Log.d("finalInfo222 ..." + Arrays.toString(finalInfo));
 
         System.arraycopy(finalInfo,0,data,0,dataLen);
@@ -32,7 +31,7 @@ public class Demo {
             e.printStackTrace();
         }
         Log.d("data ..." + Arrays.toString(data));
-        byte[] decryptInfo  = encryptEncoder.decrypt().srcInfo;
-        Log.d("decryptInfo ..." + Arrays.toString(decryptInfo));
+        String strInfo  = encryptEncoder.decrypt().string();
+        Log.d("decryptInfo ..." + strInfo);
     }
 }

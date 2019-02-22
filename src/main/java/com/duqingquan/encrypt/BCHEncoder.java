@@ -89,7 +89,7 @@ public class BCHEncoder extends AbsEncryptEncoder {
         }
         Log.d("finalInfo ..." + Arrays.toString(finalInfo));
 
-        srcInfo = new byte[subSize];
+        srcInfo = new byte[subSize - 1];
 
         // 环境检测通过，才会执行到这里
         for(int i = 0; i < subSize - 1;i++){
