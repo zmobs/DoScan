@@ -68,7 +68,7 @@ public final class QRCodeGField {
     int x = 1;
     for (int i = 0; i < FIELD_SIZE; i++) {
       expTable[i] = x;
-      x *= 2; // we're assuming the generator alpha is 2
+      x *= 2; // 生成器的系数是2
       if (x >= FIELD_SIZE) {
         x ^= BYTE_MOD_BASE;
         x &= FIELD_SIZE - 1;

@@ -59,10 +59,10 @@ public final class GFPoly {
       } else {
         this.coefficients = new int[coefficientsLength - firstNonZero];
         System.arraycopy(coefficients,
-            firstNonZero,
-            this.coefficients,
-            0,
-            this.coefficients.length);
+                firstNonZero,
+                this.coefficients,
+                0,
+                this.coefficients.length);
       }
     } else {
       this.coefficients = coefficients;
@@ -81,16 +81,19 @@ public final class GFPoly {
     }
     if (a == 1) {
       // 如果是第二个位置，位数是1 ，返回系数的和
-      // Just the sum of the coefficients
       int result = 0;
       for (int coefficient : coefficients) {
         result = addOrSubtract(result, coefficient);
       }
       return result;
     }
+    // 除了0/1 以外的其他位置，则要返回系数*因数 之后的和
+    // 第一个元素是没有因数的，所以可以单另出来。
+    // 文档地址：https://www.jianshu.com/p/2d58bf31481f
     int result = coefficients[0];
     int size = coefficients.length;
     for (int i = 1; i < size; i++) {
+      // 累加
       result = addOrSubtract(field.multiply(a, result), coefficients[i]);
     }
     return result;

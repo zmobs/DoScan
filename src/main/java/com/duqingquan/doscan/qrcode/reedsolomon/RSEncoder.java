@@ -78,7 +78,9 @@ public class RSEncoder {
             Log.d("eval  ---  "  + i + "  " + eval);
         }
 
+        // 需要进行纠错，将出现状况的特征码再次放入有限域
         GFPoly syndrome = new GFPoly(qrCodeGField, syndromeCoefficients);
+        // sigma omega
         GFPoly[] sigmaOmega =
                 runEuclideanAlgorithm(qrCodeGField.buildMonomial(errLength, 1), syndrome, errLength);
         GFPoly sigma = sigmaOmega[0];
@@ -125,10 +127,16 @@ public class RSEncoder {
         return result;
     }
 
-
+    /**
+     * 执行 欧几里得算法
+     * @param a
+     * @param b
+     * @param R
+     * @return
+     */
     private GFPoly[] runEuclideanAlgorithm(GFPoly a, GFPoly b, int R)
             {
-        // Assume a's degree is >= b's
+        // 如果A的度数，大于b的度数， 进行换位操作
         if (a.getDegree() < b.getDegree()) {
             GFPoly temp = a;
             a = b;
@@ -141,6 +149,7 @@ public class RSEncoder {
         GFPoly t = qrCodeGField.getOne();
 
         // Run Euclidean algorithm until r's degree is less than R/2
+        // 迭代运行欧几里得算法，直到余数的长度小于二分之一的纠错码长度
         while (r.getDegree() >= R / 2) {
             GFPoly rLastLast = rLast;
             GFPoly tLastLast = tLast;
@@ -148,8 +157,10 @@ public class RSEncoder {
             tLast = t;
 
             // Divide rLastLast by rLast, with quotient in q and remainder in r
+            // 余数辗转相除，也就是欧几里得算法实现了
             if (rLast.isZero()) {
                 // Oops, Euclidean algorithm already terminated?
+                // 不应该出现这种情况的，因为算法实行过程中余数不能为0
                 Log.bomb("r_{i-1} was zero");
             }
             r = rLastLast;
