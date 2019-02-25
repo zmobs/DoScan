@@ -112,19 +112,14 @@ public final class QRCodeGField {
     coefficients[0] = coefficient;
     return new GFPoly(this, coefficients);
   }
-//
-//  /**
-//   * Implements both addition and subtraction -- they are the same in GF(size).
-//   *
-//   * @return sum/difference of a and b
-//   */
+
 
   /**
    * 加减法实现，在有限域种都是异或运算，所以不区分（别问我为啥，我特么也没看懂）
    *
    * @param a
    * @param b
-   * @return
+   * @return 返回a,b的 加减结果
    */
   static int addOrSubtract(int a, int b) {
     return a ^ b;

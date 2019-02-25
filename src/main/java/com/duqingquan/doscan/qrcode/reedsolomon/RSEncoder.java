@@ -83,10 +83,14 @@ public class RSEncoder {
         // sigma omega
         GFPoly[] sigmaOmega =
                 runEuclideanAlgorithm(qrCodeGField.buildMonomial(errLength, 1), syndrome, errLength);
+        // 得到 Σ和Ω
         GFPoly sigma = sigmaOmega[0];
         GFPoly omega = sigmaOmega[1];
+        // 找到一组 错误位置的下标
         int[] errorLocations = findErrorLocations(sigma);
+        // 计算得到错误位置对应的一组 错误偏移量
         int[] errorMagnitudes = findErrorMagnitudes(omega, errorLocations);
+        // 对错误位置，进行逆向偏移，得到纠错后的结果
         for (int i = 0; i < errorLocations.length; i++) {
             int position = codewordsInts.length - 1 - qrCodeGField.log(errorLocations[i]);
             if (position < 0) {
@@ -94,9 +98,7 @@ public class RSEncoder {
             }
             codewordsInts[position] = qrCodeGField.addOrSubtract(codewordsInts[position], errorMagnitudes[i]);
         }
-
-
-
+        // 返回结果
         return codewordsInts;
     }
 
@@ -128,9 +130,9 @@ public class RSEncoder {
     }
 
     /**
-     * 执行 欧几里得算法
-     * @param a
-     * @param b
+     * 执行 欧几里得算法，得到两个有限域的最大公约数
+     * @param a 有限域A
+     * @param b 有限域B
      * @param R
      * @return
      */
@@ -163,6 +165,7 @@ public class RSEncoder {
                 // 不应该出现这种情况的，因为算法实行过程中余数不能为0
                 Log.bomb("r_{i-1} was zero");
             }
+            // 辗转相除之后 得到的结果
             r = rLastLast;
             GFPoly q = qrCodeGField.getZero();
             int denominatorLeadingTerm = rLast.getCoefficient(rLast.getDegree());
