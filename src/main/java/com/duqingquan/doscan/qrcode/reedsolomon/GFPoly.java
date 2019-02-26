@@ -273,12 +273,17 @@ public final class GFPoly {
     GFPoly quotient = field.getZero();
     GFPoly remainder = this;
 
+    // 获取分母的最高项
     int denominatorLeadingTerm = other.getCoefficient(other.getDegree());
+    Log.d("denominatorLeadingTerm  ---  " + denominatorLeadingTerm);
     int inverseDenominatorLeadingTerm = field.inverse(denominatorLeadingTerm);
 
+    // 终止循环的两个条件， 1是分子小于分母，得到了余数  2是分子为0
     while (remainder.getDegree() >= other.getDegree() && !remainder.isZero()) {
+      // 先计算得到 指数的差
       int degreeDifference = remainder.getDegree() - other.getDegree();
       int scale = field.multiply(remainder.getCoefficient(remainder.getDegree()), inverseDenominatorLeadingTerm);
+      // 分母乘以 首商单项式
       GFPoly term = other.multiplyByMonomial(degreeDifference, scale);
       GFPoly iterationQuotient = field.buildMonomial(degreeDifference, scale);
       quotient = quotient.addOrSubtract(iterationQuotient);
