@@ -20,7 +20,7 @@ package com.duqingquan.doscan.qrcode.reedsolomon;
 import com.duqingquan.doscan.qrcode.util.Log;
 
 /**
- * 伽罗瓦域的生成多项式
+ * 伽罗瓦域中的多项式定义
  */
 public final class GFPoly {
 
@@ -242,6 +242,12 @@ public final class GFPoly {
 //  }
 //
 
+  /**
+   * 构建单项式
+   * @param degree  深度
+   * @param coefficient 因数
+   * @return
+   */
   GFPoly multiplyByMonomial(int degree, int coefficient) {
     if (degree < 0) {
       throw new IllegalArgumentException();
@@ -263,6 +269,7 @@ public final class GFPoly {
    * @return
    */
   GFPoly[] divide(GFPoly other) {
+    // doc:https://blog.csdn.net/cinmyheart/article/details/13277053
     if (!field.equals(other.field)) {
       throw new IllegalArgumentException("多项式不能自己收拾自己");
     }
@@ -282,6 +289,7 @@ public final class GFPoly {
     while (remainder.getDegree() >= other.getDegree() && !remainder.isZero()) {
       // 先计算得到 指数的差
       int degreeDifference = remainder.getDegree() - other.getDegree();
+      // 分子首位和分母最大的差距数
       int scale = field.multiply(remainder.getCoefficient(remainder.getDegree()), inverseDenominatorLeadingTerm);
       // 分母乘以 首商单项式
       GFPoly term = other.multiplyByMonomial(degreeDifference, scale);
@@ -289,7 +297,8 @@ public final class GFPoly {
       quotient = quotient.addOrSubtract(iterationQuotient);
       remainder = remainder.addOrSubtract(term);
     }
-
+    // quotient 是多项式除法的商
+    // remainder 是多项式除法的余数
     return new GFPoly[] { quotient, remainder };
   }
 

@@ -65,13 +65,12 @@ public class RSEncoder {
             codewordsInts[i] = data[i] & 0xFF;
         }
 
-        Log.d("decode  22222222222222222  ----  " + Arrays.toString(codewordsInts));
         int errLength = data.length - dataLength;
         // 对纠错码占据的位置，进行系数运算和比较
         int[] syndromeCoefficients = new int[errLength];
         GFPoly poly = new GFPoly(qrCodeGField, codewordsInts);
         for (int i = 0; i < errLength; i++) {
-            Log.d("qrCodeGField.exp(i)  ---  " + qrCodeGField.exp(i));
+            // 计算每个位置的纠错码
             int eval = poly.evaluateAt(qrCodeGField.exp(i));
             // 倒序逐个防止eval至数组
             syndromeCoefficients[errLength - 1 - i] = eval;
@@ -102,6 +101,12 @@ public class RSEncoder {
         return codewordsInts;
     }
 
+    /**
+     * 寻找错误的位置
+     * @param errorEvaluator
+     * @param errorLocations
+     * @return
+     */
     private int[] findErrorMagnitudes(GFPoly errorEvaluator, int[] errorLocations) {
         // This is directly applying Forney's Formula
         int s = errorLocations.length;
@@ -133,11 +138,11 @@ public class RSEncoder {
      * 执行 欧几里得算法，得到两个有限域的最大公约数
      * @param a 有限域A
      * @param b 有限域B
-     * @param R
+     * @param R 期望结果数值的长度
      * @return
      */
-    private GFPoly[] runEuclideanAlgorithm(GFPoly a, GFPoly b, int R)
-            {
+    private GFPoly[] runEuclideanAlgorithm(GFPoly a, GFPoly b, int R) {
+        //https://www.jianshu.com/p/7876eb2dff89
         // 如果A的度数，大于b的度数， 进行换位操作
         if (a.getDegree() < b.getDegree()) {
             GFPoly temp = a;
@@ -147,7 +152,9 @@ public class RSEncoder {
 
         GFPoly rLast = a;
         GFPoly r = b;
+        // 这是一个纯0的 有限域多项式
         GFPoly tLast = qrCodeGField.getZero();
+        // 这是一个纯1的有限域多项式
         GFPoly t = qrCodeGField.getOne();
 
         // Run Euclidean algorithm until r's degree is less than R/2
@@ -168,7 +175,9 @@ public class RSEncoder {
             // 辗转相除之后 得到的结果
             r = rLastLast;
             GFPoly q = qrCodeGField.getZero();
+            // 分母的首位指数度
             int denominatorLeadingTerm = rLast.getCoefficient(rLast.getDegree());
+            // 分母首位指数的倒数
             int dltInverse = qrCodeGField.inverse(denominatorLeadingTerm);
             while (r.getDegree() >= rLast.getDegree() && !r.isZero()) {
                 int degreeDiff = r.getDegree() - rLast.getDegree();

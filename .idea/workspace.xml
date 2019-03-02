@@ -4,6 +4,7 @@
     <list default="true" id="c6bcf1ac-286b-4e75-9dfe-136f4f1008a4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/GFPoly.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/GFPoly.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/RSEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/RSEncoder.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -24,7 +25,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/BCHEncoder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="610">
+            <state relative-caret-position="1725">
               <caret line="84" column="55" selection-start-line="84" selection-start-column="55" selection-end-line="84" selection-end-column="55" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -45,11 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/RSEncoder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
-              <caret line="245" column="33" lean-forward="true" selection-start-line="245" selection-start-column="33" selection-end-line="245" selection-end-column="33" />
+            <state relative-caret-position="410">
+              <caret line="104" column="14" selection-start-line="104" selection-start-column="14" selection-end-line="104" selection-end-column="14" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -57,15 +58,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/GFPoly.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="278" column="78" lean-forward="true" selection-start-line="278" selection-start-column="78" selection-end-line="278" selection-end-column="78" />
-              <folding>
-                <element signature="e#3184#3185#0" expanded="true" />
-                <element signature="e#3247#3248#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="184">
+              <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -73,11 +70,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/QRCodeGField.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="153" column="6" selection-start-line="153" selection-start-column="6" selection-end-line="153" selection-end-column="6" />
+            <state relative-caret-position="208">
+              <caret line="103" column="9" selection-start-line="103" selection-start-column="9" selection-end-line="103" selection-end-column="9" />
               <folding>
                 <element signature="e#1152#1153#0" expanded="true" />
                 <element signature="e#1172#1173#0" expanded="true" />
+                <element signature="e#2319#2320#0" expanded="true" />
+                <element signature="e#2340#2341#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -96,7 +95,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getCountLength</find>
       <find>appendModeInfo</find>
       <find>finalBits</find>
       <find>preI</find>
@@ -126,6 +124,7 @@
       <find>FIELD_SIZE</find>
       <find>coefficients</find>
       <find>expTable</find>
+      <find>zero</find>
     </findStrings>
     <dirStrings>
       <dir>D:\IdeaProjects\DoScan</dir>
@@ -185,9 +184,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/google/zxing/common/reedsolomon/ReedSolomonDecoder.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/BCHEncoder.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/Demo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/RSEncoder.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/QRCodeGField.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/GFPoly.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/RSEncoder.java" />
       </list>
     </option>
   </component>
@@ -215,7 +214,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -287,6 +285,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -382,13 +381,6 @@
       <option name="presentableId" value="Default" />
       <updated>1544408779865</updated>
       <workItem from="1548072895232" duration="3047000" />
-    </task>
-    <task id="LOCAL-00027" summary="下一步是选择数据遮罩层得算法实现">
-      <created>1546852016890</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1546852016890</updated>
     </task>
     <task id="LOCAL-00028" summary="完成了定位符的放置，需要引入图形库进行验证">
       <created>1546914288771</created>
@@ -726,7 +718,14 @@
       <option name="project" value="LOCAL" />
       <updated>1551077148923</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="多项式除法理解部分">
+      <created>1551177818309</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1551177818310</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -736,7 +735,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.30093834" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.30495977" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -769,7 +768,7 @@
       <window_info anchor="right" id="Database" order="10" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.30093834" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.30495977" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -777,8 +776,8 @@
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.35835695" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49932975" visible="true" weight="0.36685553" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.35835695" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932975" weight="0.36685553" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39660057" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -816,7 +815,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="字节模式输入 实现中" />
     <MESSAGE value="字节模式 需要实现ECI功能，处理中" />
     <MESSAGE value="完成ECI 模式兼容。  多了zxing 会多八个比特的数据，研究中" />
     <MESSAGE value="如果展示区域 因为ECI 的原因导致没有对齐，需要特殊处理，进行中" />
@@ -841,7 +839,8 @@
     <MESSAGE value="log exp 过程拆分" />
     <MESSAGE value="新学会了欧几里得算法，实现最大公约数计算" />
     <MESSAGE value="分解解码步骤 其实其解码步骤也是按照iso 文档步骤来的" />
-    <option name="LAST_COMMIT_MESSAGE" value="分解解码步骤 其实其解码步骤也是按照iso 文档步骤来的" />
+    <MESSAGE value="多项式除法理解部分" />
+    <option name="LAST_COMMIT_MESSAGE" value="多项式除法理解部分" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1322,6 +1321,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/BCHEncoder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1725">
+          <caret line="84" column="55" selection-start-line="84" selection-start-column="55" selection-end-line="84" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/Demo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="460">
@@ -1332,44 +1341,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/BCHEncoder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="84" column="55" selection-start-line="84" selection-start-column="55" selection-end-line="84" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/QRCodeGField.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="153" column="6" selection-start-line="153" selection-start-column="6" selection-end-line="153" selection-end-column="6" />
+        <state relative-caret-position="208">
+          <caret line="103" column="9" selection-start-line="103" selection-start-column="9" selection-end-line="103" selection-end-column="9" />
           <folding>
             <element signature="e#1152#1153#0" expanded="true" />
             <element signature="e#1172#1173#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/RSEncoder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="245" column="33" lean-forward="true" selection-start-line="245" selection-start-column="33" selection-end-line="245" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2319#2320#0" expanded="true" />
+            <element signature="e#2340#2341#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/GFPoly.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="278" column="78" lean-forward="true" selection-start-line="278" selection-start-column="78" selection-end-line="278" selection-end-column="78" />
+        <state relative-caret-position="184">
+          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/RSEncoder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="104" column="14" selection-start-line="104" selection-start-column="14" selection-end-line="104" selection-end-column="14" />
           <folding>
-            <element signature="e#3184#3185#0" expanded="true" />
-            <element signature="e#3247#3248#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
