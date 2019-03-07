@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c6bcf1ac-286b-4e75-9dfe-136f4f1008a4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/GateKeeper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/RSEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/RSEncoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/Demo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/GateKeeper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/GateKeeper.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -38,8 +36,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/GateKeeper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="84" column="24" selection-start-line="84" selection-start-column="24" selection-end-line="84" selection-end-column="24" />
+            <state relative-caret-position="408">
+              <caret line="91" column="9" lean-forward="true" selection-start-line="91" selection-start-column="9" selection-end-line="91" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -419,13 +417,6 @@
       <updated>1544408779865</updated>
       <workItem from="1548072895232" duration="3047000" />
     </task>
-    <task id="LOCAL-00030" summary="成功绘制完成三个定位符号">
-      <created>1546918789744</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1546918789744</updated>
-    </task>
     <task id="LOCAL-00031" summary="分割线绘制完毕">
       <created>1546922499022</created>
       <option name="number" value="00031" />
@@ -762,7 +753,14 @@
       <option name="project" value="LOCAL" />
       <updated>1551946304989</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="新的api 算法包裹基本完成">
+      <created>1551955214134</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1551955214134</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -781,7 +779,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.35835695" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49932975" visible="true" weight="0.36685553" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932975" weight="0.36685553" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39660057" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -852,7 +850,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="如果展示区域 因为ECI 的原因导致没有对齐，需要特殊处理，进行中" />
     <MESSAGE value="动画窗体 开发进行中" />
     <MESSAGE value="动画界面绘制进行中" />
     <MESSAGE value="绘制动画进行中" />
@@ -877,7 +874,8 @@
     <MESSAGE value="多项式除法理解部分" />
     <MESSAGE value="新增欧几里得部分  注释" />
     <MESSAGE value="基本捋清楚了 纠错算法过程" />
-    <option name="LAST_COMMIT_MESSAGE" value="基本捋清楚了 纠错算法过程" />
+    <MESSAGE value="新的api 算法包裹基本完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="新的api 算法包裹基本完成" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -932,7 +930,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/GateKeeper.java</url>
-          <line>99</line>
+          <line>107</line>
           <properties />
           <option name="timeStamp" value="17" />
         </line-breakpoint>
@@ -1403,8 +1401,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/GateKeeper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="84" column="24" selection-start-line="84" selection-start-column="24" selection-end-line="84" selection-end-column="24" />
+        <state relative-caret-position="408">
+          <caret line="91" column="9" lean-forward="true" selection-start-line="91" selection-start-column="9" selection-end-line="91" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

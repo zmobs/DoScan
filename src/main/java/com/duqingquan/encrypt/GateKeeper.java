@@ -75,12 +75,20 @@ public class GateKeeper {
         Log.d("rsBytes  ---  " + Arrays.toString(rsBytes));
 
         messageBytes[0] = startFlag;
+        long currentTime = System.currentTimeMillis();
+        int leftTimeNum = (int) (currentTime % sourceLength);
+        int maxModifyNum = sourceLength / 10;
+        int modifyedNum = 0;
         for(int i = 1; i <= sourceLength;i++){
             messageBytes[2 * i - 1] = sourceInfo[i - 1];
             messageBytes[2 * i] = rsBytes[i - 1];
             // 用配置的key进行按位异或操作
             messageBytes[2 * i - 1] ^= key;
             messageBytes[2 * i] ^= key;
+
+            if(modifyedNum < maxModifyNum && (i % leftTimeNum == 0)){
+                messageBytes[i] = -128;
+            }
         }
         // 随机修改2位数字 todo
         messageBytes[messageLength - 1] = endFlag;
