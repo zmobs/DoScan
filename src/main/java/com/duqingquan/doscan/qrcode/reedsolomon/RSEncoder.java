@@ -3,7 +3,6 @@ package com.duqingquan.doscan.qrcode.reedsolomon;
 import com.duqingquan.doscan.qrcode.util.Log;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
