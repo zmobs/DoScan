@@ -102,15 +102,17 @@ public class RSEncoder {
     }
 
     /**
-     * 寻找错误的位置
+     * 寻找错误的偏移量
      * @param errorEvaluator
      * @param errorLocations
      * @return
      */
     private int[] findErrorMagnitudes(GFPoly errorEvaluator, int[] errorLocations) {
         // This is directly applying Forney's Formula
+        // 直接使用福尼公式
         int s = errorLocations.length;
         int[] result = new int[s];
+        // 遍历所有的出错位置
         for (int i = 0; i < s; i++) {
             int xiInverse = qrCodeGField.inverse(errorLocations[i]);
             int denominator = 1;
@@ -118,13 +120,17 @@ public class RSEncoder {
                 if (i != j) {
                     //denominator = field.multiply(denominator,
                     //    QRCodeGField.addOrSubtract(1, field.multiply(errorLocations[j], xiInverse)));
+                    // 上面的代码是应该生效的，但是因为苹果和linux系统上 Hotspot虚拟机存在一些Bug，所有无法使用。
+                    // 下面是一段看上去不是很优雅的的替代方案
                     // Above should work but fails on some Apple and Linux JDKs due to a Hotspot bug.
                     // Below is a funny-looking workaround from Steven Parkes
                     int term = qrCodeGField.multiply(errorLocations[j], xiInverse);
                     int termPlus1 = (term & 0x1) == 0 ? term | 1 : term & ~1;
+                    // 计算得到分母的数值
                     denominator = qrCodeGField.multiply(denominator, termPlus1);
                 }
             }
+            // 计算得到错误位置的偏移量
             result[i] = qrCodeGField.multiply(errorEvaluator.evaluateAt(xiInverse),
                     qrCodeGField.inverse(denominator));
             if (qrCodeGField.GENERATOR_BASE != 0) {
@@ -181,6 +187,7 @@ public class RSEncoder {
             int dltInverse = qrCodeGField.inverse(denominatorLeadingTerm);
             while (r.getDegree() >= rLast.getDegree() && !r.isZero()) {
                 int degreeDiff = r.getDegree() - rLast.getDegree();
+                // 计算应该要乘以的指数之间的差值
                 int scale = qrCodeGField.multiply(r.getCoefficient(r.getDegree()), dltInverse);
                 q = q.addOrSubtract(qrCodeGField.buildMonomial(degreeDiff, scale));
                 r = r.addOrSubtract(rLast.multiplyByMonomial(degreeDiff, scale));
@@ -198,21 +205,32 @@ public class RSEncoder {
             Log.bomb("sigmaTilde(0) was zero");
         }
 
+        // 计算得到Σ和Ω
         int inverse = qrCodeGField.inverse(sigmaTildeAtZero);
         GFPoly sigma = t.multiply(inverse);
         GFPoly omega = r.multiply(inverse);
         return new GFPoly[]{sigma, omega};
     }
 
+    /**
+     * 找到出错位置
+     * @param errorLocator
+     * @return
+     */
     private int[] findErrorLocations(GFPoly errorLocator) {
         // This is a direct application of Chien's search
+        // 使用了一种叫做 Chien's search 的算法
+        // 获取错误因数的数量
         int numErrors = errorLocator.getDegree();
-        if (numErrors == 1) { // shortcut
+        if (numErrors == 1) {
+            // shortcut
+            // 只有一个出错的情况，捷径路线
             return new int[] { errorLocator.getCoefficient(1) };
         }
         int[] result = new int[numErrors];
         int e = 0;
         for (int i = 1; i < qrCodeGField.getSize() && e < numErrors; i++) {
+            // 卧槽，最笨的方法，遍历整个有限域，得到出错位置？？？！！！
             if (errorLocator.evaluateAt(i) == 0) {
                 result[e] = qrCodeGField.inverse(i);
                 e++;
