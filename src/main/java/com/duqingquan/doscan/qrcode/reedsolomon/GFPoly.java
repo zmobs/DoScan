@@ -282,7 +282,6 @@ public final class GFPoly {
 
     // 获取分母的最高项
     int denominatorLeadingTerm = other.getCoefficient(other.getDegree());
-    Log.d("denominatorLeadingTerm  ---  " + denominatorLeadingTerm);
     int inverseDenominatorLeadingTerm = field.inverse(denominatorLeadingTerm);
 
     // 终止循环的两个条件， 1是分子小于分母，得到了余数  2是分子为0
