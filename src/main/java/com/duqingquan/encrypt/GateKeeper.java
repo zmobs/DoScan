@@ -1,26 +1,30 @@
 package com.duqingquan.encrypt;
 
-import com.duqingquan.doscan.qrcode.exception.HumingException;
 import com.duqingquan.doscan.qrcode.reedsolomon.RSEncoder;
 import com.duqingquan.doscan.qrcode.util.Log;
+import com.duqingquan.doscan.qrcode.util.StringUtil;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
+import java.util.Base64;
+
 
 public class GateKeeper {
 
     /******************  单例实现区域  *********************/
 
     private static volatile GateKeeper instance;
+    private final int MAX_SOURCE_LENGTH = 1024;
 
-    private GateKeeper(){
+    private GateKeeper() {
 
     }
 
-    public static GateKeeper getInstance(){
+    public static GateKeeper getInstance() {
 
-        if(instance == null){
-            synchronized (GateKeeper.class){
-                if(instance == null){
+        if (instance == null) {
+            synchronized (GateKeeper.class) {
+                if (instance == null) {
                     instance = new GateKeeper();
                 }
             }
@@ -36,36 +40,52 @@ public class GateKeeper {
     private final byte startFlag = 69;
     private final byte endFlag = -110;
     private byte[] finalInfo;
-    public GateKeeper source(String content){
-        this.sourceInfo = content.getBytes();
+
+    public GateKeeper source(String content) {
+        // 判断source
+        if (StringUtil.isEmpty(content)) {
+            Log.bomb("不能加密空字符内容");
+        }
+        int length = content.length();
+        if (length > MAX_SOURCE_LENGTH) {
+            Log.bomb("过多的加密内容");
+        }
+        try {
+            this.sourceInfo = content.getBytes("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            Log.bomb("不支持字符集合");
+        }
         this.sourceStr = content;
         return this;
     }
 
 
-    public GateKeeper finalInfo(byte[] finalInfo){
+    public GateKeeper finalInfo(byte[] finalInfo) {
         this.finalInfo = finalInfo;
         return this;
     }
 
-    public GateKeeper key(int keyVal){
+    public GateKeeper key(int keyVal) {
         this.key = keyVal;
         return this;
     }
 
-    public byte[] encryptInfo(){
+    public byte[] encryptInfo() {
 
         // 后面拼接
         int sourceLength = sourceInfo.length;
-        int[] rsInts = RSEncoder.getInstance().getRSCode(sourceInfo,sourceLength);
+        int[] rsInts = RSEncoder.getInstance().getRSCode(sourceInfo, sourceLength);
+
         int rsLength = rsInts.length;
 
         byte[] rsBytes = new byte[rsLength];
-        for(int i = 0; i <rsLength;i++){
-            rsBytes[i] = (byte) (rsInts[i] & 0xFF);
+        for (int i = 0; i < rsLength; i++) {
+            rsBytes[i] = (byte) (rsInts[i]);
         }
+
         // 将两个数组穿插安防
-        if(sourceLength != rsLength){
+        if (sourceLength != rsLength) {
             Log.bomb("算法出错，两端数据不一致");
         }
 
@@ -75,46 +95,68 @@ public class GateKeeper {
         messageBytes[0] = startFlag;
         long currentTime = System.currentTimeMillis();
         int leftTimeNum = (int) (currentTime % sourceLength);
+        if (leftTimeNum == 0) {
+            leftTimeNum = 1;
+        }
         int maxModifyNum = sourceLength / 10;
         int modifyedNum = 0;
 
-        for(int i = 1; i <= sourceLength;i++){
-            messageBytes[2 * i - 1] = sourceInfo[i - 1];
-            messageBytes[2 * i] = rsBytes[i - 1];
-            // 用配置的key进行按位异或操作
-            messageBytes[2 * i - 1] ^= key;
-            messageBytes[2 * i] ^= key;
+        for (int i = 1; i <= sourceLength; i++) {
 
-            if(modifyedNum < maxModifyNum && (i % leftTimeNum == 0)){
-                messageBytes[i] = -128;
-                modifyedNum += 1;
+            int firstByteIndex = 2 * i - 1;
+            int secondByteIndex = 2 * i;
+
+            messageBytes[firstByteIndex] = sourceInfo[i - 1];
+            messageBytes[secondByteIndex] = rsBytes[i - 1];
+            // 用配置的key进行按位异或操作
+            messageBytes[firstByteIndex] ^= key;
+            messageBytes[secondByteIndex] ^= key;
+
+
+            if (modifyedNum < maxModifyNum) {
+                if ((firstByteIndex % leftTimeNum == 0)) {
+                    messageBytes[firstByteIndex] = 0;
+                    modifyedNum += 1;
+                    Log.d("firstByteIndex  ---  " + firstByteIndex);
+                }
+                if ((secondByteIndex % leftTimeNum == 0)) {
+                    messageBytes[secondByteIndex] = 0;
+                    modifyedNum += 1;
+                    Log.d("secondByteIndex  ---  " + secondByteIndex);
+                }
             }
         }
 
+        Log.d("maxModifyNum  ---  " + maxModifyNum);
+        Log.d("modifyedNum  ---  " + modifyedNum);
+
         // 随机修改2位数字
         messageBytes[messageLength - 1] = endFlag;
-
+        messageBytes = Base64.getEncoder().encode(messageBytes);
         return messageBytes;
 
     }
 
     /**
      * 解密原始数据
+     *
      * @return
      */
     public String decryptInfo() {
+        // 首先对finalinfo base64之后的数据进行解密
+        finalInfo = Base64.getDecoder().decode(finalInfo);
 
         int finalLength = finalInfo.length;
         byte firstByte = finalInfo[0];
         byte lastByte = finalInfo[finalLength - 1];
-        if(firstByte != startFlag || lastByte != endFlag || (finalLength % 2 != 0)){
+        if (firstByte != startFlag || lastByte != endFlag || (finalLength % 2 != 0)) {
             //Log.huming("非法消息");
             return "";
         }
         int sourceLength = finalLength / 2 - 1;
         byte[] sourceBytes = new byte[sourceLength];
         byte[] rsBytes = new byte[sourceLength];
-        for(int i = 1; i <= sourceLength;i++){
+        for (int i = 1; i <= sourceLength; i++) {
             sourceBytes[i - 1] = finalInfo[2 * i - 1];
             rsBytes[i - 1] = finalInfo[2 * i];
             // 用配置的key进行按位异或操作
@@ -122,25 +164,33 @@ public class GateKeeper {
             rsBytes[i - 1] ^= key;
         }
 
+
         byte[] rightOrderBytes = new byte[finalLength - 2];
-        System.arraycopy(sourceBytes,0,rightOrderBytes,0,sourceLength);
-        System.arraycopy(rsBytes,0,rightOrderBytes,sourceLength,sourceLength);
+        System.arraycopy(sourceBytes, 0, rightOrderBytes, 0, sourceLength);
+        System.arraycopy(rsBytes, 0, rightOrderBytes, sourceLength, sourceLength);
+
         int[] sourceInt;
         try {
-            sourceInt = RSEncoder.getInstance().decodeRSCode(rightOrderBytes,sourceLength);
-        }catch (Exception e){
+            sourceInt = RSEncoder.getInstance().decodeRSCode(rightOrderBytes, sourceLength);
+        } catch (Exception e) {
             return "";
         }
-
         byte[] sourceStrBytes = new byte[sourceLength];
-        for(int i = 0; i < sourceLength; i++){
-            sourceStrBytes[i] = (byte) (sourceInt[i] & 0xFF);
+        for (int i = 0; i < sourceLength; i++) {
+            sourceStrBytes[i] = (byte) (sourceInt[i]);
         }
 
-        return new String(sourceStrBytes);
+        try {
+            String finalStr = new String(sourceStrBytes, "UTF-8");
+            return finalStr;
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return "";
+
 
     }
-
 
 
 }

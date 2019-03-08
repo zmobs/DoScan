@@ -4,6 +4,7 @@ import com.duqingquan.doscan.qrcode.exception.HumingException;
 import com.duqingquan.doscan.qrcode.util.Log;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -57,13 +58,14 @@ public class RSEncoder {
      * @param dataLength
      * @return
      */
-    public int[] decodeRSCode(byte[] data,int dataLength) throws HumingException {
+    public int[] decodeRSCode(byte[] data,int dataLength){
 
         // 先将字节数据展开为int,使用的位运算，效率高
         int[] codewordsInts = new int[data.length];
         for (int i = 0; i < data.length; i++) {
             codewordsInts[i] = data[i] & 0xFF;
         }
+        Log.d("codewordsInts  ---  "  + Arrays.toString(codewordsInts));
 
         int errLength = data.length - dataLength;
         // 对纠错码占据的位置，进行系数运算和比较
@@ -93,10 +95,11 @@ public class RSEncoder {
         for (int i = 0; i < errorLocations.length; i++) {
             int position = codewordsInts.length - 1 - qrCodeGField.log(errorLocations[i]);
             if (position < 0) {
-                Log.huming("Bad error location");
+                Log.bomb("Bad error location");
             }
             codewordsInts[position] = qrCodeGField.addOrSubtract(codewordsInts[position], errorMagnitudes[i]);
         }
+        Log.d("codewordsInts2222  ---  "  + Arrays.toString(codewordsInts));
         // 返回结果
         return codewordsInts;
     }
@@ -147,7 +150,7 @@ public class RSEncoder {
      * @param R 期望结果数值的长度
      * @return
      */
-    private GFPoly[] runEuclideanAlgorithm(GFPoly a, GFPoly b, int R) throws HumingException {
+    private GFPoly[] runEuclideanAlgorithm(GFPoly a, GFPoly b, int R){
         //https://www.jianshu.com/p/7876eb2dff89
         // 如果A的度数，大于b的度数， 进行换位操作
         if (a.getDegree() < b.getDegree()) {
@@ -176,7 +179,7 @@ public class RSEncoder {
             if (rLast.isZero()) {
                 // Oops, Euclidean algorithm already terminated?
                 // 不应该出现这种情况的，因为算法实行过程中余数不能为0
-                Log.huming("r_{i-1} was zero");
+                Log.bomb("r_{i-1} was zero");
             }
             // 辗转相除之后 得到的结果
             r = rLastLast;
@@ -196,13 +199,13 @@ public class RSEncoder {
             t = q.multiply(tLast).addOrSubtract(tLastLast);
 
             if (r.getDegree() >= rLast.getDegree()) {
-                Log.huming("Division algorithm failed to reduce polynomial?");
+                Log.bomb("Division algorithm failed to reduce polynomial?");
             }
         }
 
         int sigmaTildeAtZero = t.getCoefficient(0);
         if (sigmaTildeAtZero == 0) {
-            Log.huming("sigmaTilde(0) was zero");
+            Log.bomb("sigmaTilde(0) was zero");
         }
 
         // 计算得到Σ和Ω
