@@ -1,5 +1,6 @@
 package com.duqingquan.encrypt;
 
+import com.duqingquan.doscan.qrcode.exception.HumingException;
 import com.duqingquan.doscan.qrcode.reedsolomon.RSEncoder;
 import com.duqingquan.doscan.qrcode.util.Log;
 
@@ -101,13 +102,14 @@ public class GateKeeper {
      * 解密原始数据
      * @return
      */
-    public String decryptInfo(){
+    public String decryptInfo() {
 
         int finalLength = finalInfo.length;
         byte firstByte = finalInfo[0];
         byte lastByte = finalInfo[finalLength - 1];
         if(firstByte != startFlag || lastByte != endFlag || (finalLength % 2 != 0)){
-            Log.bomb("非法消息");
+            //Log.huming("非法消息");
+            return "";
         }
         int sourceLength = finalLength / 2 - 1;
         byte[] sourceBytes = new byte[sourceLength];
@@ -123,13 +125,17 @@ public class GateKeeper {
         byte[] rightOrderBytes = new byte[finalLength - 2];
         System.arraycopy(sourceBytes,0,rightOrderBytes,0,sourceLength);
         System.arraycopy(rsBytes,0,rightOrderBytes,sourceLength,sourceLength);
-        int[] sourceInt = RSEncoder.getInstance().decodeRSCode(rightOrderBytes,sourceLength);
+        int[] sourceInt;
+        try {
+            sourceInt = RSEncoder.getInstance().decodeRSCode(rightOrderBytes,sourceLength);
+        }catch (Exception e){
+            return "";
+        }
 
         byte[] sourceStrBytes = new byte[sourceLength];
         for(int i = 0; i < sourceLength; i++){
             sourceStrBytes[i] = (byte) (sourceInt[i] & 0xFF);
         }
-
 
         return new String(sourceStrBytes);
 

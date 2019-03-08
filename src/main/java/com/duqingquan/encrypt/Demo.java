@@ -11,7 +11,7 @@ public class Demo {
 
 
         byte[] enctryptMessage = GateKeeper.getInstance()
-                .source("这是一条原始信息333")
+                .source("85ACF0SDF0F0AA")
                 .key(336)
                 .encryptInfo();
         String encryptMessage = new String(enctryptMessage);
