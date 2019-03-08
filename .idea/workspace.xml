@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c6bcf1ac-286b-4e75-9dfe-136f4f1008a4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/RSEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/RSEncoder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/RandomUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/Demo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/GateKeeper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/GateKeeper.java" afterDir="false" />
     </list>
@@ -32,11 +31,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/GateKeeper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="128" selection-start-line="128" selection-end-line="128" />
+            <state relative-caret-position="143">
+              <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -45,14 +44,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/util/Log.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/RandomUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="31" column="23" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
-              <folding>
-                <element signature="e#637#638#0" expanded="true" />
-                <element signature="e#682#683#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="46">
+              <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -79,14 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/Demo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="253">
+              <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -240,8 +232,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/AbsEncryptEncoder.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/RSEncoder.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/BCHEncoder.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/GateKeeper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/Demo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/GateKeeper.java" />
       </list>
     </option>
   </component>
@@ -446,13 +438,6 @@
       <option name="presentableId" value="Default" />
       <updated>1544408779865</updated>
       <workItem from="1548072895232" duration="3047000" />
-    </task>
-    <task id="LOCAL-00034" summary="准备进行遮罩层算法开发">
-      <created>1547117144771</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1547117144771</updated>
     </task>
     <task id="LOCAL-00035" summary="明确方向，需要对计算和置放15bit长度的格式信息">
       <created>1547132599366</created>
@@ -790,7 +775,14 @@
       <option name="project" value="LOCAL" />
       <updated>1552024911896</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="大量数据存在 文本纠错失败的情况。 需要注意和处理">
+      <created>1552042864628</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1552042864629</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -798,8 +790,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29021448" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29021448" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -808,7 +801,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.35835695" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49932975" visible="true" weight="0.36685553" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932975" visible="true" weight="0.2776204" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39660057" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -879,7 +872,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="绘制动画基本完成" />
     <MESSAGE value="绘制过程进一步完善中，接下来需要添加的 纠错码算法部分" />
     <MESSAGE value="基本绘制过程完成" />
     <MESSAGE value="新增日志记录功能进行中" />
@@ -904,7 +896,8 @@
     <MESSAGE value="简单随机  实现加密算法" />
     <MESSAGE value="加解密功能实现" />
     <MESSAGE value="加解密算法功能实现" />
-    <option name="LAST_COMMIT_MESSAGE" value="加解密算法功能实现" />
+    <MESSAGE value="大量数据存在 文本纠错失败的情况。 需要注意和处理" />
+    <option name="LAST_COMMIT_MESSAGE" value="大量数据存在 文本纠错失败的情况。 需要注意和处理" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -959,7 +952,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/GateKeeper.java</url>
-          <line>148</line>
+          <line>146</line>
           <properties />
           <option name="timeStamp" value="17" />
         </line-breakpoint>
@@ -1011,7 +1004,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_192/src.zip!/java/lang/Thread.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/util/SystemUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
@@ -1407,20 +1399,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/GateKeeper.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/Demo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="128" selection-start-line="128" selection-end-line="128" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="253">
+          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/Demo.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/RandomUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="46">
+          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/GateKeeper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

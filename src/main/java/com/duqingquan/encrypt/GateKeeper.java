@@ -7,6 +7,8 @@ import com.duqingquan.doscan.qrcode.util.StringUtil;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.Base64;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 
 public class GateKeeper {
@@ -52,6 +54,7 @@ public class GateKeeper {
         }
         try {
             this.sourceInfo = content.getBytes("UTF-8");
+            Log.d("sourceInfo   ---  " + sourceInfo.length);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
             Log.bomb("不支持字符集合");
@@ -93,13 +96,12 @@ public class GateKeeper {
         byte[] messageBytes = new byte[messageLength];
 
         messageBytes[0] = startFlag;
-        long currentTime = System.currentTimeMillis();
-        int leftTimeNum = (int) (currentTime % sourceLength);
-        if (leftTimeNum == 0) {
-            leftTimeNum = 1;
-        }
-        int maxModifyNum = sourceLength / 10;
+
+        int maxModifyNum = sourceLength / 2;
+        int willModifyNum = ThreadLocalRandom.current().nextInt(maxModifyNum);
         int modifyedNum = 0;
+
+//        int denominatorNum =
 
         for (int i = 1; i <= sourceLength; i++) {
 
@@ -113,17 +115,13 @@ public class GateKeeper {
             messageBytes[secondByteIndex] ^= key;
 
 
-            if (modifyedNum < maxModifyNum) {
-                if ((firstByteIndex % leftTimeNum == 0)) {
-                    messageBytes[firstByteIndex] = 0;
-                    modifyedNum += 1;
-                    Log.d("firstByteIndex  ---  " + firstByteIndex);
-                }
-                if ((secondByteIndex % leftTimeNum == 0)) {
-                    messageBytes[secondByteIndex] = 0;
-                    modifyedNum += 1;
-                    Log.d("secondByteIndex  ---  " + secondByteIndex);
-                }
+            if (modifyedNum < willModifyNum) {
+                messageBytes[firstByteIndex] = (byte) ThreadLocalRandom.current().nextInt(256);
+                modifyedNum += 1;
+            }
+            if (modifyedNum < willModifyNum) {
+                messageBytes[secondByteIndex] = (byte) ThreadLocalRandom.current().nextInt(256);
+                modifyedNum += 1;
             }
         }
 
