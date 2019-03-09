@@ -65,7 +65,6 @@ public class RSEncoder {
         for (int i = 0; i < data.length; i++) {
             codewordsInts[i] = data[i] & 0xFF;
         }
-        Log.d("codewordsInts  ---  "  + Arrays.toString(codewordsInts));
 
         int errLength = data.length - dataLength;
         // 对纠错码占据的位置，进行系数运算和比较
@@ -99,7 +98,6 @@ public class RSEncoder {
             }
             codewordsInts[position] = qrCodeGField.addOrSubtract(codewordsInts[position], errorMagnitudes[i]);
         }
-        Log.d("codewordsInts2222  ---  "  + Arrays.toString(codewordsInts));
         // 返回结果
         return codewordsInts;
     }

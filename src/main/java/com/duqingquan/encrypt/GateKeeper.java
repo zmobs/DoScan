@@ -54,7 +54,6 @@ public class GateKeeper {
         }
         try {
             this.sourceInfo = content.getBytes("UTF-8");
-            Log.d("sourceInfo   ---  " + sourceInfo.length);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
             Log.bomb("不支持字符集合");
@@ -74,11 +73,11 @@ public class GateKeeper {
         return this;
     }
 
-    public byte[] encryptInfo() {
+    private byte[] doUnitEncrypt(byte[] src){
 
         // 后面拼接
-        int sourceLength = sourceInfo.length;
-        int[] rsInts = RSEncoder.getInstance().getRSCode(sourceInfo, sourceLength);
+        int sourceLength = src.length;
+        int[] rsInts = RSEncoder.getInstance().getRSCode(src, sourceLength);
 
         int rsLength = rsInts.length;
 
@@ -99,9 +98,6 @@ public class GateKeeper {
 
         int maxModifyNum = sourceLength / 2;
         int willModifyNum = ThreadLocalRandom.current().nextInt(maxModifyNum);
-        int modifyedNum = 0;
-
-//        int denominatorNum =
 
         for (int i = 1; i <= sourceLength; i++) {
 
@@ -121,41 +117,81 @@ public class GateKeeper {
             int byteIndex = ThreadLocalRandom.current().nextInt(messageLength);
             int byteValue = ThreadLocalRandom.current().nextInt(256);
             messageBytes[byteIndex] = (byte) byteValue;
-            modifyedNum += 1;
         }
-
-        Log.d("maxModifyNum  ---  " + maxModifyNum);
-        Log.d("modifyedNum  ---  " + modifyedNum);
 
         // 随机修改2位数字
         messageBytes[messageLength - 1] = endFlag;
-        messageBytes = Base64.getEncoder().encode(messageBytes);
+//        messageBytes = Base64.getEncoder().encode(messageBytes);
+
         return messageBytes;
+    }
+
+
+    public byte[] encryptInfo() {
+        final int perUnitLen = 128;
+
+        int sourceLength = sourceInfo.length;
+        int encryptTime = sourceLength / perUnitLen;
+        int leftNum = sourceLength % perUnitLen;
+        int leftCodeNum = leftNum;
+        if(leftNum > 0){
+            leftCodeNum = leftNum * 2 + 2;
+        }
+        Log.d("sourceLength  --- " + sourceLength);
+        int messageSize = encryptTime * (perUnitLen * 2 + 2) + (leftCodeNum);
+        Log.d("messageSize  --- " + messageSize);
+        byte[] messgaeByte = new byte[messageSize];
+        int offset = 0;
+        int sourceOffset = 0;
+        for(int i = 0; i <= encryptTime;i++){
+
+            byte[] tmpByte;
+            if(i == encryptTime){
+                if(leftNum == 0){
+                    continue;
+                }
+                tmpByte = new byte[leftNum];
+                Log.d("i * perUnitLen  --- " + i * perUnitLen);
+                Log.d("encryptTime  --- " + encryptTime);
+                Log.d("leftNum  --- " + leftNum);
+                Log.d("sourceLength  --- " + sourceLength);
+                System.arraycopy(sourceInfo,sourceOffset,tmpByte,0,leftNum);
+                sourceOffset += leftNum;
+            }else{
+                tmpByte = new byte[perUnitLen];
+                System.arraycopy(sourceInfo,sourceOffset,tmpByte,0,perUnitLen);
+                sourceOffset += perUnitLen;
+            }
+
+            byte[] tempMessage = doUnitEncrypt(tmpByte);
+            int tempMessageLen = tempMessage.length;
+
+            System.arraycopy(tempMessage,0,messgaeByte,offset,tempMessageLen);
+            offset += tempMessageLen;
+        }
+
+        messgaeByte = Base64.getEncoder().encode(messgaeByte);
+        return messgaeByte;
+
 
     }
 
-    /**
-     * 解密原始数据
-     *
-     * @return
-     */
-    public String decryptInfo() {
-        // 首先对finalinfo base64之后的数据进行解密
-        finalInfo = Base64.getDecoder().decode(finalInfo);
 
-        int finalLength = finalInfo.length;
-        byte firstByte = finalInfo[0];
-        byte lastByte = finalInfo[finalLength - 1];
+    private String doUnitDecrypt(byte[] info){
+
+        int finalLength = info.length;
+        byte firstByte = info[0];
+        byte lastByte = info[finalLength - 1];
         if (firstByte != startFlag || lastByte != endFlag || (finalLength % 2 != 0)) {
-            //Log.huming("非法消息");
             return "";
         }
+
         int sourceLength = finalLength / 2 - 1;
         byte[] sourceBytes = new byte[sourceLength];
         byte[] rsBytes = new byte[sourceLength];
         for (int i = 1; i <= sourceLength; i++) {
-            sourceBytes[i - 1] = finalInfo[2 * i - 1];
-            rsBytes[i - 1] = finalInfo[2 * i];
+            sourceBytes[i - 1] = info[2 * i - 1];
+            rsBytes[i - 1] = info[2 * i];
             // 用配置的key进行按位异或操作
             sourceBytes[i - 1] ^= key;
             rsBytes[i - 1] ^= key;
@@ -185,7 +221,58 @@ public class GateKeeper {
         }
 
         return "";
+    }
 
+    /**
+     * 解密原始数据
+     *
+     * @return
+     */
+    public String decryptInfo() {
+        // 首先对finalinfo base64之后的数据进行解密
+        finalInfo = Base64.getDecoder().decode(finalInfo);
+        final int perUnitLen = 258;
+        int finalInfoLength = finalInfo.length;
+
+
+        StringBuilder stringBuilder = new StringBuilder();
+        int offset = 0;
+        int leftByteNum = finalInfoLength - offset;
+
+        while(leftByteNum > 0){
+
+            byte[] sourceUnit;
+            String messageStr;
+            leftByteNum = finalInfoLength - offset;
+
+
+            if(leftByteNum < perUnitLen){
+
+                Log.d("offset   --- " + offset);
+//                Log.d("finalInfoLength   --- " + finalInfoLength);
+//                Log.d("perUnitLen   --- " + perUnitLen);
+//                Log.d("finalInfoLength   --- " + finalInfoLength);
+                Log.d("leftByteNum   --- " + leftByteNum);
+                if(leftByteNum == 0){
+                    continue;
+                }
+                sourceUnit = new byte[leftByteNum];
+                System.arraycopy(finalInfo,offset,sourceUnit,0,leftByteNum);
+                offset += leftByteNum;
+                messageStr = doUnitDecrypt(sourceUnit);
+            }else{
+
+                sourceUnit = new byte[perUnitLen];
+
+                System.arraycopy(finalInfo,offset,sourceUnit,0,perUnitLen);
+                offset += perUnitLen;
+                messageStr = doUnitDecrypt(sourceUnit);
+            }
+
+            stringBuilder.append(messageStr);
+        }
+
+        return stringBuilder.toString();
 
     }
 
