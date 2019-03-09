@@ -114,15 +114,14 @@ public class GateKeeper {
             messageBytes[firstByteIndex] ^= key;
             messageBytes[secondByteIndex] ^= key;
 
+        }
 
-            if (modifyedNum < willModifyNum) {
-                messageBytes[firstByteIndex] = (byte) ThreadLocalRandom.current().nextInt(256);
-                modifyedNum += 1;
-            }
-            if (modifyedNum < willModifyNum) {
-                messageBytes[secondByteIndex] = (byte) ThreadLocalRandom.current().nextInt(256);
-                modifyedNum += 1;
-            }
+        // 随机遍历一次
+        for(int i = 0; i < willModifyNum;i++){
+            int byteIndex = ThreadLocalRandom.current().nextInt(messageLength);
+            int byteValue = ThreadLocalRandom.current().nextInt(256);
+            messageBytes[byteIndex] = (byte) byteValue;
+            modifyedNum += 1;
         }
 
         Log.d("maxModifyNum  ---  " + maxModifyNum);
