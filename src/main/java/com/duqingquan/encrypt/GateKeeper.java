@@ -54,20 +54,15 @@ public class GateKeeper {
             Log.bomb("过多的加密内容");
         }
 
-
-//        try {
-//            this.sourceInfo = content.getBytes("UTF-8");
-//        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-//            Log.bomb("不支持字符集合");
-//        }
         try {
             this.sourceInfo = Base64.getEncoder().encode(content.getBytes("UTF-8"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
             Log.bomb("不支持字符集合");
         }
-        this.sourceStr = content;
+        String encode = new String(sourceInfo);
+//        Log.d("encode----" + encode);
+        this.sourceStr = encode;
         return this;
     }
 
@@ -105,7 +100,7 @@ public class GateKeeper {
 
         messageBytes[0] = startFlag;
 
-        int maxModifyNum = sourceLength / 2;
+        int maxModifyNum = sourceLength / 4;
         int willModifyNum = ThreadLocalRandom.current().nextInt(maxModifyNum);
 
         for (int i = 1; i <= sourceLength; i++) {
@@ -122,16 +117,14 @@ public class GateKeeper {
         }
 
         // 随机遍历一次
-//        for(int i = 0; i < willModifyNum;i++){
-//            int byteIndex = ThreadLocalRandom.current().nextInt(messageLength);
-//            int byteValue = ThreadLocalRandom.current().nextInt(256);
-//            messageBytes[byteIndex] = (byte) byteValue;
-//        }
+        for(int i = 0; i < willModifyNum;i++){
+            int byteIndex = ThreadLocalRandom.current().nextInt(messageLength);
+            int byteValue = ThreadLocalRandom.current().nextInt(256);
+            messageBytes[byteIndex] = (byte) byteValue;
+        }
 
         // 随机修改2位数字
         messageBytes[messageLength - 1] = endFlag;
-//        messageBytes = Base64.getEncoder().encode(messageBytes);
-//        messageBytes = Base64.getEncoder().encode(messageBytes);
 
         return messageBytes;
     }
@@ -147,10 +140,8 @@ public class GateKeeper {
         if(leftNum > 0){
             leftCodeNum = leftNum * 2 + 2;
         }
-        Log.d("sourceLength  --- " + sourceLength);
         int messageSize = encryptTime * (perUnitLen * 2 + 2) + (leftCodeNum);
-        Log.d("messageSize  --- " + messageSize);
-        byte[] messgaeByte = new byte[messageSize];
+        byte[] messageByte = new byte[messageSize];
         int offset = 0;
         int sourceOffset = 0;
         for(int i = 0; i <= encryptTime;i++){
@@ -172,17 +163,14 @@ public class GateKeeper {
 
             byte[] tempMessage = doUnitEncrypt(tmpByte);
 
-            Log.d("offset  --- " + offset);
-            Log.d("tempMessage  --- " + Arrays.toString(tempMessage));
-
             int tempMessageLen = tempMessage.length;
 
-            System.arraycopy(tempMessage,0,messgaeByte,offset,tempMessageLen);
+            System.arraycopy(tempMessage,0,messageByte,offset,tempMessageLen);
             offset += tempMessageLen;
         }
 
 
-        return messgaeByte;
+        return messageByte;
 
 
     }
@@ -271,7 +259,6 @@ public class GateKeeper {
                 sourceUnit = new byte[perUnitLen];
 
                 System.arraycopy(finalInfo,offset,sourceUnit,0,perUnitLen);
-                Log.d("sourceUnit   --- " + Arrays.toString(sourceUnit));
                 offset += perUnitLen;
                 messageStr = doUnitDecrypt(sourceUnit);
             }
@@ -280,7 +267,7 @@ public class GateKeeper {
 
         String encodeStr = null;
         try {
-            encodeStr = new String(Base64.getDecoder().decode(stringBuilder.toString().getBytes("UTF-8")));
+            encodeStr = new String(Base64.getDecoder().decode(stringBuilder.toString().getBytes("ISO-8859-1")));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
