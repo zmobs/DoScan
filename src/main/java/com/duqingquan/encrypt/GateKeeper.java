@@ -5,6 +5,7 @@ import com.duqingquan.doscan.qrcode.util.Log;
 import com.duqingquan.doscan.qrcode.util.StringUtil;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.Random;
@@ -52,8 +53,16 @@ public class GateKeeper {
         if (length > MAX_SOURCE_LENGTH) {
             Log.bomb("过多的加密内容");
         }
+
+
+//        try {
+//            this.sourceInfo = content.getBytes("UTF-8");
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//            Log.bomb("不支持字符集合");
+//        }
         try {
-            this.sourceInfo = content.getBytes("UTF-8");
+            this.sourceInfo = Base64.getEncoder().encode(content.getBytes("UTF-8"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
             Log.bomb("不支持字符集合");
@@ -113,14 +122,15 @@ public class GateKeeper {
         }
 
         // 随机遍历一次
-        for(int i = 0; i < willModifyNum;i++){
-            int byteIndex = ThreadLocalRandom.current().nextInt(messageLength);
-            int byteValue = ThreadLocalRandom.current().nextInt(256);
-            messageBytes[byteIndex] = (byte) byteValue;
-        }
+//        for(int i = 0; i < willModifyNum;i++){
+//            int byteIndex = ThreadLocalRandom.current().nextInt(messageLength);
+//            int byteValue = ThreadLocalRandom.current().nextInt(256);
+//            messageBytes[byteIndex] = (byte) byteValue;
+//        }
 
         // 随机修改2位数字
         messageBytes[messageLength - 1] = endFlag;
+//        messageBytes = Base64.getEncoder().encode(messageBytes);
 //        messageBytes = Base64.getEncoder().encode(messageBytes);
 
         return messageBytes;
@@ -151,10 +161,7 @@ public class GateKeeper {
                     continue;
                 }
                 tmpByte = new byte[leftNum];
-                Log.d("i * perUnitLen  --- " + i * perUnitLen);
-                Log.d("encryptTime  --- " + encryptTime);
-                Log.d("leftNum  --- " + leftNum);
-                Log.d("sourceLength  --- " + sourceLength);
+
                 System.arraycopy(sourceInfo,sourceOffset,tmpByte,0,leftNum);
                 sourceOffset += leftNum;
             }else{
@@ -164,13 +171,17 @@ public class GateKeeper {
             }
 
             byte[] tempMessage = doUnitEncrypt(tmpByte);
+
+            Log.d("offset  --- " + offset);
+            Log.d("tempMessage  --- " + Arrays.toString(tempMessage));
+
             int tempMessageLen = tempMessage.length;
 
             System.arraycopy(tempMessage,0,messgaeByte,offset,tempMessageLen);
             offset += tempMessageLen;
         }
 
-        messgaeByte = Base64.getEncoder().encode(messgaeByte);
+
         return messgaeByte;
 
 
@@ -230,7 +241,8 @@ public class GateKeeper {
      */
     public String decryptInfo() {
         // 首先对finalinfo base64之后的数据进行解密
-        finalInfo = Base64.getDecoder().decode(finalInfo);
+
+
         final int perUnitLen = 258;
         int finalInfoLength = finalInfo.length;
 
@@ -248,11 +260,6 @@ public class GateKeeper {
 
             if(leftByteNum < perUnitLen){
 
-                Log.d("offset   --- " + offset);
-//                Log.d("finalInfoLength   --- " + finalInfoLength);
-//                Log.d("perUnitLen   --- " + perUnitLen);
-//                Log.d("finalInfoLength   --- " + finalInfoLength);
-                Log.d("leftByteNum   --- " + leftByteNum);
                 if(leftByteNum == 0){
                     continue;
                 }
@@ -261,18 +268,23 @@ public class GateKeeper {
                 offset += leftByteNum;
                 messageStr = doUnitDecrypt(sourceUnit);
             }else{
-
                 sourceUnit = new byte[perUnitLen];
 
                 System.arraycopy(finalInfo,offset,sourceUnit,0,perUnitLen);
+                Log.d("sourceUnit   --- " + Arrays.toString(sourceUnit));
                 offset += perUnitLen;
                 messageStr = doUnitDecrypt(sourceUnit);
             }
-
             stringBuilder.append(messageStr);
         }
 
-        return stringBuilder.toString();
+        String encodeStr = null;
+        try {
+            encodeStr = new String(Base64.getDecoder().decode(stringBuilder.toString().getBytes("UTF-8")));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return encodeStr;
 
     }
 

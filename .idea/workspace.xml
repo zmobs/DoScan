@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c6bcf1ac-286b-4e75-9dfe-136f4f1008a4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/RSEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/RSEncoder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/Demo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/GateKeeper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/GateKeeper.java" afterDir="false" />
     </list>
@@ -24,22 +23,22 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/BCHEncoder.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/GateKeeper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1173">
-              <caret line="51" column="52" selection-start-line="51" selection-start-column="52" selection-end-line="51" selection-end-column="52" />
+            <state relative-caret-position="230">
+              <caret line="284" column="32" lean-forward="true" selection-start-line="284" selection-start-column="32" selection-end-line="284" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/GateKeeper.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://D:/Program Files/Java/jdk1.8.0_192/src.zip!/java/net/URLEncoder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="255" column="37" selection-start-line="255" selection-start-column="37" selection-end-line="255" selection-end-column="37" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="295">
+              <caret line="199" column="25" selection-start-line="199" selection-start-column="25" selection-end-line="199" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -75,11 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/Demo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="18" column="23" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
+            <state relative-caret-position="81">
+              <caret line="12" column="95" selection-start-line="12" selection-start-column="95" selection-end-line="12" selection-end-column="95" />
             </state>
           </provider>
         </entry>
@@ -142,7 +141,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>i</find>
       <find>finalData</find>
       <find>place</find>
       <find>formatPattern</find>
@@ -172,6 +170,7 @@
       <find>finalInfo</find>
       <find>sourceInt</find>
       <find>codewordsInts</find>
+      <find>base64</find>
     </findStrings>
     <dirStrings>
       <dir>D:\IdeaProjects\DoScan</dir>
@@ -233,9 +232,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/GFPoly.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/AbsEncryptEncoder.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/BCHEncoder.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/Demo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/reedsolomon/RSEncoder.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/GateKeeper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/Demo.java" />
       </list>
     </option>
   </component>
@@ -262,58 +261,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
-            <path>
-              <item name="DoScan" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DoScan" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="DoScan" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DoScan" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DoScan" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DoScan" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="DoScan" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DoScan" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DoScan" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DoScan" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DoScan" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DoScan" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="duqingquan" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DoScan" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DoScan" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="duqingquan" type="462c0819:PsiDirectoryNode" />
-              <item name="encrypt" type="462c0819:PsiDirectoryNode" />
-            </path>
             <path>
               <item name="DoScan" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
@@ -323,7 +274,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -419,13 +369,6 @@
       <option name="presentableId" value="Default" />
       <updated>1544408779865</updated>
       <workItem from="1548072895232" duration="3047000" />
-    </task>
-    <task id="LOCAL-00037" summary="版本信息编码完成">
-      <created>1547277308385</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1547277308386</updated>
     </task>
     <task id="LOCAL-00038" summary="数据部分 分块编码进行中">
       <created>1547286833014</created>
@@ -763,7 +706,14 @@
       <option name="project" value="LOCAL" />
       <updated>1552101826142</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="循环算法实现中">
+      <created>1552127183952</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1552127183954</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -771,8 +721,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.29423591" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.29825738" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -781,7 +732,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.35835695" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932975" weight="0.2776204" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49932975" visible="true" weight="0.296034" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39660057" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -805,7 +756,7 @@
       <window_info anchor="right" id="Database" order="10" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29423591" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.29825738" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -814,7 +765,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.35835695" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49932975" visible="true" weight="0.2776204" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49932975" visible="true" weight="0.296034" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39660057" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -852,7 +803,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="新增日志记录功能进行中" />
     <MESSAGE value="日志输出结构整理" />
     <MESSAGE value="日志输出部分 基本完善" />
     <MESSAGE value="修改包名" />
@@ -877,7 +827,8 @@
     <MESSAGE value="大量数据存在 文本纠错失败的情况。 需要注意和处理" />
     <MESSAGE value="手写实现 随机数算法实现" />
     <MESSAGE value="实现单个长度加密，接下来要实现 更长度算法迭代" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现单个长度加密，接下来要实现 更长度算法迭代" />
+    <MESSAGE value="循环算法实现中" />
+    <option name="LAST_COMMIT_MESSAGE" value="循环算法实现中" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -978,13 +929,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/doscan/qrcode/util/SystemUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="9" lean-forward="true" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/google/zxing/qrcode/encoder/Encoder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
@@ -1343,13 +1287,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/Demo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="18" column="23" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/AbsEncryptEncoder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2116">
@@ -1387,13 +1324,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://D:/Program Files/Java/jdk1.8.0_192/src.zip!/java/net/URLEncoder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="199" column="25" selection-start-line="199" selection-start-column="25" selection-end-line="199" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/GateKeeper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="255" column="37" selection-start-line="255" selection-start-column="37" selection-end-line="255" selection-end-column="37" />
+        <state relative-caret-position="230">
+          <caret line="284" column="32" lean-forward="true" selection-start-line="284" selection-start-column="32" selection-end-line="284" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duqingquan/encrypt/Demo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="12" column="95" selection-start-line="12" selection-start-column="95" selection-end-line="12" selection-end-column="95" />
         </state>
       </provider>
     </entry>
