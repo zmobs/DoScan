@@ -4,14 +4,7 @@ import com.duqingquan.doscan.qrcode.reedsolomon.RSEncoder;
 import com.duqingquan.doscan.qrcode.util.Log;
 import com.duqingquan.doscan.qrcode.util.StringUtil;
 
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Array;
-import java.net.URLEncoder;
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Base64;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 
@@ -20,7 +13,7 @@ public class GateKeeper {
     /******************  单例实现区域  *********************/
 
     private static volatile GateKeeper instance;
-    private final int MAX_SOURCE_LENGTH = 1024;
+
 
     private GateKeeper() {
 
@@ -45,6 +38,16 @@ public class GateKeeper {
     private final byte startFlag = 69;
     private final byte endFlag = -110;
     private byte[] finalInfo;
+    private final int MAX_SOURCE_LENGTH = 1024;
+    private final int perEncryptUnitLen = 258;
+    /**
+     * 单个加密单元的长度限制,因为我们使用的有限域参数限制
+     */
+    private final int perUnitLen = 128;
+    /**
+     * 待修改的数字数量
+     */
+    public int willModifyNum;
 
     public GateKeeper source(String content) {
 
@@ -73,7 +76,6 @@ public class GateKeeper {
         return this;
     }
 
-    public int willModifyNum;
 
     private byte[] doUnitEncrypt(byte[] src) {
 
@@ -96,7 +98,6 @@ public class GateKeeper {
         // 最终加密后的消息长度
         int messageLength = sourceLength * 2 + 2;
         byte[] messageBytes = new byte[messageLength];
-
 
         int maxModifyNum = sourceLength / 2;
         willModifyNum = ThreadLocalRandom.current().nextInt(maxModifyNum);
@@ -128,11 +129,9 @@ public class GateKeeper {
         return messageBytes;
     }
 
-    // 单个加密单元的长度限制
-    final int perUnitLen = 128;
+
 
     public String encryptInfo() {
-
 
         int sourceLength = sourceInfo.length;
         int encryptTime = sourceLength / perUnitLen;
@@ -220,7 +219,7 @@ public class GateKeeper {
         return sourceStrBytes;
     }
 
-    final int perEncryptUnitLen = 258;
+
 
     /**
      * 解密原始数据
