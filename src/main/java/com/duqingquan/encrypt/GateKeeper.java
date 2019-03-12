@@ -37,7 +37,6 @@ public class GateKeeper {
     /******************  end 单例实现区域  *********************/
 
     /************************  建造者实现模式  ************************/
-    private String sourceStr;
     private int key;
     private byte[] sourceInfo;
     private final byte startFlag = 69;
@@ -45,6 +44,7 @@ public class GateKeeper {
     private byte[] finalInfo;
 
     public GateKeeper source(String content) {
+
         // 判断source
         if (StringUtil.isEmpty(content)) {
             Log.bomb("不能加密空字符内容");
@@ -54,21 +54,14 @@ public class GateKeeper {
             Log.bomb("过多的加密内容");
         }
 
-        try {
-            this.sourceInfo = Base64.getEncoder().encode(content.getBytes("UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            Log.bomb("不支持字符集合");
-        }
-        String encode = new String(sourceInfo);
-//        Log.d("encode----" + encode);
-        this.sourceStr = encode;
+        this.sourceInfo = Base64.getEncoder().encode(content.getBytes());
+
         return this;
     }
 
 
-    public GateKeeper finalInfo(byte[] finalInfo) {
-        this.finalInfo = finalInfo;
+    public GateKeeper finalInfo(String finalInfoStr) {
+        this.finalInfo = Base64.getDecoder().decode(finalInfoStr);
         return this;
     }
 
@@ -77,14 +70,16 @@ public class GateKeeper {
         return this;
     }
 
-    private byte[] doUnitEncrypt(byte[] src){
+    public int willModifyNum;
+
+    private byte[] doUnitEncrypt(byte[] src) {
 
         // 后面拼接
         int sourceLength = src.length;
         int[] rsInts = RSEncoder.getInstance().getRSCode(src, sourceLength);
-
         int rsLength = rsInts.length;
 
+        // 将rs byte 转换为int
         byte[] rsBytes = new byte[rsLength];
         for (int i = 0; i < rsLength; i++) {
             rsBytes[i] = (byte) (rsInts[i]);
@@ -95,13 +90,13 @@ public class GateKeeper {
             Log.bomb("算法出错，两端数据不一致");
         }
 
+        // 最终加密后的消息长度
         int messageLength = sourceLength * 2 + 2;
         byte[] messageBytes = new byte[messageLength];
 
-        messageBytes[0] = startFlag;
 
-        int maxModifyNum = sourceLength / 4;
-        int willModifyNum = ThreadLocalRandom.current().nextInt(maxModifyNum);
+        int maxModifyNum = sourceLength / 2;
+        willModifyNum = ThreadLocalRandom.current().nextInt(maxModifyNum);
 
         for (int i = 1; i <= sourceLength; i++) {
 
@@ -111,78 +106,96 @@ public class GateKeeper {
             messageBytes[firstByteIndex] = sourceInfo[i - 1];
             messageBytes[secondByteIndex] = rsBytes[i - 1];
             // 用配置的key进行按位异或操作
-            messageBytes[firstByteIndex] ^= key;
-            messageBytes[secondByteIndex] ^= key;
+//            messageBytes[firstByteIndex] ^= key;
+//            messageBytes[secondByteIndex] ^= key;
 
         }
 
         // 随机遍历一次
-        for(int i = 0; i < willModifyNum;i++){
+        for (int i = 0; i < willModifyNum; i++) {
             int byteIndex = ThreadLocalRandom.current().nextInt(messageLength);
             int byteValue = ThreadLocalRandom.current().nextInt(256);
+//            Log.d("byteValue   ---  " + byteValue);
             messageBytes[byteIndex] = (byte) byteValue;
         }
 
-        // 随机修改2位数字
+        // 给每个加密单元的 头尾标识位置 进行处理
+        messageBytes[0] = startFlag;
         messageBytes[messageLength - 1] = endFlag;
 
         return messageBytes;
     }
 
+    // 单个加密单元的长度限制
+    final int perUnitLen = 128;
 
-    public byte[] encryptInfo() {
-        final int perUnitLen = 128;
+    public String encryptInfo() {
+
+        Log.d("sourceInfo   --- " + new String(sourceInfo));
 
         int sourceLength = sourceInfo.length;
         int encryptTime = sourceLength / perUnitLen;
         int leftNum = sourceLength % perUnitLen;
+
+        // 如果存在不满的 加密单元，那么计算出最终加密后单元长度
         int leftCodeNum = leftNum;
-        if(leftNum > 0){
+        if (leftNum > 0) {
             leftCodeNum = leftNum * 2 + 2;
         }
         int messageSize = encryptTime * (perUnitLen * 2 + 2) + (leftCodeNum);
         byte[] messageByte = new byte[messageSize];
+
+        // 计数位，最终加密结果的偏移量
         int offset = 0;
+        // 源码的偏移量
         int sourceOffset = 0;
-        for(int i = 0; i <= encryptTime;i++){
+
+
+        for (int i = 0; i <= encryptTime; i++) {
 
             byte[] tmpByte;
-            if(i == encryptTime){
-                if(leftNum == 0){
+            if (i == encryptTime) {
+                if (leftNum == 0) {
                     continue;
                 }
                 tmpByte = new byte[leftNum];
-
-                System.arraycopy(sourceInfo,sourceOffset,tmpByte,0,leftNum);
+                System.arraycopy(sourceInfo, sourceOffset, tmpByte, 0, leftNum);
                 sourceOffset += leftNum;
-            }else{
+            } else {
                 tmpByte = new byte[perUnitLen];
-                System.arraycopy(sourceInfo,sourceOffset,tmpByte,0,perUnitLen);
+                System.arraycopy(sourceInfo, sourceOffset, tmpByte, 0, perUnitLen);
                 sourceOffset += perUnitLen;
             }
+            Log.d("tmpByte   --- " + new String(tmpByte));
 
             byte[] tempMessage = doUnitEncrypt(tmpByte);
-
+            Log.d("tempMessage   --- " + new String(Base64.getEncoder().encode(tempMessage)));
             int tempMessageLen = tempMessage.length;
-
-            System.arraycopy(tempMessage,0,messageByte,offset,tempMessageLen);
+            System.arraycopy(tempMessage, 0, messageByte, offset, tempMessageLen);
             offset += tempMessageLen;
         }
 
-
-        return messageByte;
-
+        Log.d("messageByte.length  --- " + messageByte.length);
+        String message = new String(Base64.getEncoder().encode(messageByte));
+        Log.d("message.length()  --- " + message.length());
+        return message;
 
     }
 
 
-    private String doUnitDecrypt(byte[] info){
+    private String doUnitDecrypt(byte[] info) {
 
         int finalLength = info.length;
         byte firstByte = info[0];
         byte lastByte = info[finalLength - 1];
+        // 如果每个解密单元不符合约定，则认为他们是不对的
         if (firstByte != startFlag || lastByte != endFlag || (finalLength % 2 != 0)) {
-            return "";
+            Log.d("firstByte --- " + firstByte);
+            Log.d("lastByte --- " + lastByte);
+            Log.d("startFlag --- " + startFlag);
+            Log.d("endFlag --- " + endFlag);
+            Log.d("finalLength --- " + finalLength);
+            Log.bomb("AAAAA");
         }
 
         int sourceLength = finalLength / 2 - 1;
@@ -192,8 +205,8 @@ public class GateKeeper {
             sourceBytes[i - 1] = info[2 * i - 1];
             rsBytes[i - 1] = info[2 * i];
             // 用配置的key进行按位异或操作
-            sourceBytes[i - 1] ^= key;
-            rsBytes[i - 1] ^= key;
+//            sourceBytes[i - 1] ^= key;
+//            rsBytes[i - 1] ^= key;
         }
 
 
@@ -211,16 +224,12 @@ public class GateKeeper {
         for (int i = 0; i < sourceLength; i++) {
             sourceStrBytes[i] = (byte) (sourceInt[i]);
         }
+        String finalStr = new String(Base64.getEncoder().encode(sourceStrBytes));
 
-        try {
-            String finalStr = new String(sourceStrBytes, "UTF-8");
-            return finalStr;
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        return "";
+        return finalStr;
     }
+
+    final int perEncryptUnitLen = 258;
 
     /**
      * 解密原始数据
@@ -228,49 +237,52 @@ public class GateKeeper {
      * @return
      */
     public String decryptInfo() {
+
         // 首先对finalinfo base64之后的数据进行解密
-
-
-        final int perUnitLen = 258;
         int finalInfoLength = finalInfo.length;
+        Log.d("finalInfoLength  --- " + finalInfoLength);
+        Log.d("messageByte.length  --- " + new String(Base64.getEncoder().encode(finalInfo)).length());
+
 
 
         StringBuilder stringBuilder = new StringBuilder();
         int offset = 0;
-        int leftByteNum = finalInfoLength - offset;
+        int leftByteNum = finalInfoLength;
 
-        while(leftByteNum > 0){
+        while (leftByteNum > 0) {
 
             byte[] sourceUnit;
             String messageStr;
-            leftByteNum = finalInfoLength - offset;
+            int passByteNum;
 
+            if (leftByteNum < perEncryptUnitLen) {
 
-            if(leftByteNum < perUnitLen){
-
-                if(leftByteNum == 0){
+                if (leftByteNum == 0) {
                     continue;
                 }
-                sourceUnit = new byte[leftByteNum];
-                System.arraycopy(finalInfo,offset,sourceUnit,0,leftByteNum);
-                offset += leftByteNum;
-                messageStr = doUnitDecrypt(sourceUnit);
-            }else{
-                sourceUnit = new byte[perUnitLen];
-
-                System.arraycopy(finalInfo,offset,sourceUnit,0,perUnitLen);
-                offset += perUnitLen;
-                messageStr = doUnitDecrypt(sourceUnit);
+                passByteNum = leftByteNum;
+            } else {
+                passByteNum = perEncryptUnitLen;
             }
+
+            sourceUnit = new byte[passByteNum];
+            System.arraycopy(finalInfo, offset, sourceUnit, 0, passByteNum);
+
+            offset += passByteNum;
+            leftByteNum = finalInfoLength - offset;
+
+            Log.d("offset   ---- " + offset);
+            Log.d("messageStr 111  ---- " + new String(Base64.getEncoder().encode(sourceUnit)));
+            messageStr = doUnitDecrypt(sourceUnit);
+            Log.d("messageStr 2222  ---- " + messageStr);
             stringBuilder.append(messageStr);
+
+
         }
 
-        String encodeStr = null;
-        try {
-            encodeStr = new String(Base64.getDecoder().decode(stringBuilder.toString().getBytes("ISO-8859-1")));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        String encodeStr;
+        encodeStr = new String(stringBuilder);
+
         return encodeStr;
 
     }

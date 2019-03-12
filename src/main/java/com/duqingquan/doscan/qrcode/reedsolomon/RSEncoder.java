@@ -75,7 +75,6 @@ public class RSEncoder {
             int eval = poly.evaluateAt(qrCodeGField.exp(i));
             // 倒序逐个防止eval至数组
             syndromeCoefficients[errLength - 1 - i] = eval;
-//            Log.d("eval  ---  "  + i + "  " + eval);
         }
 
         // 需要进行纠错，将出现状况的特征码再次放入有限域
