@@ -2,9 +2,8 @@ package com.duqingquan.encrypt;
 
 import com.duqingquan.doscan.qrcode.util.Log;
 import com.duqingquan.doscan.qrcode.util.StringUtil;
-import com.sun.xml.internal.messaging.saaj.util.Base64;
 
-import java.io.UnsupportedEncodingException;
+import java.util.Base64;
 
 
 public class Demo {
