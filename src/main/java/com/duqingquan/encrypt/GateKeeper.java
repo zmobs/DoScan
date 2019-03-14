@@ -4,6 +4,7 @@ import com.duqingquan.doscan.qrcode.reedsolomon.RSEncoder;
 import com.duqingquan.doscan.qrcode.util.Log;
 import com.duqingquan.doscan.qrcode.util.StringUtil;
 
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -139,8 +140,9 @@ public class GateKeeper {
         // 随机遍历一次
         for (int i = 0; i < willModifyNum; i++) {
             int byteIndex = ThreadLocalRandom.current().nextInt(messageLength);
-            int byteValue = ThreadLocalRandom.current().nextInt(256);
-            if(byteIndex == 0 || byteIndex == 255){
+            int byteValue = ThreadLocalRandom.current().nextInt(255);
+            // FixBug 因为首位数字不一定是单字节编码，所以免疫范围扩大到双字节
+            if(byteIndex < 2 || byteIndex > 253){
                 // 如果是开始和最后一个字节不进行加密。
                 continue;
             }
@@ -155,7 +157,10 @@ public class GateKeeper {
     }
 
 
-
+    /**
+     * 加密原始信息
+     * @return
+     */
     public String encryptInfo() {
 
         int sourceLength = sourceInfo.length;
@@ -225,7 +230,6 @@ public class GateKeeper {
             rsBytes[i - 1] ^= key;
         }
 
-
         byte[] rightOrderBytes = new byte[finalLength - 2];
         System.arraycopy(sourceBytes, 0, rightOrderBytes, 0, sourceLength);
         System.arraycopy(rsBytes, 0, rightOrderBytes, sourceLength, sourceLength);
@@ -253,10 +257,15 @@ public class GateKeeper {
      */
     public String decryptInfo() {
 
+        // 计算得到 最终消息长度 和 原始信息长度
         int finalInfoLength = finalInfo.length;
-        int srcInfoLen = finalInfoLength
-                            - finalInfoLength / perEncryptUnitLen
-                            - (finalInfoLength %  perEncryptUnitLen > 0 ? 1 : 0);
+        int unitNum = finalInfoLength / perEncryptUnitLen;
+        int leftNum = 0;
+        int finalInfoLeft = finalInfoLength %  perEncryptUnitLen;
+        if(finalInfoLength %  perEncryptUnitLen > 0){
+            leftNum = (finalInfoLeft - 2) / 2;
+        }
+        int srcInfoLen = unitNum * perUnitLen + leftNum;
 
         byte[] srcInfo = new byte[srcInfoLen];
 
