@@ -14,7 +14,6 @@ public class GateKeeper {
 
     private static volatile GateKeeper instance;
 
-
     private GateKeeper() {
 
     }
@@ -33,12 +32,33 @@ public class GateKeeper {
     /******************  end 单例实现区域  *********************/
 
     /************************  建造者实现模式  ************************/
+    /**
+     * 密钥
+     */
     private int key;
+    /**
+     * 原始数据
+     */
     private byte[] sourceInfo;
+    /**
+     * 加密单元开始标识符
+     */
     private final byte startFlag = 69;
+    /**
+     * 加密单元结束标识符
+     */
     private final byte endFlag = -110;
+    /**
+     * 最终得机密数据
+     */
     private byte[] finalInfo;
+    /**
+     * 原始数据最大字节数
+     */
     private final int MAX_SOURCE_LENGTH = 1024;
+    /**
+     * 每个加密单元得长度
+     */
     private final int perEncryptUnitLen = 258;
     /**
      * 单个加密单元的长度限制,因为我们使用的有限域参数限制
@@ -48,6 +68,7 @@ public class GateKeeper {
      * 待修改的数字数量
      */
     public int willModifyNum;
+
 
     public GateKeeper source(String content) {
 
@@ -119,6 +140,10 @@ public class GateKeeper {
         for (int i = 0; i < willModifyNum; i++) {
             int byteIndex = ThreadLocalRandom.current().nextInt(messageLength);
             int byteValue = ThreadLocalRandom.current().nextInt(256);
+            if(byteIndex == 0 || byteIndex == 255){
+                // 如果是开始和最后一个字节不进行加密。
+                continue;
+            }
             messageBytes[byteIndex] = (byte) byteValue;
         }
 
@@ -228,9 +253,11 @@ public class GateKeeper {
      */
     public String decryptInfo() {
 
-        // 首先对finalinfo base64之后的数据进行解密
         int finalInfoLength = finalInfo.length;
-        int srcInfoLen = finalInfoLength - finalInfoLength / perEncryptUnitLen - (finalInfoLength %  perEncryptUnitLen > 0 ? 1 : 0);
+        int srcInfoLen = finalInfoLength
+                            - finalInfoLength / perEncryptUnitLen
+                            - (finalInfoLength %  perEncryptUnitLen > 0 ? 1 : 0);
+
         byte[] srcInfo = new byte[srcInfoLen];
 
         int offset = 0;
@@ -244,7 +271,6 @@ public class GateKeeper {
             int passByteNum;
 
             if (leftByteNum < perEncryptUnitLen) {
-
                 if (leftByteNum == 0) {
                     continue;
                 }
