@@ -4,15 +4,15 @@ import com.duqingquan.doscan.qrcode.reedsolomon.RSEncoder;
 import com.duqingquan.doscan.qrcode.util.Log;
 import com.duqingquan.doscan.qrcode.util.StringUtil;
 
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.concurrent.ThreadLocalRandom;
 
-
+/**
+ * 加密信息组件
+ */
 public class GateKeeper {
 
     /******************  单例实现区域  *********************/
-
     private static volatile GateKeeper instance;
 
     private GateKeeper() {
@@ -71,6 +71,11 @@ public class GateKeeper {
     public int willModifyNum;
 
 
+    /**
+     * 指定待加密的原始数据
+     * @param content 原始字符串
+     * @return gk引用链
+     */
     public GateKeeper source(String content) {
 
         // 判断source
@@ -88,28 +93,42 @@ public class GateKeeper {
     }
 
 
-    public GateKeeper finalInfo(String finalInfoStr) {
+    /**
+     * 指定加密信息
+     * @param finalInfoStr
+     * @return
+     */
+    public GateKeeper messageInfo(String finalInfoStr) {
         this.finalInfo = Base64.getDecoder().decode(finalInfoStr);
         return this;
     }
 
+    /**
+     * 指定加解密的key
+     * @param keyVal
+     * @return
+     */
     public GateKeeper key(int keyVal) {
         this.key = keyVal;
         return this;
     }
 
-
+    /**
+     * 执行最小加密单位的加密操作
+     * @param src 原始数据
+     * @return 加密后的数据
+     */
     private byte[] doUnitEncrypt(byte[] src) {
 
-        // 后面拼接
+        // 先获得RS编码部分
         int sourceLength = src.length;
-        int[] rsInts = RSEncoder.getInstance().getRSCode(src, sourceLength);
-        int rsLength = rsInts.length;
+        int[] rsCode = RSEncoder.getInstance().getRSCode(src, sourceLength);
+        int rsLength = rsCode.length;
 
         // 将rs byte 转换为int
         byte[] rsBytes = new byte[rsLength];
         for (int i = 0; i < rsLength; i++) {
-            rsBytes[i] = (byte) (rsInts[i]);
+            rsBytes[i] = (byte) (rsCode[i]);
         }
 
         // 将两个数组穿插安防
@@ -124,8 +143,8 @@ public class GateKeeper {
         int maxModifyNum = sourceLength / 2;
         willModifyNum = ThreadLocalRandom.current().nextInt(maxModifyNum);
 
+        // 对原始编码和RS编码进行拼接操作，得到最终的消息码字
         for (int i = 1; i <= sourceLength; i++) {
-
             int firstByteIndex = 2 * i - 1;
             int secondByteIndex = 2 * i;
 
@@ -134,10 +153,9 @@ public class GateKeeper {
             // 用配置的key进行按位异或操作
             messageBytes[firstByteIndex] ^= key;
             messageBytes[secondByteIndex] ^= key;
-
         }
 
-        // 随机遍历一次
+        // 随机遍历一次，进行随机错码
         for (int i = 0; i < willModifyNum; i++) {
             int byteIndex = ThreadLocalRandom.current().nextInt(messageLength);
             int byteValue = ThreadLocalRandom.current().nextInt(255);
@@ -180,9 +198,7 @@ public class GateKeeper {
         // 源码的偏移量
         int sourceOffset = 0;
 
-
         for (int i = 0; i <= encryptTime; i++) {
-
             byte[] tmpByte;
             if (i == encryptTime) {
                 if (leftNum == 0) {
@@ -208,8 +224,12 @@ public class GateKeeper {
     }
 
 
+    /**
+     * 进行单位解密操作
+     * @param info 待解密信息
+     * @return
+     */
     private byte[] doUnitDecrypt(byte[] info) {
-
 
         int finalLength = info.length;
         byte firstByte = info[0];

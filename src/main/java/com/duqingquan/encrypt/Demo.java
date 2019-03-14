@@ -1,11 +1,6 @@
 package com.duqingquan.encrypt;
 
 import com.duqingquan.doscan.qrcode.util.Log;
-import com.duqingquan.doscan.qrcode.util.StringUtil;
-
-import java.util.Arrays;
-import java.util.Base64;
-import java.util.Iterator;
 
 
 public class Demo {
@@ -17,13 +12,14 @@ public class Demo {
 
         int errNum = 0;
         for (int i = 0; i < 10000; i++) {
+
             String encryptMessage = GateKeeper.getInstance()
                     .source(sourceContent)
                     .key(336)
                     .encryptInfo();
 
             String sourceInfo = GateKeeper.getInstance()
-                    .finalInfo(encryptMessage)
+                    .messageInfo(encryptMessage)
                     .key(336)
                     .decryptInfo();
 

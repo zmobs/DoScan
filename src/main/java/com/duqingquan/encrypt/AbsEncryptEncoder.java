@@ -7,7 +7,7 @@
 //public abstract class AbsEncryptEncoder {
 //
 //    protected byte[] srcInfo;
-//    protected byte[] finalInfo;
+//    protected byte[] messageInfo;
 //    protected int key = 0;
 //
 //    boolean isEncrypt = true;
@@ -31,7 +31,7 @@
 //                return false;
 //            }
 //        }else{
-//            if(finalInfo == null){
+//            if(messageInfo == null){
 //                return false;
 //            }
 //        }
@@ -47,7 +47,7 @@
 //        if(!isPrepared(true)){
 //            Log.bomb("加密组件初始化失败");
 //        }
-//        finalInfo = doEncrypt();
+//        messageInfo = doEncrypt();
 //        isEncrypt = true;
 //        return this;
 //    }
@@ -62,7 +62,7 @@
 //    }
 //
 //    public byte[] finalBytes(){
-//        return this.finalInfo;
+//        return this.messageInfo;
 //    }
 //
 //
@@ -71,12 +71,12 @@
 //    }
 //
 //    public String string(String charset){
-//        if(finalInfo == null){
+//        if(messageInfo == null){
 //            Log.bomb("final info null");
 //        }
 //        if(charset == null){
 //            if(isEncrypt){
-//                return new String(finalInfo);
+//                return new String(messageInfo);
 //            }else{
 //                return new String(srcInfo);
 //            }
@@ -84,7 +84,7 @@
 //        }else{
 //            try {
 //                if(isEncrypt){
-//                    return new String(finalInfo,charset);
+//                    return new String(messageInfo,charset);
 //                }else{
 //                    return new String(srcInfo,charset);
 //                }

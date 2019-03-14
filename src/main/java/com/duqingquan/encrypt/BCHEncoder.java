@@ -52,7 +52,7 @@
 //            bytes[i + subSize] = (byte) ecInts[i];
 //        }
 ////        Log.d("bytes  ----  " + Arrays.toString(bytes));
-//        finalInfo = bytes;
+//        messageInfo = bytes;
 //        return bytes;
 //    }
 //
@@ -81,19 +81,19 @@
 //
 //    @Override
 //    public byte[] doDecrypt() {
-//        int subSize = finalInfo.length / 2;
-//        int[] ecInts = RSEncoder.getInstance().decodeRSCode(finalInfo,subSize);
+//        int subSize = messageInfo.length / 2;
+//        int[] ecInts = RSEncoder.getInstance().decodeRSCode(messageInfo,subSize);
 //
 //        for (int i = 0; i < subSize; i++) {
-//            finalInfo[i] = (byte) ecInts[i];
+//            messageInfo[i] = (byte) ecInts[i];
 //        }
-//        Log.d("finalInfo ..." + Arrays.toString(finalInfo));
+//        Log.d("messageInfo ..." + Arrays.toString(messageInfo));
 //
 //        srcInfo = new byte[subSize - 1];
 //
 //        // 环境检测通过，才会执行到这里
 //        for(int i = 0; i < subSize - 1;i++){
-//            byte perByte = finalInfo[i];
+//            byte perByte = messageInfo[i];
 //            perByte ^= key;
 //            srcInfo[i] = perByte;
 //        }
