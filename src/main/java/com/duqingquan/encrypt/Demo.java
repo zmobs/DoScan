@@ -11,13 +11,13 @@ public class Demo {
                 "一切都像刚睡醒的样子，欣欣然张开了眼。山朗润起来了，水涨起来了，太阳的脸红起来了。";
 
         int errNum = 0;
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 100; i++) {
 
             String encryptMessage = GateKeeper.getInstance()
                     .source(sourceContent)
                     .key(336)
                     .encryptInfo();
-
+            Log.d("encryptMessage  -- " + encryptMessage);
             String sourceInfo = GateKeeper.getInstance()
                     .messageInfo(encryptMessage)
                     .key(336)
