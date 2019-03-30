@@ -13,11 +13,12 @@ public class Demo {
         int errNum = 0;
         for (int i = 0; i < 100; i++) {
 
+            sourceContent = String.valueOf(i);
             String encryptMessage = GateKeeper.getInstance()
                     .source(sourceContent)
                     .key(336)
                     .encryptInfo();
-            Log.d("encryptMessage  -- " + encryptMessage);
+//            Log.d("encryptMessage  -- " + encryptMessage);
             String sourceInfo = GateKeeper.getInstance()
                     .messageInfo(encryptMessage)
                     .key(336)

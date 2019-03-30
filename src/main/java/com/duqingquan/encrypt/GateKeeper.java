@@ -5,6 +5,7 @@ import com.duqingquan.doscan.qrcode.util.Log;
 import com.duqingquan.doscan.qrcode.util.StringUtil;
 
 import java.util.Base64;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -99,6 +100,7 @@ public class GateKeeper {
      * @return
      */
     public GateKeeper messageInfo(String finalInfoStr) {
+//        this.finalInfo = Base64.decode(finalInfoStr,Base64.DEFAULT);
         this.finalInfo = Base64.getDecoder().decode(finalInfoStr);
         return this;
     }
@@ -120,6 +122,8 @@ public class GateKeeper {
      */
     private byte[] doUnitEncrypt(byte[] src) {
 
+        Random random = new Random();
+
         // 先获得RS编码部分
         int sourceLength = src.length;
         int[] rsCode = RSEncoder.getInstance().getRSCode(src, sourceLength);
@@ -134,14 +138,13 @@ public class GateKeeper {
         // 将两个数组穿插安防
         if (sourceLength != rsLength) {
             Log.bomb("算法出错，两端数据不一致");
+            return null;
         }
 
         // 最终加密后的消息长度
         int messageLength = sourceLength * 2 + 2;
         byte[] messageBytes = new byte[messageLength];
 
-        int maxModifyNum = sourceLength / 2;
-        willModifyNum = ThreadLocalRandom.current().nextInt(maxModifyNum);
 
         // 对原始编码和RS编码进行拼接操作，得到最终的消息码字
         for (int i = 1; i <= sourceLength; i++) {
@@ -155,17 +158,24 @@ public class GateKeeper {
             messageBytes[secondByteIndex] ^= key;
         }
 
-        // 随机遍历一次，进行随机错码
-        for (int i = 0; i < willModifyNum; i++) {
-            int byteIndex = ThreadLocalRandom.current().nextInt(messageLength);
-            int byteValue = ThreadLocalRandom.current().nextInt(255);
-            // FixBug 因为首位数字不一定是单字节编码，所以免疫范围扩大到双字节
-            if(byteIndex < 2 || byteIndex > 253){
-                // 如果是开始和最后一个字节不进行加密。
-                continue;
+        int maxModifyNum = sourceLength / 2;
+        if(maxModifyNum > 1){
+
+            willModifyNum = random.nextInt(maxModifyNum);
+
+            // 随机遍历一次，进行随机错码
+            for (int i = 0; i < willModifyNum; i++) {
+                int byteIndex = random.nextInt(messageLength);
+                int byteValue = random.nextInt(255);
+                // FixBug 因为首位数字不一定是单字节编码，所以免疫范围扩大到双字节
+                if(byteIndex < 2 || byteIndex > 253){
+                    // 如果是开始和最后一个字节不进行加密。
+                    continue;
+                }
+                messageBytes[byteIndex] = (byte) byteValue;
             }
-            messageBytes[byteIndex] = (byte) byteValue;
         }
+
 
         // 给每个加密单元的 头尾标识位置 进行处理
         messageBytes[0] = startFlag;
@@ -180,6 +190,10 @@ public class GateKeeper {
      * @return
      */
     public String encryptInfo() {
+
+        if(sourceInfo == null || sourceInfo.length == 0){
+            return "";
+        }
 
         int sourceLength = sourceInfo.length;
         int encryptTime = sourceLength / perUnitLen;
@@ -218,7 +232,8 @@ public class GateKeeper {
             offset += tempMessageLen;
         }
 
-        String message = new String(Base64.getEncoder().encode(messageByte));
+//        String message = Base64.encodeToString(messageByte,Base64.DEFAULT);
+        String message = Base64.getEncoder().encodeToString(messageByte);
         return message;
 
     }
@@ -254,18 +269,28 @@ public class GateKeeper {
         System.arraycopy(sourceBytes, 0, rightOrderBytes, 0, sourceLength);
         System.arraycopy(rsBytes, 0, rightOrderBytes, sourceLength, sourceLength);
 
-        int[] sourceInt;
-        try {
-            sourceInt = RSEncoder.getInstance().decodeRSCode(rightOrderBytes, sourceLength);
-        } catch (Exception e) {
-            return null;
-        }
+        int[] sourceInt = new int[sourceLength];
         byte[] sourceStrBytes = new byte[sourceLength];
-        for (int i = 0; i < sourceLength; i++) {
-            sourceStrBytes[i] = (byte) (sourceInt[i]);
+        if(rightOrderBytes.length == 2 && rightOrderBytes[0] == rightOrderBytes[1]){
+            // 只有两个有效字节，且二者相同
+            sourceStrBytes = new byte[]{rightOrderBytes[0]};
+            return sourceStrBytes;
+        }else{
+            try {
+                sourceInt = RSEncoder.getInstance().decodeRSCode(rightOrderBytes, sourceLength);
+            } catch (Exception e) {
+                Log.bomb("rs解码失败");
+            }
+
+            for (int i = 0; i < sourceLength; i++) {
+                sourceStrBytes[i] = (byte) (sourceInt[i]);
+            }
+            return sourceStrBytes;
         }
 
-        return sourceStrBytes;
+
+
+
     }
 
 
@@ -276,6 +301,10 @@ public class GateKeeper {
      * @return
      */
     public String decryptInfo() {
+
+        if(finalInfo == null || finalInfo.length < 4){
+            return "";
+        }
 
         // 计算得到 最终消息长度 和 原始信息长度
         int finalInfoLength = finalInfo.length;
