@@ -168,7 +168,7 @@ public class GateKeeper {
                 int byteIndex = random.nextInt(messageLength);
                 int byteValue = random.nextInt(255);
                 // FixBug 因为首位数字不一定是单字节编码，所以免疫范围扩大到双字节
-                if(byteIndex < 2 || byteIndex > 253){
+                if(byteIndex < 2 || byteIndex > (messageLength - 5)){
                     // 如果是开始和最后一个字节不进行加密。
                     continue;
                 }
