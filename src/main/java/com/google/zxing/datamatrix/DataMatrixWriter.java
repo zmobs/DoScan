@@ -157,7 +157,7 @@ public final class DataMatrixWriter implements Writer {
    * Convert the ByteMatrix to BitMatrix.
    *
    * @param matrix The input matrix.
-   * @return The output matrix.
+   * @return The outputer matrix.
    */
   private static BitMatrix convertByteMatrixToBitMatrix(ByteMatrix matrix) {
     int matrixWidgth = matrix.getWidth();

@@ -32,6 +32,7 @@ public class QREncoder {
     public static final Charset defaultCharset  = Charset.ISO_8859_1;
     private String content;
     private ErrorCorrectLevel correctLevel;
+
     /**
      * 是否配置动画演示编码过程
      */

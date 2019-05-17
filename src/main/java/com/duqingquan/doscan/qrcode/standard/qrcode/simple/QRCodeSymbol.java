@@ -1,5 +1,6 @@
 package com.duqingquan.doscan.qrcode.standard.qrcode.simple;
 
+import com.duqingquan.doscan.qrcode.output.IOutputer;
 import com.duqingquan.doscan.qrcode.proto.BitArray;
 import com.duqingquan.doscan.qrcode.proto.IQRCode2015;
 import com.duqingquan.doscan.qrcode.standard.qrcode.ErrorCorrectLevel;
@@ -28,7 +29,6 @@ public class QRCodeSymbol implements IQRCode2015 {
     LonelyBlackPoint lonelyBlackPoint = new LonelyBlackPoint();
 
     // 左下上，右左 两处版本信息区域
-
     // 左上，右下+左下右的两处格式信息
     FormatPattern formatPattern;
     // 两条分割线
@@ -42,8 +42,34 @@ public class QRCodeSymbol implements IQRCode2015 {
      * 数据编码区域
      */
     DataArea dataArea = new DataArea();
+    /**
+     * 符号版本
+     */
     Version version;
 
+    /**
+     * 设置默认的间距
+     */
+    private int margin = 4;
+
+    public QRCodeSymbol margin(int val){
+        this.margin = 4;
+        return this;
+    }
+
+    private IOutputer outputer;
+
+    public QRCodeSymbol outputer(IOutputer iOutput){
+        this.outputer = iOutput;
+        return this;
+    }
+
+    public boolean doOutout(){
+        if(outputer != null){
+            return outputer.output(this);
+        }
+        return false;
+    }
 
     public QRCodeSymbol(Version version, ErrorCorrectLevel correctLevel){
 
@@ -84,17 +110,11 @@ public class QRCodeSymbol implements IQRCode2015 {
         return animTable.getData();
     }
 
-    /**
-     * 带动画的绘制动作
-     */
-    public void bchWithAnim(){
 
-    }
     /**
      * 带动画的绘制动作
      */
     public void plateWithAnim(){
-
 
         // 放置定位符号
         ltFP.place(animTable);
@@ -140,6 +160,8 @@ public class QRCodeSymbol implements IQRCode2015 {
     boolean hasPlaceData = false;
     MaskEvaluator maskEvaluator;
     int bestMask;
+
+
     public void placeData(BitArray bitArray){
 
         // 置放数据区域的比特序列
@@ -157,6 +179,8 @@ public class QRCodeSymbol implements IQRCode2015 {
     public DotTable getDotTable() {
         return dotTable;
     }
+
+
 
 
 }

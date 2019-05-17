@@ -22,7 +22,7 @@ import java.util.LinkedList;
 import com.google.zxing.common.BitArray;
 
 /**
- * State represents all information about a sequence necessary to generate the current output.
+ * State represents all information about a sequence necessary to generate the current outputer.
  * Note that a state is immutable.
  */
 final class State {
@@ -32,10 +32,10 @@ final class State {
   // The current mode of the encoding (or the mode to which we'll return if
   // we're in Binary Shift mode.
   private final int mode;
-  // The list of tokens that we output.  If we are in Binary Shift mode, this
+  // The list of tokens that we outputer.  If we are in Binary Shift mode, this
   // token list does *not* yet included the token for those bytes
   private final Token token;
-  // If non-zero, the number of most recent bytes that should be output
+  // If non-zero, the number of most recent bytes that should be outputer
   // in Binary Shift mode.
   private final int binaryShiftByteCount;
   // The total number of bits generated (including Binary Shift).
@@ -87,7 +87,7 @@ final class State {
   }
 
   // Create a new state representing this state, with a temporary shift
-  // to a different mode to output a single value.
+  // to a different mode to outputer a single value.
   State shiftAndAppend(int mode, int value) {
     //assert binaryShiftByteCount == 0 && this.mode != mode;
     Token token = this.token;
@@ -99,7 +99,7 @@ final class State {
   }
 
   // Create a new state representing this state, but an additional character
-  // output in Binary Shift mode.
+  // outputer in Binary Shift mode.
   State addBinaryShiftChar(int index) {
     Token token = this.token;
     int mode = this.mode;
@@ -147,7 +147,7 @@ final class State {
 
   BitArray toBitArray(byte[] text) {
     // Reverse the tokens, so that they are in the order that they should
-    // be output
+    // be outputer
     Deque<Token> symbols = new LinkedList<>();
     for (Token token = endBinaryShift(text.length).token; token != null; token = token.getPrevious()) {
       symbols.addFirst(token);

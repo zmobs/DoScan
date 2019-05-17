@@ -79,7 +79,7 @@ public final class QRCodeWriter implements Writer {
     return renderResult(code, width, height, quietZone);
   }
 
-  // Note that the input matrix uses 0 == white, 1 == black, while the output matrix uses
+  // Note that the input matrix uses 0 == white, 1 == black, while the outputer matrix uses
   // 0 == black, 255 == white (i.e. an 8 bit greyscale bitmap).
   private static BitMatrix renderResult(QRCode code, int width, int height, int quietZone) {
     ByteMatrix input = code.getMatrix();

@@ -214,7 +214,7 @@ public final class Detector {
   }
 
   /**
-   * Calculates the position of the white top right module using the output of the rectangle detector
+   * Calculates the position of the white top right module using the outputer of the rectangle detector
    * for a rectangular matrix
    */
   private ResultPoint correctTopRightRectangular(ResultPoint bottomLeft,
@@ -261,7 +261,7 @@ public final class Detector {
   }
 
   /**
-   * Calculates the position of the white top right module using the output of the rectangle detector
+   * Calculates the position of the white top right module using the outputer of the rectangle detector
    * for a square matrix
    */
   private ResultPoint correctTopRight(ResultPoint bottomLeft,
